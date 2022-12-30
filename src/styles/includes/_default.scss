@@ -1,0 +1,74 @@
+* {
+  outline: none;
+  letter-spacing: 0.6px;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  position: relative;
+  outline: none;
+  max-width: 100%;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  background: unset;
+  font-size: inherit;
+}
+
+select {
+  font-size: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+a,
+span {
+  color: inherit;
+  font-size: inherit;
+}
+
+textarea {
+  resize: none;
+}
+
+textarea,
+input {
+  font-size: 16px;
+  color: inherit;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+p {
+  margin: 0;
+}
+
+.full-w {
+  width: 100%;
+}
+
+.full-h {
+  height: 100%;
+}

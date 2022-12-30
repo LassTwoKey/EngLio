@@ -1,0 +1,109 @@
+//  Palette
+$primary: #30017e;
+$secondary: #fff;
+$darkPrimary: darken($primary, 1%);
+
+// background
+$bg-primary: #f7f7f7;
+$bg-secondary: #f8f4ff;
+//$bg-tertiary: #201c1d;
+// $bg-quaternary: #f7f5f5;
+// $bg-fivefold: #fcfcfc;
+
+// font
+$c-primary: #201c1d;
+$c-secondary: #201c1d;
+$c-tertiary: #fcfcfc;
+// $c-quaternary: #c7c6c6;
+// $c-fivefold: #e86475;
+
+// input
+$inputBorderColor: #222;
+
+// main colors
+$black: #000;
+$white: #fff;
+$purple: #b150c4;
+$orange: #f2994a;
+$yellow: #f6ca2b;
+$red: #f15c5c;
+$green: #409a66;
+$blue: #1ea3f3;
+$gray: #828282;
+
+$redLight: lighten($red, 20%);
+$greenLight: lighten($green, 40%);
+
+// Colors map
+$colors-map: (
+  blue: $blue,
+  purple: $purple,
+  orange: $orange,
+  yellow: $yellow,
+  red: $red,
+  green: $green,
+  gray: $gray,
+  black: #201c1d,
+  white: $white,
+  primary: $primary,
+);
+
+// Fonts
+$primaryFont: "Inter";
+$secondaryFont: Arial;
+$defaultFont: $primaryFont;
+
+// Font sizes
+$fz-ubig: 40px;
+$fz-big: 36px;
+$fz-semibig: 30px;
+$fz-middle: 20px;
+$fz-regular: 18px;
+$fz-small: 16px;
+$fz-light: 14px;
+$fz-map: (
+  1: $fz-light,
+  2: $fz-small,
+  3: $fz-regular,
+  4: $fz-middle,
+  5: $fz-semibig,
+  6: $fz-big,
+  7: $fz-ubig,
+);
+
+//  Spacing
+//
+$spacer: 20px;
+$spacer-map: (
+  // 0px
+  0: $spacer * 0,
+  1: $spacer * 0.25,
+  // 10px
+  2: $spacer * 0.5,
+  3: $spacer * 0.75,
+  // 20px
+  4: $spacer,
+  5: $spacer * 1.25,
+  // 30px
+  6: $spacer * 1.5,
+  7: $spacer * 1.75,
+  // 40px
+  8: $spacer * 2,
+  9: $spacer * 2.25,
+  // 50px
+  10: $spacer * 2.5,
+  11: $spacer * 2.75,
+  // 60px
+  12: $spacer * 3
+);
+
+// border-radius
+$br-default: 10px;
+$br-circle: 50%;
+$br-map: (
+  default: $br-default,
+  circle: $br-circle,
+);
+
+// etc
+$transition-default: 0.15s;

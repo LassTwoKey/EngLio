@@ -1,0 +1,74 @@
+// display
+.d {
+  %centered {
+    align-items: center;
+    justify-content: center;
+  }
+  &-flex {
+    display: flex;
+    &-c {
+      @extend %centered;
+    }
+  }
+  &-iflex {
+    display: inline-flex;
+    flex-wrap: wrap;
+    &-c {
+      @extend %centered;
+    }
+  }
+}
+
+// justify-content
+.jc {
+  @each $key,
+    $value
+      in (
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        between: space-between,
+        around: space-around
+      )
+  {
+    &-#{$key} {
+      justify-content: $value;
+    }
+  }
+}
+
+// align-items
+.ai {
+  @each $key,
+    $value
+      in (
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        baseline: baseline,
+        stretch: stretch
+      )
+  {
+    &-#{$key} {
+      align-items: $value;
+    }
+  }
+}
+
+// flex-wrap
+.fwr {
+  @each $key, $value in (nowrap: nowrap, reverse: wrap-reverse, wrap: wrap) {
+    &-#{$key} {
+      flex-wrap: $value;
+    }
+  }
+}
+
+// flex-direction
+.fd {
+  @each $key, $value in (col: column, row: row) {
+    &-#{$key} {
+      flex-direction: $value;
+    }
+  }
+}

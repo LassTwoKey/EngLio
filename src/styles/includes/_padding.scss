@@ -1,0 +1,61 @@
+/*
+    CONTENTS
+    -- padding
+    -- padding-top
+    -- padding-left
+    -- padding-right
+    -- padding-bottom
+ */
+
+.p {
+  // padding
+  @each $key, $value in $spacer-map {
+    &-#{$key} {
+      padding: $value;
+    }
+  }
+
+  // padding X axis
+  @each $key, $value in $spacer-map {
+    &x-#{$key} {
+      padding-left: $value;
+      padding-right: $value;
+    }
+  }
+
+  // padding Y axis
+  @each $key, $value in $spacer-map {
+    &y-#{$key} {
+      padding-top: $value;
+      padding-bottom: $value;
+    }
+  }
+
+  // padding-top
+  @each $key, $value in $spacer-map {
+    &t-#{$key} {
+      padding-top: $value;
+    }
+  }
+
+  // padding-left
+  @each $key, $value in $spacer-map {
+    &l-#{$key} {
+      padding-left: $value;
+    }
+  }
+
+  // padding-right
+  @each $key, $value in $spacer-map {
+    &r-#{$key} {
+      padding-right: $value;
+    }
+  }
+
+  // padding-bottom
+  @each $key, $value in $spacer-map {
+    &b-#{$key} {
+      padding-bottom: $value;
+    }
+  }
+}

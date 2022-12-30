@@ -1,0 +1,7 @@
+@import "./src/styles/includes/mixins";
+
+@include addFont("Inter", "Inter-Regular", 400, normal);
+@include addFont("Inter", "Inter-Medium", 500, normal);
+
+@include addFont("Montserrat", "Montserrat-Medium", 500, normal);
+@include addFont("Montserrat", "Montserrat-SemiBold", 600, normal);

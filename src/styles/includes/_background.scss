@@ -1,0 +1,8 @@
+// background-color
+.bc {
+  @each $key, $value in $colors-map {
+    &-#{"" + $key} {
+      background-color: $value;
+    }
+  }
+}

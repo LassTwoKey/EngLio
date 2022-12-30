@@ -1,0 +1,68 @@
+/*
+    CONTENTS
+    -- margin
+    -- margin X axis auto
+    -- margin Y axis auto
+    -- margin-top
+    -- margin-left
+    -- margin-right
+    -- margin-bottom
+    -- margin-*: auto
+*/
+
+.m {
+  // margin
+  &-auto {
+    margin: auto;
+  }
+  @each $key, $value in $spacer-map {
+    &-#{$key} {
+      margin: $value;
+    }
+  }
+
+  // margin X axis auto
+  &x-auto {
+    margin: 0 auto !important;
+  }
+
+  // margin Y axis auto
+  &y-auto {
+    margin: auto 0 !important;
+  }
+
+  // margin-top
+  @each $key, $value in $spacer-map {
+    &t-#{$key} {
+      margin-top: $value;
+    }
+  }
+
+  // margin-left
+  @each $key, $value in $spacer-map {
+    &l-#{$key} {
+      margin-left: $value;
+    }
+  }
+
+  // margin-right
+  @each $key, $value in $spacer-map {
+    &r-#{$key} {
+      margin-right: $value;
+    }
+  }
+
+  // margin-bottom
+  @each $key, $value in $spacer-map {
+    &b-#{$key} {
+      margin-bottom: $value;
+    }
+  }
+
+  // margin-*: auto
+  @each $key, $side in (t: top, l: left, r: right, b: bottom) {
+    &#{$key}-auto {
+      margin-#{$side}: auto !important;
+    }
+  }
+}

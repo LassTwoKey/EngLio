@@ -1,0 +1,8 @@
+// border-radius
+.br {
+  @each $key, $value in $br-map {
+    &-#{$key} {
+      border-radius: $value;
+    }
+  }
+}

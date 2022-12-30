@@ -1,0 +1,12 @@
+@import "variables";
+
+// Add fonts
+@mixin addFont($font_name, $file_name, $font_weight, $font_style) {
+  @font-face {
+    font-family: $font_name;
+    font-display: fallback;
+    src: url("./../../assets/fonts/#{$file_name}.ttf");
+    font-weight: #{$font_weight};
+    font-style: #{$font_style};
+  }
+}

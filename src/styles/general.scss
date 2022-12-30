@@ -1,0 +1,55 @@
+@import "./src/styles/includes/variables";
+@import "./src/styles/includes/mixins";
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+body {
+  font-family: $defaultFont, $secondaryFont, Verdana;
+  color: $c-primary;
+  font-weight: 400;
+  * {
+    letter-spacing: -0.1px;
+  }
+}
+
+h1 {
+  letter-spacing: initial;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+.container {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: $purple #e2e1e2;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+.cat_cnt::-webkit-scrollbar-track {
+  margin-top: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e2e1e2;
+  border-radius: 100px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $purple;
+  border-radius: 100px;
+}
