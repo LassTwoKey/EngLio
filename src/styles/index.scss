@@ -5,9 +5,11 @@
 @import "general";
 @import "fonts";
 
-@import "includes/padding";
-@import "includes/margin";
-@import "includes/flex";
-@import "includes/border-radius";
 @import "includes/background";
+@import "includes/border-radius";
 @import "includes/default";
+@import "includes/flex";
+@import "includes/font";
+@import "includes/margin";
+@import "includes/mixins";
+@import "includes/padding";

@@ -1,0 +1,52 @@
+// font-size
+.fz {
+  @each $key, $value in $fz-map {
+    &-#{$key} {
+      font-size: $value;
+    }
+  }
+}
+
+// color
+.c {
+  @each $key, $value in $colors-map {
+    &-#{"" + $key} {
+      color: $value;
+    }
+  }
+}
+
+// text-align
+.ta {
+  @each $key,
+    $value in (c: center, j: justify, l: left, r: right, s: start, e: end)
+  {
+    &-#{$key} {
+      text-align: $value;
+    }
+  }
+}
+
+// font-weight
+.fw {
+  @each $key,
+    $value
+      in (
+        normal: normal,
+        black: 900,
+        semibold: 600,
+        bold: 700,
+        middle: 500,
+        regular: 400,
+        light: 200
+      )
+  {
+    &-#{"" + $key} {
+      font-weight: $value;
+    }
+  }
+}
+
+.td-underline {
+  text-decoration: underline;
+}
