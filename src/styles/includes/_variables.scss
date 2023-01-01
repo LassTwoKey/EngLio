@@ -4,7 +4,7 @@ $secondary: #fff;
 $darkPrimary: darken($primary, 1%);
 
 // background
-$bg-primary: #f7f7f7;
+$bg-primary: #fff; // f7f7f7
 $bg-secondary: #f8f4ff;
 //$bg-tertiary: #201c1d;
 // $bg-quaternary: #f7f5f5;
@@ -13,7 +13,7 @@ $bg-secondary: #f8f4ff;
 // font
 $c-primary: #201c1d;
 $c-secondary: #201c1d;
-$c-tertiary: #fcfcfc;
+$c-tertiary: #96a2fb;
 // $c-quaternary: #c7c6c6;
 // $c-fivefold: #e86475;
 
@@ -51,6 +51,7 @@ $colors-map: (
 // Fonts
 $primaryFont: "Inter";
 $secondaryFont: Arial;
+$tertiaryFont: "Montserrat";
 $defaultFont: $primaryFont;
 
 // Font sizes
@@ -98,7 +99,7 @@ $spacer-map: (
 );
 
 // border-radius
-$br-default: 10px;
+$br-default: 20px;
 $br-circle: 50%;
 $br-map: (
   default: $br-default,
