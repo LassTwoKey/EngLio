@@ -1,7 +1,7 @@
 @import "./src/styles/includes/variables";
 @import "./src/styles/includes/mixins";
 
-#root {
+#app {
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -30,7 +30,11 @@ h4 {
 .container {
   max-width: 1250px;
   margin: 0 auto;
-  padding: 15px;
+  padding: 0 15px;
+  width: 100%;
+}
+main {
+  flex: 1 1 auto;
 }
 
 * {
@@ -41,9 +45,9 @@ h4 {
 ::-webkit-scrollbar {
   width: 6px;
 }
-.cat_cnt::-webkit-scrollbar-track {
-  margin-top: 20px;
-}
+// .cat_cnt::-webkit-scrollbar-track {
+//   margin-top: 20px;
+// }
 
 ::-webkit-scrollbar-track {
   background: #e2e1e2;

@@ -1,0 +1,45 @@
+@import "./src/styles/includes/variables";
+
+.Title {
+  line-height: 1;
+  font-weight: 900;
+}
+
+.Title1 {
+  font-size: $fz-ubig !important;
+  line-height: 48px;
+  font-weight: 600;
+
+  @media (max-width: 426px) {
+    text-align: center;
+    font-size: $fz-big !important;
+  }
+}
+
+.Title2 {
+  font-size: $fz-big !important;
+  line-height: 44px;
+  font-weight: 600;
+}
+
+.Title3 {
+  font-size: 20px !important;
+  line-height: 24px;
+  font-weight: 600;
+
+  @media screen and (max-width: 425px) {
+    font-size: 16px !important;
+  }
+}
+
+.Title4 {
+  font-size: 16px !important;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.Paragraph {
+  font-weight: 400;
+  font-size: $fz-regular;
+  line-height: 150%;
+}

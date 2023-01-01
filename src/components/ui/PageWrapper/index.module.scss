@@ -1,0 +1,12 @@
+@import "./src/styles/includes/variables";
+
+.PageWrapper {
+  background: $bg-primary;
+}
+
+.PageWrapper__Title {
+  font-size: 24px;
+  line-height: 29.26px;
+  font-weight: 600;
+  color: $c-primary;
+}

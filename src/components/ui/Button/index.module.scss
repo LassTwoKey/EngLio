@@ -1,0 +1,130 @@
+@import "./src/styles/includes/variables";
+
+.Button {
+  white-space: nowrap;
+
+  &[disabled] {
+    cursor: initial;
+  }
+
+  &_primary {
+    background: $primary;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: $tertiary;
+    padding: 13px 14px;
+    border: 1px solid $bg-secondary;
+    border-radius: 14px;
+    transition: $transition-default;
+
+    &:hover {
+      background: $lightPrimary;
+      border-color: $bg-secondary;
+    }
+
+    @media screen and (max-width: 768px) {
+      &:hover {
+        background: $lightPrimary;
+        border-color: $bg-secondary;
+      }
+    }
+
+    &[disabled] {
+      background: #7c7778;
+      border-color: #7c7778;
+    }
+
+    span {
+      color: $tertiary;
+    }
+  }
+
+  // &_secondary {
+  //   background: $secondary;
+  //   font-weight: 600;
+  //   font-size: 16px;
+  //   line-height: 20px;
+  //   color: $c-primary;
+  //   padding: 13px 14px;
+  //   border: 1px solid $bg-secondary;
+  //   border-radius: 14px;
+  //   transition: $transition-default;
+
+  //   &:hover {
+  //     border: 1px solid #7c7778;
+  //     color: #7c7778;
+
+  //     span {
+  //       color: #7c7778;
+  //     }
+  //   }
+
+  //   span {
+  //     transition: $transition-default;
+  //     color: $c-primary;
+  //   }
+
+  //   @media screen and (max-width: 768px) {
+  //     &:hover {
+  //       border: 1px solid $bg-secondary;
+  //       color: $c-primary;
+
+  //       span {
+  //         color: $c-primary;
+  //       }
+  //     }
+  //   }
+  // }
+
+  // &_color {
+  //   //background: $bg-tertiary;
+  //   line-height: 20px;
+  //   font-weight: 600;
+  //   font-size: 16px;
+  //   //color: $bg-fivefold;
+  //   border-radius: 14px;
+
+  //   &:hover {
+  //   }
+
+  //   &:active {
+  //   }
+
+  //   &[disabled] {
+  //     background: #ede8e8;
+  //     color: #afacac;
+
+  //     span {
+  //       color: #c9c9c9;
+  //     }
+  //   }
+
+  //   span {
+  //     color: $c-tertiary;
+  //   }
+
+  //   @media screen and (max-width: 768px) {
+  //     &:hover {
+  //       //background: $bg-tertiary;
+  //     }
+  //   }
+  // }
+
+  // &_light {
+  //   //background: $bg-fivefold;
+  //   line-height: 20px;
+  //   font-weight: 600;
+  //   font-size: 16px;
+  //   color: $bg-secondary;
+  //   border-radius: 14px;
+
+  //   &_ac {
+  //     color: $red;
+  //   }
+
+  //   span {
+  //     color: $bg-secondary;
+  //   }
+  // }
+}

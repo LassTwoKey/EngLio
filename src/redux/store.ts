@@ -3,7 +3,7 @@ import globalSlice from "./modules/globalState/slice";
 
 export const store = configureStore({
   reducer: combineReducers({
-    ...globalSlice,
+    global: globalSlice,
   }),
 });
 

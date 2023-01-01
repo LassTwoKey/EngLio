@@ -1,7 +1,9 @@
 //  Palette
-$primary: #30017e;
-$secondary: #fff;
-$darkPrimary: darken($primary, 1%);
+$primary: #593c85;
+$secondary: #96a2fb;
+$tertiary: #fff;
+$darkPrimary: darken($primary, 7%);
+$lightPrimary: lighten($primary, 7%);
 
 // background
 $bg-primary: #fff; // f7f7f7
@@ -12,9 +14,9 @@ $bg-secondary: #f8f4ff;
 
 // font
 $c-primary: #201c1d;
-$c-secondary: #201c1d;
+$c-secondary: #535353;
 $c-tertiary: #96a2fb;
-// $c-quaternary: #c7c6c6;
+$c-quaternary: #fff;
 // $c-fivefold: #e86475;
 
 // input
@@ -105,6 +107,8 @@ $br-map: (
   default: $br-default,
   circle: $br-circle,
 );
+
+$header: 65px;
 
 // etc
 $transition-default: 0.15s;

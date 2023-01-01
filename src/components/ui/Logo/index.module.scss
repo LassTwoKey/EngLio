@@ -1,0 +1,26 @@
+@import "./src/styles/includes/variables";
+
+.Logo {
+  display: flex;
+  flex-direction: column;
+  &:hover {
+    span {
+      color: $c-quaternary;
+    }
+  }
+  user-select: none;
+}
+
+.First {
+  font-weight: 500;
+  font-size: 20px;
+  color: $c-tertiary;
+  transition: $transition-default;
+}
+
+.Second {
+  font-size: 12px;
+  color: $c-quaternary;
+  color: lighten($c-tertiary, 10%);
+  transition: $transition-default;
+}

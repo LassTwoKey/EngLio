@@ -1,0 +1,11 @@
+@import "./src/styles/includes/variables";
+
+.Header {
+  position: fixed;
+  height: $header;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: $primary;
+  z-index: 50;
+}
