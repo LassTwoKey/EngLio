@@ -1,0 +1,19 @@
+@import "./src/styles/includes/variables";
+
+.title2 {
+  @media (max-width: 426px) {
+  }
+}
+
+.backImg {
+  background: url("../assets/img/background-welcome.jpg") center / cover
+    no-repeat;
+
+  @media (max-width: 700px) {
+    background-position: bottom 0px right -200px;
+
+    .centered {
+      margin: 0 auto;
+    }
+  }
+}

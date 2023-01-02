@@ -10,7 +10,6 @@ const Button = (props: any) => {
     children,
     icon,
     iconPosition,
-    active,
     onClick,
     to,
     disabled,
@@ -24,12 +23,11 @@ const Button = (props: any) => {
 
   const Icon = icon && <span className={`${icon}`}></span>;
 
-  const classes = cn(styles.Button, "d-flex ai-center jc-start", {
-    [styles.Button_primary]: isPrimary,
-    [styles.Button_secondary]: isSecondary,
-    [styles.Button_color]: isColor,
-    [styles.Button_light]: isLight,
-    [styles.Button_light_ac]: active && isLight,
+  const classes = cn(styles.button, "d-flex ai-center jc-start", {
+    [styles.button_primary]: isPrimary,
+    [styles.button_secondary]: isSecondary,
+    [styles.button_color]: isColor,
+    [styles.button_light]: isLight,
     "py-3 px-4": isColor,
     "p-2": isLight,
     [className]: className,
@@ -41,7 +39,9 @@ const Button = (props: any) => {
         <NavLink
           {...props}
           type={"button"}
-          className={classes}
+          className={({ isActive }) =>
+            isActive ? cn(classes, styles.button_light_ac) : classes
+          }
           to={to}
           disabled={disabled}
         >

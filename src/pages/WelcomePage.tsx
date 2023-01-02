@@ -1,52 +1,63 @@
+import cn from "classnames";
 import Typography from "../components/ui/Typography";
 import PageWrapper from "../components/ui/PageWrapper";
 import Button from "../components/ui/Button";
 
-const technologies: { id: string; name: string }[] = [
+import styles from "./WelcomePage.module.scss";
+
+const technologies: { id: string; value: string }[] = [
   {
     id: "t1",
-    name: "React",
+    value: "React",
   },
   {
     id: "t2",
-    name: "Redux Toolkit",
+    value: "Redux Toolkit",
   },
   {
     id: "t3",
-    name: "React Router v6",
+    value: "React Router v6",
   },
   {
     id: "t4",
-    name: "TypeScript",
+    value: "TypeScript",
   },
   {
     id: "t5",
-    name: "Classnames",
+    value: "Classnames",
   },
   {
     id: "t6",
-    name: "SCSS",
+    value: "SCSS",
   },
 ];
 
-export const WelcomePage = (props: any) => {
+export const WelcomePage = () => {
   return (
-    <PageWrapper>
+    <PageWrapper className={cn(styles.backImg)}>
       <div className="container">
-        <Typography tag="h1">Добро пожаловать</Typography>
-        <Typography tag="p">
+        <Typography tag="h1" className={cn("mb-4")}>
+          Добро пожаловать
+        </Typography>
+        <Typography tag="p" className={cn("mb-4", styles.text)}>
           EngLio - это небольшое приложение для изуения английского языка по
           карточкам.
         </Typography>
-        <Typography tag="h3">Технологии, использованные в проекте:</Typography>
-        <ul>
+        <Typography tag="h2" className={cn("mb-2", styles.title2)}>
+          Технологии, использованные в проекте:
+        </Typography>
+        <ul className={cn("mb-4")}>
           {technologies.map(technology => (
-            <Typography key={technology.id} tag="li">
-              {technology.name}
+            <Typography key={technology.id} tag="li" isBig>
+              - {technology.value}
             </Typography>
           ))}
         </ul>
-        <Button type="primary" icon="_icon-light-mode">
+        <Button
+          className={styles.centered}
+          type="primary"
+          icon="_icon-light-mode"
+        >
           Начать изучение
         </Button>
       </div>

@@ -1,0 +1,15 @@
+@import "./src/styles/includes/variables";
+
+.notification {
+  margin-right: 10px;
+}
+.notification,
+.account {
+  border-radius: $br-circle;
+  padding: 7px;
+  font-size: 25px;
+  transition: $transition-default;
+  &:hover {
+    background: $lightPrimary;
+  }
+}

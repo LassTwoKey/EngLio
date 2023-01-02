@@ -1,7 +1,7 @@
 @import "./src/styles/includes/variables";
 
 .Logo {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   &:hover {
     span {

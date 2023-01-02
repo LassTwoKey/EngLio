@@ -4,11 +4,40 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 export interface GlobalState {
   burgerMenuToggle: boolean;
   loader: boolean;
+  header: {
+    menuList: { path: string; value: string }[];
+    input: {
+      search: { placeholder: string; result: string; errorMessage: string };
+    };
+  };
 }
 
 const initialState: GlobalState = {
   burgerMenuToggle: false,
   loader: true,
+  header: {
+    menuList: [
+      {
+        path: "/welcome",
+        value: "Главная",
+      },
+      {
+        path: "/flashcards",
+        value: "Карточки",
+      },
+      {
+        path: "/favorite",
+        value: "Избранное",
+      },
+    ],
+    input: {
+      search: {
+        placeholder: "Поиск",
+        result: "Результаты поиска:",
+        errorMessage: "Произошла ошибка поиска",
+      },
+    },
+  },
 };
 
 export const globalSlice = createSlice({

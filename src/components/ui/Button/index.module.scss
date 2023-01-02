@@ -1,6 +1,6 @@
 @import "./src/styles/includes/variables";
 
-.Button {
+.button {
   white-space: nowrap;
 
   &[disabled] {
@@ -14,7 +14,7 @@
     line-height: 20px;
     color: $tertiary;
     padding: 13px 14px;
-    border: 1px solid $bg-secondary;
+    //border: 1px solid $bg-secondary;
     border-radius: 14px;
     transition: $transition-default;
 
@@ -111,20 +111,21 @@
   //   }
   // }
 
-  // &_light {
-  //   //background: $bg-fivefold;
-  //   line-height: 20px;
-  //   font-weight: 600;
-  //   font-size: 16px;
-  //   color: $bg-secondary;
-  //   border-radius: 14px;
+  &_light {
+    //background: $bg-fivefold;
+    line-height: 20px;
+    font-weight: 600;
+    font-family: "Montserrat";
+    font-size: 16px;
+    color: $bg-secondary;
+    border-radius: 14px;
 
-  //   &_ac {
-  //     color: $red;
-  //   }
+    &_ac {
+      color: $secondary;
+    }
 
-  //   span {
-  //     color: $bg-secondary;
-  //   }
-  // }
+    // span {
+    //   color: $bg-secondary;
+    // }
+  }
 }

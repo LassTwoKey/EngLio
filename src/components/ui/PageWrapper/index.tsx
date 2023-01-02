@@ -7,13 +7,16 @@ const PageWrapper = (props: any) => {
   const { className, children, title } = props;
 
   const classNames = cn({
-    [styles.PageWrapper]: true,
+    [styles.pageWrapper]: true,
     [className]: className,
     "pt-12": true,
+    "d-flex": true,
+    "fd-col": true,
+    "jc-center": true,
   });
   return (
     <div className={classNames}>
-      <div>{title && <Typography tag="h3">{title}</Typography>}</div>
+      {title && <Typography tag="h3">{title}</Typography>}
       {children}
     </div>
   );

@@ -1,11 +1,11 @@
 @import "./src/styles/includes/variables";
 
-.Title {
+.title {
   line-height: 1;
   font-weight: 900;
 }
 
-.Title1 {
+.title1 {
   font-size: $fz-ubig !important;
   line-height: 48px;
   font-weight: 600;
@@ -16,13 +16,18 @@
   }
 }
 
-.Title2 {
+.title2 {
   font-size: $fz-big !important;
   line-height: 44px;
   font-weight: 600;
+
+  @media (max-width: 426px) {
+    text-align: center;
+    font-size: $fz-semibig !important;
+  }
 }
 
-.Title3 {
+.title3 {
   font-size: 20px !important;
   line-height: 24px;
   font-weight: 600;
@@ -32,14 +37,20 @@
   }
 }
 
-.Title4 {
+.title4 {
   font-size: 16px !important;
   line-height: 20px;
   font-weight: 600;
 }
 
-.Paragraph {
+.paragraph {
   font-weight: 400;
   font-size: $fz-regular;
   line-height: 150%;
+}
+
+.paragraphBig {
+  font-size: $fz-middle;
+  line-height: 150%;
+  font-weight: 400;
 }
