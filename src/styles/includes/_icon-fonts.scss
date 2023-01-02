@@ -25,21 +25,24 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-._icon-light-mode:before {
+._icon-account:before {
   content: "\e900";
 }
-._icon-notification:before {
+._icon-bookmark:before {
   content: "\e901";
 }
-._icon-ok:before {
+._icon-close:before {
   content: "\e902";
 }
-._icon-search:before {
+._icon-light-mode:before {
   content: "\e903";
 }
-._icon-bookmark:before {
+._icon-notification:before {
   content: "\e904";
 }
-._icon-close:before {
+._icon-ok:before {
   content: "\e905";
+}
+._icon-search:before {
+  content: "\e906";
 }
