@@ -122,6 +122,9 @@
 
     &_ac {
       color: $secondary;
+      @media (max-width: 768px) {
+        color: $primary !important;
+      }
     }
 
     // span {

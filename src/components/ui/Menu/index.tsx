@@ -1,3 +1,4 @@
+import React, { FC } from "react";
 import { RootState } from "../../../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { setBurgerMenuToggle } from "../../../redux/modules/globalState/slice";
@@ -6,26 +7,31 @@ import Button from "../Button";
 
 import styles from "./index.module.scss";
 
-const BurgerMenu = () => {
+const Menu: FC = () => {
   const dispatch = useDispatch();
   const { menuList } = useSelector((state: RootState) => state.global.header);
   const { burgerMenuToggle } = useSelector((state: RootState) => state.global);
 
-  // const classes = cn("d-flex ai-start jc-start", styles.wrapper, {
-  //   [styles.wrapper_show]: burgerMenuToggle,
-  // });
+  const close = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    console.log(1);
 
-  const close = () => dispatch(setBurgerMenuToggle(false));
-
-  console.log(menuList);
+    dispatch(setBurgerMenuToggle(false));
+  };
 
   return (
     <nav className={cn("d-flex ai-center", styles.headerNav)}>
-      <div className={styles.blackout} onClick={close} />
-      <ul className={cn("d-flex ai-center")}>
+      <div
+        className={cn(styles.blackout, { [styles.open]: burgerMenuToggle })}
+        onClick={close}
+      />
+      <ul
+        className={cn("d-flex ai-center", styles.list, {
+          [styles.open]: burgerMenuToggle,
+        })}
+      >
         {menuList.map(menuItem => (
           <li key={menuItem.value}>
-            <Button to={menuItem.path} type="light">
+            <Button to={menuItem.path} onClick={close} type="light">
               {menuItem.value}
             </Button>
           </li>
@@ -35,4 +41,4 @@ const BurgerMenu = () => {
   );
 };
 
-export default BurgerMenu;
+export default Menu;

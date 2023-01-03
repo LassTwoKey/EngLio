@@ -42,6 +42,7 @@ const Button = (props: any) => {
           className={({ isActive }) =>
             isActive ? cn(classes, styles.button_light_ac) : classes
           }
+          onClick={e => onClick && onClick(e)}
           to={to}
           disabled={disabled}
         >

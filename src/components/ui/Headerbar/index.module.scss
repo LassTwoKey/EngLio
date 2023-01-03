@@ -13,3 +13,43 @@
     background: $lightPrimary;
   }
 }
+
+.menuButton {
+  display: none;
+  position: relative;
+  z-index: 100;
+  @media (max-width: 768px) {
+    width: 39px;
+    height: 39px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10px;
+    padding: 11px 7px;
+    background: $primary;
+
+    border-radius: $br-circle;
+    &:hover {
+      background: $lightPrimary;
+    }
+    span {
+      display: block;
+      border-radius: 40px;
+      width: 100%;
+      height: 2px;
+      background: $white;
+      transition: $transition-default;
+    }
+    &.open {
+      span:first-child {
+        transform: translateY(8px) rotate(45deg);
+      }
+      span:nth-child(2) {
+        transform: scale(0);
+      }
+      span:last-child {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+    }
+  }
+}

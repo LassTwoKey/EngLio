@@ -14,7 +14,7 @@ $bg-secondary: #f8f4ff;
 
 // font
 $c-primary: #201c1d;
-$c-secondary: #535353;
+$c-secondary: #676767;
 $c-tertiary: #96a2fb;
 $c-quaternary: #fff;
 // $c-fivefold: #e86475;
@@ -31,7 +31,7 @@ $yellow: #f6ca2b;
 $red: #f15c5c;
 $green: #409a66;
 $blue: #1ea3f3;
-$gray: #828282;
+$gray: #c1c1c1;
 
 $redLight: lighten($red, 20%);
 $greenLight: lighten($green, 40%);
@@ -102,9 +102,11 @@ $spacer-map: (
 
 // border-radius
 $br-default: 20px;
+$br-soft-square: 10px;
 $br-circle: 50%;
 $br-map: (
   default: $br-default,
+  soft-square: $br-default,
   circle: $br-circle,
 );
 

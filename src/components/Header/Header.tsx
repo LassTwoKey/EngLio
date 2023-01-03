@@ -1,6 +1,6 @@
 import cn from "classnames";
 import Logo from "../ui/Logo";
-import BurgerMenu from "../ui/BurgerMenu";
+import Menu from "../ui/Menu";
 import Headerbar from "../ui/Headerbar";
 
 import styles from "./index.module.scss";
@@ -13,7 +13,7 @@ const Header = () => {
         style={{ width: "100%" }}
       >
         <Logo />
-        <BurgerMenu />
+        <Menu />
         <Headerbar />
       </div>
     </header>
