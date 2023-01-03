@@ -19,3 +19,26 @@
     }
   }
 }
+
+// Colors
+%red-color {
+  color: $red;
+  transition: $transition-default;
+  &:hover {
+    color: darken($red, 10%);
+  }
+}
+%green-color {
+  color: $green;
+  transition: $transition-default;
+  &:hover {
+    color: darken($green, 10%);
+  }
+}
+%yellow-color {
+  color: $yellow;
+  transition: $transition-default;
+  &:hover {
+    color: darken($yellow, 10%);
+  }
+}
