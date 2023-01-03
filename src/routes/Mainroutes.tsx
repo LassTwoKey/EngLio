@@ -5,14 +5,18 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import { WelcomePage } from "../pages/WelcomePage";
+import WelcomePage from "../pages/WelcomePage";
 import Layout from "../components/Layout/Layout";
+import FlashCards from "../pages/FlashCards";
+import ErrorPage from "../pages/ErrorPage";
+import { paths } from "../data/constants";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />} errorElement={<p>Ошибка</p>}>
-      <Route path="welcome" element={<WelcomePage />} />
-      <Route index element={<Navigate replace to="welcome" />} />
+    <Route path={paths.main} element={<Layout />} errorElement={<ErrorPage />}>
+      <Route path={`${paths.welcome}`} element={<WelcomePage />} />
+      <Route index element={<Navigate replace to={`${paths.welcome}`} />} />
+      <Route path={`${paths.flashcards}`} element={<FlashCards />} />
     </Route>
   )
 );

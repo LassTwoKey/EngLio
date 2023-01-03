@@ -2,6 +2,7 @@ import cn from "classnames";
 import Typography from "../components/ui/Typography";
 import PageWrapper from "../components/ui/PageWrapper";
 import Button from "../components/ui/Button";
+import { paths } from "../data/constants";
 
 import styles from "./WelcomePage.module.scss";
 
@@ -32,7 +33,7 @@ const technologies: { id: string; value: string }[] = [
   },
 ];
 
-export const WelcomePage = () => {
+const WelcomePage = () => {
   return (
     <PageWrapper className={cn(styles.backImg)}>
       <div className="container">
@@ -57,6 +58,7 @@ export const WelcomePage = () => {
           className={styles.centered}
           type="primary"
           icon="_icon-light-mode"
+          to={`/${paths.flashcards}`}
         >
           Начать изучение
         </Button>
@@ -64,3 +66,5 @@ export const WelcomePage = () => {
     </PageWrapper>
   );
 };
+
+export default WelcomePage;

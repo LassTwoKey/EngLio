@@ -23,7 +23,7 @@ const Button = (props: any) => {
 
   const Icon = icon && <span className={`${icon}`}></span>;
 
-  const classes = cn(styles.button, "d-flex ai-center jc-start", {
+  const classes = cn(styles.button, "d-iflex ai-center jc-start", {
     [styles.button_primary]: isPrimary,
     [styles.button_secondary]: isSecondary,
     [styles.button_color]: isColor,
@@ -48,7 +48,9 @@ const Button = (props: any) => {
         >
           {Icon && (iconPosition === "start" || !iconPosition) && (
             <div
-              className={cn("d-flex ai-center jc-center", { "mr-2": children })}
+              className={cn("d-flex ai-center jc-center", {
+                "mr-2": children,
+              })}
             >
               {Icon}
             </div>

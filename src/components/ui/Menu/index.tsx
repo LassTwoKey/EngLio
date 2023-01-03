@@ -13,8 +13,6 @@ const Menu: FC = () => {
   const { burgerMenuToggle } = useSelector((state: RootState) => state.global);
 
   const close = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    console.log(1);
-
     dispatch(setBurgerMenuToggle(false));
   };
 
