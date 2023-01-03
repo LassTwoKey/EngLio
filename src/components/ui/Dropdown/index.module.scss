@@ -26,8 +26,12 @@
   transition: $transition-default;
   border-radius: $br-soft-square;
   @media screen and (max-width: 425px) {
-    min-width: 270px;
-    left: -220px;
+    // min-width: 270px;
+    // left: -220px;
+    left: 15px;
+    right: 15px;
+    top: 50px;
+    position: fixed;
     font-size: $fz-light;
   }
   @media screen and (max-width: 370px) {

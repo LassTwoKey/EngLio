@@ -1,0 +1,70 @@
+@import "./src/styles/includes/variables";
+@import "./src/styles/includes/mixins";
+
+.actions > div:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.actionsTop,
+.actionsBottom {
+  gap: 10px;
+}
+
+.active {
+  background: $primary;
+  color: $tertiary;
+  transition: $transition-default;
+  &:hover {
+    color: $bg-primary;
+    background: $darkPrimary;
+  }
+}
+
+.learnCard {
+  max-width: 400px;
+  text-align: center;
+}
+.cardMain {
+  text-align: center;
+}
+.cardSuggestion {
+  button {
+    display: flex;
+    width: 100%;
+    padding: 12px 15px;
+    font-weight: 600;
+    color: $c-secondary;
+    transition: $transition-default;
+    &:hover {
+      background: lighten($secondary, 15%);
+    }
+  }
+}
+
+.cartAction {
+  gap: 10px;
+}
+.nextBtn {
+}
+
+.skip,
+.memorized,
+.favorite {
+  border-radius: $br-circle;
+  &:hover {
+    background: $bg-secondary;
+  }
+}
+.skip {
+  @extend %red-color;
+  font-size: 18px;
+  transform: translateY(1px);
+}
+.memorized {
+  @extend %green-color;
+}
+.favorite {
+  @extend %yellow-color;
+  font-size: 21px;
+  transform: translateY(2px);
+}

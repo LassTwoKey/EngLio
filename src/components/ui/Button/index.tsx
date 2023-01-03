@@ -17,18 +17,17 @@ const Button = (props: any) => {
 
   // check
   const isPrimary = type === "primary";
-  const isSecondary = type === "secondary";
-  const isColor = type === "color";
   const isLight = type === "light";
+  const isOutlined = type === "outlined";
+  const isCommon = type === "common";
 
   const Icon = icon && <span className={`${icon}`}></span>;
 
   const classes = cn(styles.button, "d-iflex ai-center jc-start", {
     [styles.button_primary]: isPrimary,
-    [styles.button_secondary]: isSecondary,
-    [styles.button_color]: isColor,
+    [styles.button_outlined]: isOutlined,
     [styles.button_light]: isLight,
-    "py-3 px-4": isColor,
+    [styles.button_common]: isCommon,
     "p-2": isLight,
     [className]: className,
   });

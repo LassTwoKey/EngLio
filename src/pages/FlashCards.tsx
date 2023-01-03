@@ -48,7 +48,9 @@ const FlashCards = () => {
               </Typography>
               <div className={cn(styles.text, "mb-3")}>{flashCard.descr}</div>
               <div className={styles.actions}>
-                <Button type="primary">Начать</Button>
+                <Button type="primary" to={`${flashCard.id}`}>
+                  Начать
+                </Button>
               </div>
             </Card>
           ))}
