@@ -35,7 +35,7 @@ const technologies: { id: string; value: string }[] = [
 
 const WelcomePage = () => {
   return (
-    <PageWrapper className={cn(styles.backImg)}>
+    <PageWrapper className={cn(styles.backImg)} center>
       <div className="container">
         <Typography tag="h1" className={cn("mb-4")}>
           Добро пожаловать

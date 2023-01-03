@@ -1,0 +1,6 @@
+@import "./src/styles/includes/variables";
+
+.card {
+  border-radius: $br-default;
+  background: $bg-secondary;
+}

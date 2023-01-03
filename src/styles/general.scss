@@ -41,7 +41,7 @@ main {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: $purple #e2e1e2;
+  scrollbar-color: $primary #e2e1e2;
 }
 
 ::-webkit-scrollbar {
@@ -56,6 +56,6 @@ main {
   border-radius: 100px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: $purple;
+  background-color: $primary;
   border-radius: 100px;
 }

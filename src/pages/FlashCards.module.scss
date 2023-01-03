@@ -1,0 +1,17 @@
+@import "./src/styles/includes/variables";
+
+.cards {
+  gap: 30px;
+  //flex-wrap: wrap;
+}
+
+.card {
+  flex: 0 0 400px;
+  @media (max-width: 768px) {
+    flex: 1 1 auto;
+  }
+  box-shadow: $card-box-shadow;
+}
+.text {
+  flex: 1 1 auto;
+}
