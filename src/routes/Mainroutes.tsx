@@ -7,7 +7,7 @@ import {
 
 import WelcomePage from "../pages/WelcomePage";
 import Layout from "../layout/Layout";
-import FlashCards from "../pages/FlashCards/FlashCards";
+import FlashCards from "../pages/FlashCardsPage/FlashCards";
 import ErrorPage from "../pages/ErrorPage";
 import { paths } from "../data/constants";
 import FlashCardPage from "../pages/FlashCardPage";
