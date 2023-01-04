@@ -1,8 +1,8 @@
 import cn from "classnames";
-import PageWrapper from "../ui/PageWrapper";
-import Typography from "../ui/Typography";
-import Card from "../ui/Card";
-import Button from "../ui/Button";
+import PageWrapper from "../../ui/PageWrapper";
+import Typography from "../../ui/Typography";
+import Card from "../../ui/Card";
+import Button from "../../ui/Button";
 
 import styles from "./FlashCards.module.scss";
 

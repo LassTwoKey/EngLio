@@ -1,10 +1,10 @@
 import cn from "classnames";
-import Typography from "../ui/Typography";
-import PageWrapper from "../ui/PageWrapper";
-import Button from "../ui/Button";
-import { paths } from "../data/constants";
+import Typography from "../../ui/Typography";
+import PageWrapper from "../../ui/PageWrapper";
+import Button from "../../ui/Button";
+import { paths } from "../../data/constants";
 
-import styles from "./WelcomePage.module.scss";
+import styles from "./index.module.scss";
 
 const technologies: { id: string; value: string }[] = [
   {

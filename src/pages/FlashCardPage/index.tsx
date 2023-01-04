@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import cn from "classnames";
-import PageWrapper from "../ui/PageWrapper";
-import Typography from "../ui/Typography";
-import Button from "../ui/Button";
-import Card from "../ui/Card";
+import PageWrapper from "../../ui/PageWrapper";
+import Typography from "../../ui/Typography";
+import Button from "../../ui/Button";
+import Card from "../../ui/Card";
 
-import styles from "./FlashCardPage.module.scss";
+import styles from "./index.module.scss";
 
 const words = {
   all: [

@@ -1,5 +1,5 @@
-import Header from "../layout/Header";
-import Typography from "../ui/Typography";
+import Header from "../../layout/Header";
+import Typography from "../../ui/Typography";
 
 const ErrorPage = () => {
   return (
