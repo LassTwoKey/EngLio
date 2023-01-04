@@ -1,9 +1,10 @@
+import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { paths } from "../../data/constants";
 
 import styles from "./index.module.scss";
 
-const Logo = () => {
+const Logo: FC = () => {
   return (
     <NavLink className={styles.logo} to={paths.main}>
       <span className={styles.first}>EngLio</span>

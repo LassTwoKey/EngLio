@@ -1,3 +1,4 @@
+import { FC } from "react";
 import cn from "classnames";
 import Typography from "../../ui/Typography";
 import PageWrapper from "../../ui/PageWrapper";
@@ -33,7 +34,7 @@ const technologies: { id: string; value: string }[] = [
   }
 ];
 
-const WelcomePage = () => {
+const WelcomePage: FC = () => {
   return (
     <PageWrapper className={cn(styles.backImg)} center>
       <div className="container">

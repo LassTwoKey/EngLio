@@ -1,10 +1,16 @@
-import React from "react";
+import React, { FC } from "react";
 import cn from "classnames";
+import { IBaseUI } from "../../types/ComponentUI";
 
 import styles from "./index.module.scss";
 
-const Typography = (props: any) => {
-  const { tag, className, isBig } = props;
+interface TypographyProps extends IBaseUI {
+  tag: string;
+  isBig?: boolean;
+}
+
+const Typography: FC<TypographyProps> = props => {
+  const { tag, className, isBig, children } = props;
 
   const classNames = cn({
     [styles.title]: tag === "h1" || tag === "h2" || tag === "h3",
@@ -14,7 +20,7 @@ const Typography = (props: any) => {
     [styles.title4]: tag === "h4",
     [styles.paragraph]: tag === "p",
     [styles.paragraphBig]: (tag === "p" || tag === "li") && isBig,
-    [className]: className
+    [className as string]: className
   });
 
   return React.createElement(
@@ -22,7 +28,7 @@ const Typography = (props: any) => {
     {
       className: classNames
     },
-    props.children
+    children
   );
 };
 

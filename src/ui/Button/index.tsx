@@ -1,9 +1,20 @@
+import { FC } from "react";
 import cn from "classnames";
 import { NavLink } from "react-router-dom";
+import { IBaseUI } from "../../types/ComponentUI";
 
 import styles from "./index.module.scss";
 
-const Button = (props: any) => {
+interface ButtonProps extends IBaseUI {
+  type?: string;
+  icon?: string;
+  iconPosition?: string;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+  to?: string;
+  disabled?: boolean;
+}
+
+const Button: FC<ButtonProps> = props => {
   const {
     className,
     type,
@@ -29,7 +40,7 @@ const Button = (props: any) => {
     [styles.button_light]: isLight,
     [styles.button_common]: isCommon,
     "p-2": isLight,
-    [className]: className
+    [className as string]: className
   });
 
   return (
@@ -43,7 +54,6 @@ const Button = (props: any) => {
           }
           onClick={e => onClick && onClick(e)}
           to={to}
-          disabled={disabled}
         >
           {Icon && (iconPosition === "start" || !iconPosition) && (
             <div

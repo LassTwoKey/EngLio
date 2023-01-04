@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+//import React, { useState } from "react";
+import { FC } from "react";
 import cn from "classnames";
 import PageWrapper from "../../ui/PageWrapper";
 import Typography from "../../ui/Typography";
@@ -7,66 +8,68 @@ import Card from "../../ui/Card";
 
 import styles from "./index.module.scss";
 
-const words = {
-  all: [
-    {
-      id: 1,
-      word: "Robber",
-      transcription: "[ˈräbər]",
-      correctTranslate: "грабитель",
-      answerOptions: ["Грабитель", "Дом", "Храм"]
-    },
-    {
-      id: 2,
-      word: "Robber",
-      transcription: "[ˈräbər]",
-      correctTranslate: "грабитель",
-      answerOptions: ["Грабитель", "Дом", "Храм"]
-    },
-    {
-      id: 3,
-      word: "Robber",
-      transcription: "[ˈräbər]",
-      correctTranslate: "грабитель",
-      answerOptions: ["Грабитель", "Дом", "Храм"]
-    },
-    {
-      id: 4,
-      word: "Robber",
-      transcription: "[ˈräbər]",
-      correctTranslate: "грабитель",
-      answerOptions: ["Грабитель", "Дом", "Храм"]
-    },
-    {
-      id: 5,
-      word: "Robber",
-      transcription: "[ˈräbər]",
-      correctTranslate: "грабитель",
-      answerOptions: ["Грабитель", "Дом", "Храм"]
-    }
-  ],
-  memorized: [],
-  selected: [],
-  failings: [],
-  favorite: []
-};
+// const words = {
+//   all: [
+//     {
+//       id: 1,
+//       word: "Robber",
+//       transcription: "[ˈräbər]",
+//       correctTranslate: "грабитель",
+//       answerOptions: ["Грабитель", "Дом", "Храм"]
+//     },
+//     {
+//       id: 2,
+//       word: "Robber",
+//       transcription: "[ˈräbər]",
+//       correctTranslate: "грабитель",
+//       answerOptions: ["Грабитель", "Дом", "Храм"]
+//     },
+//     {
+//       id: 3,
+//       word: "Robber",
+//       transcription: "[ˈräbər]",
+//       correctTranslate: "грабитель",
+//       answerOptions: ["Грабитель", "Дом", "Храм"]
+//     },
+//     {
+//       id: 4,
+//       word: "Robber",
+//       transcription: "[ˈräbər]",
+//       correctTranslate: "грабитель",
+//       answerOptions: ["Грабитель", "Дом", "Храм"]
+//     },
+//     {
+//       id: 5,
+//       word: "Robber",
+//       transcription: "[ˈräbər]",
+//       correctTranslate: "грабитель",
+//       answerOptions: ["Грабитель", "Дом", "Храм"]
+//     }
+//   ],
+//   memorized: [],
+//   selected: [],
+//   failings: [],
+//   favorite: []
+// };
 
-const FlashCardPage = () => {
-  const [words, setWords] = useState([]);
+const FlashCardPage: FC = () => {
+  // const [words, setWords] = useState([]);
 
-  const filterByOrder = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    console.log(1);
-  };
+  // const filterByOrder = (
+  //   e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  // ) => {
+  //   console.log(1);
+  // };
   return (
     <PageWrapper>
       <div className="container py-4">
-        <Typography tag="p">Фильтры:</Typography>
+        <Typography className="mb-2" tag="p">
+          Фильтры:
+        </Typography>
         <div className={cn(styles.actions)}>
           <div className={cn("d-flex", styles.actionsTop)}>
             <Button
-              onClick={filterByOrder}
+              //onClick={filterByOrder}
               type="outlined"
               className={cn(styles.active)}
             >

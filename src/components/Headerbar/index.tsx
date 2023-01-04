@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cn from "classnames";
 import { RootState } from "../../redux/store";
@@ -44,7 +45,7 @@ const messages: { id: string; value: string }[] = [
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
   }
 ];
-const Headerbar = () => {
+const Headerbar: FC = () => {
   const dispatch = useDispatch();
   const { burgerMenuToggle } = useSelector((state: RootState) => state.global);
 

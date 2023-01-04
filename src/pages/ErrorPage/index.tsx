@@ -1,7 +1,8 @@
+import { FC } from "react";
 import Header from "../../layout/Header";
 import Typography from "../../ui/Typography";
 
-const ErrorPage = () => {
+const ErrorPage: FC = () => {
   return (
     <>
       <Header />

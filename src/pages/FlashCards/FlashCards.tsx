@@ -1,3 +1,4 @@
+import { FC } from "react";
 import cn from "classnames";
 import PageWrapper from "../../ui/PageWrapper";
 import Typography from "../../ui/Typography";
@@ -33,7 +34,7 @@ const flashCards = [
   }
 ];
 
-const FlashCards = () => {
+const FlashCards: FC = () => {
   return (
     <PageWrapper title="Разделы для карточек">
       <div className="container">

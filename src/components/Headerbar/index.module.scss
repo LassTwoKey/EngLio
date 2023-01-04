@@ -5,9 +5,9 @@
 }
 .notification,
 .account {
-  border-radius: $br-circle;
+  border-radius: $br-circle !important;
   padding: 7px;
-  font-size: 25px;
+  font-size: 25px !important;
   transition: $transition-default;
   &:hover {
     background: $lightPrimary;

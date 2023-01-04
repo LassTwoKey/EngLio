@@ -1,3 +1,4 @@
+import { FC } from "react";
 import cn from "classnames";
 import Logo from "../../ui/Logo";
 import Menu from "../../components/HeaderMenu";
@@ -5,7 +6,7 @@ import Headerbar from "../../components/Headerbar";
 
 import styles from "./index.module.scss";
 
-const Header = () => {
+const Header: FC = () => {
   return (
     <header className={cn("d-flex ai-center", styles.header)}>
       <div

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import cn from "classnames";
 import { RootState } from "../../redux/store";
@@ -12,7 +12,7 @@ const HeaderMenu: FC = () => {
   const { menuList } = useSelector((state: RootState) => state.global.header);
   const { burgerMenuToggle } = useSelector((state: RootState) => state.global);
 
-  const menuClose = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const menuClose = () => {
     dispatch(setBurgerMenuToggle(false));
   };
 
