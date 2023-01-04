@@ -3,8 +3,8 @@ import globalSlice from "./modules/globalState/slice";
 
 export const store = configureStore({
   reducer: combineReducers({
-    global: globalSlice,
-  }),
+    global: globalSlice
+  })
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

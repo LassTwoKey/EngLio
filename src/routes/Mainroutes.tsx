@@ -2,7 +2,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
-  Navigate,
+  Navigate
 } from "react-router-dom";
 
 import WelcomePage from "../pages/WelcomePage";

@@ -14,41 +14,41 @@ const words = {
       word: "Robber",
       transcription: "[ˈräbər]",
       correctTranslate: "грабитель",
-      answerOptions: ["Грабитель", "Дом", "Храм"],
+      answerOptions: ["Грабитель", "Дом", "Храм"]
     },
     {
       id: 2,
       word: "Robber",
       transcription: "[ˈräbər]",
       correctTranslate: "грабитель",
-      answerOptions: ["Грабитель", "Дом", "Храм"],
+      answerOptions: ["Грабитель", "Дом", "Храм"]
     },
     {
       id: 3,
       word: "Robber",
       transcription: "[ˈräbər]",
       correctTranslate: "грабитель",
-      answerOptions: ["Грабитель", "Дом", "Храм"],
+      answerOptions: ["Грабитель", "Дом", "Храм"]
     },
     {
       id: 4,
       word: "Robber",
       transcription: "[ˈräbər]",
       correctTranslate: "грабитель",
-      answerOptions: ["Грабитель", "Дом", "Храм"],
+      answerOptions: ["Грабитель", "Дом", "Храм"]
     },
     {
       id: 5,
       word: "Robber",
       transcription: "[ˈräbər]",
       correctTranslate: "грабитель",
-      answerOptions: ["Грабитель", "Дом", "Храм"],
-    },
+      answerOptions: ["Грабитель", "Дом", "Храм"]
+    }
   ],
   memorized: [],
   selected: [],
   failings: [],
-  favorite: [],
+  favorite: []
 };
 
 const FlashCardPage = () => {

@@ -12,7 +12,7 @@ const Button = (props: any) => {
     iconPosition,
     onClick,
     to,
-    disabled,
+    disabled
   } = props;
 
   // check
@@ -29,7 +29,7 @@ const Button = (props: any) => {
     [styles.button_light]: isLight,
     [styles.button_common]: isCommon,
     "p-2": isLight,
-    [className]: className,
+    [className]: className
   });
 
   return (
@@ -48,7 +48,7 @@ const Button = (props: any) => {
           {Icon && (iconPosition === "start" || !iconPosition) && (
             <div
               className={cn("d-flex ai-center jc-center", {
-                "mr-2": children,
+                "mr-2": children
               })}
             >
               {Icon}

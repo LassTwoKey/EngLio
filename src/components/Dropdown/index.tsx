@@ -16,7 +16,7 @@ const Dropdown: FC<DropdownProps> = props => {
   const { messages, btnElement, headerText, renderElement, heigth } = props;
 
   const heightStyle = {
-    height: heigth || "auto",
+    height: heigth || "auto"
   };
 
   const messageList = messages && (

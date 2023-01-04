@@ -11,26 +11,26 @@ const flashCards = [
     id: "f1",
     title: "Слова",
     descr:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias, rerum expedita. Magnam possimus maxime eligendi neque error sequi accusantium vitae laborum amet nisi corporis asperiores ratione placeat ipsam, at officiis.",
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias, rerum expedita. Magnam possimus maxime eligendi neque error sequi accusantium vitae laborum amet nisi corporis asperiores ratione placeat ipsam, at officiis."
   },
   {
     id: "f2",
     title: "Словосочетания",
     descr:
-      "Accusantium vitae laborum amet nisi corporis asperiores ratione placeat ipsam, at officiis.",
+      "Accusantium vitae laborum amet nisi corporis asperiores ratione placeat ipsam, at officiis."
   },
   {
     id: "f3",
     title: "Выражения",
     descr:
-      "Rerum expedita. Magnam possimus maxime eligendi neque error sequi accusantium vitae laborum amet nisi corporis asperiores ratione placeat ipsam, at officiis.",
+      "Rerum expedita. Magnam possimus maxime eligendi neque error sequi accusantium vitae laborum amet nisi corporis asperiores ratione placeat ipsam, at officiis."
   },
   {
     id: "f4",
     title: "Фразовые глаголы",
     descr:
-      "Magnam possimus maxime eligendi neque error sequi accusantium vitae laborum amet nisi corporis asperiores ratione placeat ipsam.",
-  },
+      "Magnam possimus maxime eligendi neque error sequi accusantium vitae laborum amet nisi corporis asperiores ratione placeat ipsam."
+  }
 ];
 
 const FlashCards = () => {

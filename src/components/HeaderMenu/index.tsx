@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import { RootState } from "../../redux/store";
 import { useSelector, useDispatch } from "react-redux";
-import { setBurgerMenuToggle } from "../../redux/modules/globalState/slice";
 import cn from "classnames";
+import { RootState } from "../../redux/store";
+import { setBurgerMenuToggle } from "../../redux/modules/globalState/slice";
 import Button from "../../ui/Button";
 
 import styles from "./index.module.scss";
@@ -24,7 +24,7 @@ const HeaderMenu: FC = () => {
       />
       <ul
         className={cn("d-flex ai-center", styles.list, {
-          [styles.open]: burgerMenuToggle,
+          [styles.open]: burgerMenuToggle
         })}
       >
         {menuList.map(menuItem => (

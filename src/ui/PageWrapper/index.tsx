@@ -12,7 +12,7 @@ const PageWrapper = (props: any) => {
     "pt-12": true,
     "d-flex": true,
     "fd-col": true,
-    "jc-center": center,
+    "jc-center": center
   });
   return (
     <div className={classNames}>

@@ -14,13 +14,13 @@ const Typography = (props: any) => {
     [styles.title4]: tag === "h4",
     [styles.paragraph]: tag === "p",
     [styles.paragraphBig]: (tag === "p" || tag === "li") && isBig,
-    [className]: className,
+    [className]: className
   });
 
   return React.createElement(
     tag,
     {
-      className: classNames,
+      className: classNames
     },
     props.children
   );

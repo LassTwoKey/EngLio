@@ -19,25 +19,25 @@ const initialState: GlobalState = {
     menuList: [
       {
         path: "/welcome",
-        value: "Главная",
+        value: "Главная"
       },
       {
         path: "/flashcards",
-        value: "Карточки",
+        value: "Карточки"
       },
       {
         path: "/favorite",
-        value: "Избранное",
-      },
+        value: "Избранное"
+      }
     ],
     input: {
       search: {
         placeholder: "Поиск",
         result: "Результаты поиска:",
-        errorMessage: "Произошла ошибка поиска",
-      },
-    },
-  },
+        errorMessage: "Произошла ошибка поиска"
+      }
+    }
+  }
 };
 
 export const globalSlice = createSlice({
@@ -49,8 +49,8 @@ export const globalSlice = createSlice({
     },
     setBurgerMenuToggle(state, { payload }: PayloadAction<boolean>) {
       state.burgerMenuToggle = payload;
-    },
-  },
+    }
+  }
 });
 
 // Action creators are generated for each case reducer function

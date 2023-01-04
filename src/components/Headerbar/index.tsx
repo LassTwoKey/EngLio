@@ -1,9 +1,9 @@
-import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
+import cn from "classnames";
+import { RootState } from "../../redux/store";
 import { setBurgerMenuToggle } from "../../redux/modules/globalState/slice";
 import Button from "../../ui/Button";
 import Dropdown from "../Dropdown";
-import cn from "classnames";
 
 import styles from "./index.module.scss";
 
@@ -11,38 +11,38 @@ const messages: { id: string; value: string }[] = [
   {
     id: "m1",
     value:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
   },
   {
     id: "m2",
     value:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
   },
   {
     id: "m3",
     value:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
   },
   {
     id: "m4",
     value:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
   },
   {
     id: "m5",
     value:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
   },
   {
     id: "m6",
     value:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
   },
   {
     id: "m7",
     value:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-  },
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+  }
 ];
 const Headerbar = () => {
   const dispatch = useDispatch();
@@ -82,7 +82,7 @@ const Headerbar = () => {
       />
       <Button
         className={cn("jc-between", styles.menuButton, {
-          [styles.open]: burgerMenuToggle,
+          [styles.open]: burgerMenuToggle
         })}
         onClick={() => dispatch(setBurgerMenuToggle(!burgerMenuToggle))}
       >

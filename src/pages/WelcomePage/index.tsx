@@ -9,28 +9,28 @@ import styles from "./index.module.scss";
 const technologies: { id: string; value: string }[] = [
   {
     id: "t1",
-    value: "React",
+    value: "React"
   },
   {
     id: "t2",
-    value: "Redux Toolkit",
+    value: "Redux Toolkit"
   },
   {
     id: "t3",
-    value: "React Router v6",
+    value: "React Router v6"
   },
   {
     id: "t4",
-    value: "TypeScript",
+    value: "TypeScript"
   },
   {
     id: "t5",
-    value: "Classnames",
+    value: "Classnames"
   },
   {
     id: "t6",
-    value: "SCSS",
-  },
+    value: "SCSS"
+  }
 ];
 
 const WelcomePage = () => {
