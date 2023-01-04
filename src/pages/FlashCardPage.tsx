@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import cn from "classnames";
-import PageWrapper from "../components/ui/PageWrapper";
-import Typography from "../components/ui/Typography";
-import Button from "../components/ui/Button";
-import Card from "../components/ui/Card";
+import PageWrapper from "../ui/PageWrapper";
+import Typography from "../ui/Typography";
+import Button from "../ui/Button";
+import Card from "../ui/Card";
 
 import styles from "./FlashCardPage.module.scss";
 

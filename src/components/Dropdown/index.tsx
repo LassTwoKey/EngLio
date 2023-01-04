@@ -1,6 +1,6 @@
 import { FC } from "react";
 import cn from "classnames";
-import Typography from "../Typography";
+import Typography from "../../ui/Typography";
 
 import styles from "./index.module.scss";
 

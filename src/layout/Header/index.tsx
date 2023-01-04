@@ -1,7 +1,7 @@
 import cn from "classnames";
-import Logo from "../ui/Logo";
-import Menu from "../ui/Menu";
-import Headerbar from "../ui/Headerbar";
+import Logo from "../../ui/Logo";
+import Menu from "../../components/HeaderMenu";
+import Headerbar from "../../components/Headerbar";
 
 import styles from "./index.module.scss";
 

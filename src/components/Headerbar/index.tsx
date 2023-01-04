@@ -1,7 +1,7 @@
-import { RootState } from "../../../redux/store";
+import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { setBurgerMenuToggle } from "../../../redux/modules/globalState/slice";
-import Button from "../Button";
+import { setBurgerMenuToggle } from "../../redux/modules/globalState/slice";
+import Button from "../../ui/Button";
 import Dropdown from "../Dropdown";
 import cn from "classnames";
 

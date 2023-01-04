@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { paths } from "../../../data/constants";
+import { paths } from "../../data/constants";
 
 import styles from "./index.module.scss";
 

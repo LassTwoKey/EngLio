@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 import WelcomePage from "../pages/WelcomePage";
-import Layout from "../components/Layout/Layout";
+import Layout from "../layout/Layout";
 import FlashCards from "../pages/FlashCards";
 import ErrorPage from "../pages/ErrorPage";
 import { paths } from "../data/constants";
