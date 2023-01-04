@@ -5,9 +5,9 @@ import styles from "./index.module.scss";
 
 const Logo = () => {
   return (
-    <NavLink className={styles.Logo} to={paths.main}>
-      <span className={styles.First}>EngLio</span>
-      <span className={styles.Second}>English it's easy</span>
+    <NavLink className={styles.logo} to={paths.main}>
+      <span className={styles.first}>EngLio</span>
+      <span className={styles.second}>English it's easy</span>
     </NavLink>
   );
 };
