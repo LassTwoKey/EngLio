@@ -1,12 +1,7 @@
 @import "./src/styles/includes/variables";
 @import "./src/styles/includes/mixins";
 
-.actions > div:not(:last-child) {
-  margin-bottom: 10px;
-}
-
-.actionsTop,
-.actionsBottom {
+.actions {
   gap: 10px;
 }
 
@@ -43,6 +38,8 @@
   border-radius: $br-circle;
   &:hover {
     background: $bg-secondary;
+    background: lighten($secondary, 15%);
+    box-shadow: 0px 0px 7px lighten($secondary, 15%);
   }
 }
 .skip {
@@ -57,14 +54,4 @@
   @extend %yellow-color;
   font-size: 21px;
   transform: translateY(2px);
-}
-
-.active {
-  background: $primary;
-  color: $tertiary;
-  transition: $transition-default;
-  &:hover {
-    color: $bg-primary;
-    background: $darkPrimary;
-  }
 }

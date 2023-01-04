@@ -37,7 +37,7 @@ const flashCards = [
 const FlashCards: FC = () => {
   return (
     <PageWrapper title="Разделы для карточек">
-      <div className="container">
+      <div className="container pb-6">
         <div className={cn(styles.cards, "d-flex fwr-wrap")}>
           {flashCards.map(flashCard => (
             <Card
@@ -47,7 +47,9 @@ const FlashCards: FC = () => {
               <Typography tag="h3" className="mb-2">
                 {flashCard.title}
               </Typography>
-              <div className={cn(styles.text, "mb-3")}>{flashCard.descr}</div>
+              <Typography tag="p" className={cn(styles.text, "mb-3")}>
+                {flashCard.descr}
+              </Typography>
               <div className={styles.actions}>
                 <Button type="primary" to={`${flashCard.id}`}>
                   Начать

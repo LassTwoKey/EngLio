@@ -22,7 +22,7 @@ const PageWrapper: FC<PageWrapperProps> = props => {
     "jc-center": center
   });
   return (
-    <div className={classNames}>
+    <main className={classNames}>
       {title && (
         <div className="container">
           <Typography tag="h2" className={cn("py-8", styles.pageTitle)}>
@@ -31,7 +31,7 @@ const PageWrapper: FC<PageWrapperProps> = props => {
         </div>
       )}
       {children}
-    </div>
+    </main>
   );
 };
 

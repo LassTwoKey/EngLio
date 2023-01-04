@@ -11,6 +11,7 @@ interface ButtonProps extends IBaseUI {
   iconPosition?: string;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   to?: string;
+  active?: boolean;
   disabled?: boolean;
 }
 
@@ -23,7 +24,8 @@ const Button: FC<ButtonProps> = props => {
     iconPosition,
     onClick,
     to,
-    disabled
+    disabled,
+    active
   } = props;
 
   // check
@@ -39,6 +41,7 @@ const Button: FC<ButtonProps> = props => {
     [styles.button_outlined]: isOutlined,
     [styles.button_light]: isLight,
     [styles.button_common]: isCommon,
+    [styles.active]: active,
     "p-2": isLight,
     [className as string]: className
   });
@@ -76,7 +79,9 @@ const Button: FC<ButtonProps> = props => {
         >
           {Icon && (iconPosition === "start" || !iconPosition) && (
             <div
-              className={cn("d-flex ai-center jc-center", { "mr-2": children })}
+              className={cn("d-flex ai-center jc-center", {
+                "mr-2": children
+              })}
             >
               {Icon}
             </div>

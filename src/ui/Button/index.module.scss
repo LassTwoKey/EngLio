@@ -11,7 +11,6 @@
   &_primary {
     background: $primary;
     font-weight: 600;
-    font-size: 16px;
     line-height: 20px;
     color: $tertiary;
     padding: 13px 14px;
@@ -43,7 +42,6 @@
   // &_secondary {
   //   background: $secondary;
   //   font-weight: 600;
-  //   font-size: 16px;
   //   line-height: 20px;
   //   color: $c-primary;
   //   padding: 13px 14px;
@@ -81,7 +79,6 @@
   //   //background: $bg-tertiary;
   //   line-height: 20px;
   //   font-weight: 600;
-  //   font-size: 16px;
   //   //color: $bg-fivefold;
   //   border-radius: 14px;
 
@@ -115,7 +112,6 @@
     line-height: 20px;
     padding: 10px 11px;
     font-weight: 600;
-    font-size: 16px;
     border-radius: 7px;
     border: 1px solid lighten($primary, 20%);
     transition: $transition-default;
@@ -134,6 +130,17 @@
         color: #c9c9c9;
       }
     }
+    &.active {
+      background: $primary;
+      color: $tertiary;
+      transition: $transition-default;
+      border-color: $primary;
+      &:hover {
+        color: $bg-primary;
+        background: $lightPrimary;
+        border-color: $lightPrimary;
+      }
+    }
   }
 
   &_light {
@@ -141,7 +148,6 @@
     line-height: 20px;
     font-weight: 600;
     font-family: "Montserrat";
-    font-size: 16px;
     color: $bg-secondary;
     border-radius: 14px;
 
@@ -159,5 +165,9 @@
 
   &_common {
     padding: 13px 13px;
+  }
+  font-size: $fz-small;
+  @media screen and (max-width: 425px) {
+    font-size: $fz-light;
   }
 }

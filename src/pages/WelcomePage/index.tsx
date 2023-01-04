@@ -37,7 +37,7 @@ const technologies: { id: string; value: string }[] = [
 const WelcomePage: FC = () => {
   return (
     <PageWrapper className={cn(styles.backImg)} center>
-      <div className="container">
+      <div className="container py-6">
         <Typography tag="h1" className={cn("mb-4")}>
           Добро пожаловать
         </Typography>

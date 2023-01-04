@@ -47,7 +47,7 @@ $colors-map: (
   gray: $gray,
   black: #201c1d,
   white: $white,
-  primary: $primary,
+  primary: $primary
 );
 
 // Fonts
@@ -63,7 +63,7 @@ $fz-semibig: 30px;
 $fz-middle: 20px;
 $fz-regular: 18px;
 $fz-small: 16px;
-$fz-light: 14px;
+$fz-light: 15px;
 $fz-map: (
   1: $fz-light,
   2: $fz-small,
@@ -71,7 +71,7 @@ $fz-map: (
   4: $fz-middle,
   5: $fz-semibig,
   6: $fz-big,
-  7: $fz-ubig,
+  7: $fz-ubig
 );
 
 //  Spacing
@@ -107,7 +107,7 @@ $br-circle: 50%;
 $br-map: (
   default: $br-default,
   soft-square: $br-default,
-  circle: $br-circle,
+  circle: $br-circle
 );
 
 $header: 60px;
