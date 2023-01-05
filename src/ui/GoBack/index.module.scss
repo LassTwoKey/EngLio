@@ -1,0 +1,7 @@
+@import "./src/styles/includes/variables";
+
+.button {
+  &:hover {
+    text-decoration: underline;
+  }
+}

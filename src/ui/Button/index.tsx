@@ -13,6 +13,7 @@ interface ButtonProps extends IBaseUI {
   to?: string;
   active?: boolean;
   disabled?: boolean;
+  value?: string;
 }
 
 const Button: FC<ButtonProps> = props => {
@@ -25,7 +26,8 @@ const Button: FC<ButtonProps> = props => {
     onClick,
     to,
     disabled,
-    active
+    active,
+    value
   } = props;
 
   // check
@@ -75,6 +77,7 @@ const Button: FC<ButtonProps> = props => {
           type="button"
           className={classes}
           onClick={e => onClick && onClick(e)}
+          value={value}
           disabled={disabled}
         >
           {Icon && (iconPosition === "start" || !iconPosition) && (
