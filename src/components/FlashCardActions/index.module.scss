@@ -1,0 +1,34 @@
+@import "./src/styles/includes/variables";
+@import "./src/styles/includes/mixins";
+
+.cartAction {
+  gap: 10px;
+}
+
+.skip,
+.memorized,
+.favorite {
+  border-radius: $br-circle;
+  &:hover {
+    background: $bg-secondary;
+    background: lighten($secondary, 15%);
+    box-shadow: 0px 0px 7px lighten($secondary, 15%);
+  }
+  transition: $transition-default;
+  &:active {
+    transform: scale(1.5);
+  }
+}
+.skip {
+  @extend %red-color;
+}
+.memorized {
+  @extend %green-color;
+  font-size: 18px;
+  transform: translateY(1px);
+}
+.favorite {
+  @extend %yellow-color;
+  font-size: 21px;
+  transform: translateY(2px);
+}

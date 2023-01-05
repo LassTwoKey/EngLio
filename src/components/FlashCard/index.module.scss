@@ -1,0 +1,9 @@
+@import "./src/styles/includes/variables";
+
+.cardMain {
+  text-align: center;
+  .error & {
+    box-shadow: 0px 0px 10px $red;
+    background: lighten($red, 30%);
+  }
+}

@@ -1,57 +1,13 @@
 @import "./src/styles/includes/variables";
-@import "./src/styles/includes/mixins";
-
-.actions {
-  gap: 10px;
-}
 
 .learnCard {
   max-width: 400px;
   text-align: center;
 }
-.cardMain {
-  text-align: center;
-}
-.cardSuggestion {
-  button {
-    display: flex;
-    width: 100%;
-    padding: 12px 15px;
-    font-weight: 600;
-    color: $c-secondary;
-    transition: $transition-default;
-    &:hover {
-      background: lighten($secondary, 15%);
-    }
-  }
-}
 
-.cartAction {
-  gap: 10px;
-}
 .nextBtn {
 }
 
-.skip,
-.memorized,
-.favorite {
-  border-radius: $br-circle;
-  &:hover {
-    background: $bg-secondary;
-    background: lighten($secondary, 15%);
-    box-shadow: 0px 0px 7px lighten($secondary, 15%);
-  }
-}
-.skip {
-  @extend %red-color;
-  font-size: 18px;
-  transform: translateY(1px);
-}
-.memorized {
-  @extend %green-color;
-}
-.favorite {
-  @extend %yellow-color;
-  font-size: 21px;
-  transform: translateY(2px);
+.centered {
+  flex: 1 1 auto;
 }
