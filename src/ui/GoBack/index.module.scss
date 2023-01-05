@@ -1,7 +1,14 @@
 @import "./src/styles/includes/variables";
 
 .button {
+  color: $primary;
+  span {
+    padding-right: 4px;
+    font-size: 18px;
+  }
+  transition: $transition-default;
   &:hover {
-    text-decoration: underline;
+    //text-decoration: underline;
+    color: $c-primary;
   }
 }

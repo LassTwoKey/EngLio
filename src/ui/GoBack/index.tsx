@@ -13,7 +13,7 @@ const GoBack: FC = () => {
   };
   return (
     <Button className={cn("d-iflex", styles.button)} onClick={clickHandler}>
-      &lt; Назад
+      <span className="_icon-return" /> Назад
     </Button>
   );
 };

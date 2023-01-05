@@ -25,24 +25,27 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-._icon-account:before {
+._icon-close:before {
   content: "\e900";
 }
-._icon-bookmark:before {
+._icon-light-mode:before {
   content: "\e901";
 }
-._icon-close:before {
+._icon-notification:before {
   content: "\e902";
 }
-._icon-light-mode:before {
+._icon-ok:before {
   content: "\e903";
 }
-._icon-notification:before {
+._icon-return:before {
   content: "\e904";
 }
-._icon-ok:before {
+._icon-search:before {
   content: "\e905";
 }
-._icon-search:before {
+._icon-account:before {
   content: "\e906";
+}
+._icon-bookmark:before {
+  content: "\e907";
 }
