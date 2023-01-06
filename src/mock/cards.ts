@@ -1,4 +1,4 @@
-export const words = {
+export const data = {
   all: [
     {
       id: 1,
@@ -37,7 +37,7 @@ export const words = {
     }
   ],
   memorized: [],
-  selected: [],
+  //selected: [],
   failings: [],
   favorite: []
 };
