@@ -2,7 +2,7 @@ import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cn from "classnames";
 import { RootState } from "../../redux/store";
-import { setBurgerMenuToggle } from "../../redux/modules/globalState/slice";
+import { setBurgerMenuToggle } from "../../redux/modules/global/slice";
 import Button from "../../ui/Button";
 import Dropdown from "../Dropdown";
 

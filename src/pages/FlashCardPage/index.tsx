@@ -48,6 +48,7 @@ const FlashCardPage: FC = () => {
       </div>
     );
   }
+
   return (
     <PageWrapper goBack>
       {<Filter setIsInit={setIsInit} />}

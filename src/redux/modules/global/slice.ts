@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-export interface GlobalState {
+export interface IGlobalState {
   burgerMenuToggle: boolean;
   loader: boolean;
   header: {
     menuList: { path: string; value: string }[];
-    input: {
-      search: { placeholder: string; result: string; errorMessage: string };
+    notifications: {
+      title: string;
     };
   };
 }
 
-const initialState: GlobalState = {
+const initialState: IGlobalState = {
   burgerMenuToggle: false,
   loader: true,
   header: {
@@ -30,18 +30,14 @@ const initialState: GlobalState = {
         value: "Избранное"
       }
     ],
-    input: {
-      search: {
-        placeholder: "Поиск",
-        result: "Результаты поиска:",
-        errorMessage: "Произошла ошибка поиска"
-      }
+    notifications: {
+      title: "Уведомления"
     }
   }
 };
 
 export const globalSlice = createSlice({
-  name: "globalData",
+  name: "global",
   initialState,
   reducers: {
     toggleLoader(state, { payload }: PayloadAction<boolean>) {
@@ -53,7 +49,6 @@ export const globalSlice = createSlice({
   }
 });
 
-// Action creators are generated for each case reducer function
 export const { toggleLoader, setBurgerMenuToggle } = globalSlice.actions;
 
 export default globalSlice.reducer;

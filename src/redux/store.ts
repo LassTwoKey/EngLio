@@ -1,13 +1,19 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import globalSlice from "./modules/globalState/slice";
+import globalSlice from "./modules/global/slice";
+import filtersSlice from "./modules/filters/slice";
 
-export const store = configureStore({
-  reducer: combineReducers({
-    global: globalSlice
-  })
+const reducers = {
+  global: globalSlice,
+  filters: filtersSlice
+};
+
+const rootReducer = combineReducers({
+  ...reducers
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
+export const store = configureStore({
+  reducer: rootReducer
+});
+
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;

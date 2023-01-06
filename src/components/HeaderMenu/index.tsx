@@ -1,16 +1,20 @@
 import { FC } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import cn from "classnames";
+import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { RootState } from "../../redux/store";
-import { setBurgerMenuToggle } from "../../redux/modules/globalState/slice";
+import { setBurgerMenuToggle } from "../../redux/modules/global/slice";
 import Button from "../../ui/Button";
 
 import styles from "./index.module.scss";
 
 const HeaderMenu: FC = () => {
-  const dispatch = useDispatch();
-  const { menuList } = useSelector((state: RootState) => state.global.header);
-  const { burgerMenuToggle } = useSelector((state: RootState) => state.global);
+  const dispatch = useAppDispatch();
+  const { menuList } = useAppSelector(
+    (state: RootState) => state.global.header
+  );
+  const { burgerMenuToggle } = useAppSelector(
+    (state: RootState) => state.global
+  );
 
   const menuClose = () => {
     dispatch(setBurgerMenuToggle(false));
