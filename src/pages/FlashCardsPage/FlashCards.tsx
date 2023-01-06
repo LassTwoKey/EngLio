@@ -4,37 +4,12 @@ import PageWrapper from "../../ui/PageWrapper";
 import Typography from "../../ui/Typography";
 import Card from "../../ui/Card";
 import Button from "../../ui/Button";
+import { data } from "../../mock/categories";
 
 import styles from "./FlashCards.module.scss";
 
-const flashCards = [
-  {
-    id: "f1",
-    title: "Слова",
-    descr:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias, rerum expedita. Magnam possimus maxime eligendi neque error sequi accusantium vitae laborum amet nisi corporis asperiores ratione placeat ipsam, at officiis."
-  },
-  {
-    id: "f2",
-    title: "Словосочетания",
-    descr:
-      "Accusantium vitae laborum amet nisi corporis asperiores ratione placeat ipsam, at officiis."
-  },
-  {
-    id: "f3",
-    title: "Выражения",
-    descr:
-      "Rerum expedita. Magnam possimus maxime eligendi neque error sequi accusantium vitae laborum amet nisi corporis asperiores ratione placeat ipsam, at officiis."
-  },
-  {
-    id: "f4",
-    title: "Фразовые глаголы",
-    descr:
-      "Magnam possimus maxime eligendi neque error sequi accusantium vitae laborum amet nisi corporis asperiores ratione placeat ipsam."
-  }
-];
-
 const FlashCards: FC = () => {
+  const flashCards = data;
   return (
     <PageWrapper title="Разделы для карточек">
       <div className="container pb-6">

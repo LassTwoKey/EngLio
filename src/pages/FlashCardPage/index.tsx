@@ -10,50 +10,6 @@ import Button from "../../ui/Button";
 
 import styles from "./index.module.scss";
 
-// const words = {
-//   all: [
-//     {
-//       id: 1,
-//       word: "Robber",
-//       transcription: "[ˈräbər]",
-//       correctTranslate: "грабитель",
-//       answerOptions: ["Грабитель", "Дом", "Храм"]
-//     },
-//     {
-//       id: 2,
-//       word: "Robber",
-//       transcription: "[ˈräbər]",
-//       correctTranslate: "грабитель",
-//       answerOptions: ["Грабитель", "Дом", "Храм"]
-//     },
-//     {
-//       id: 3,
-//       word: "Robber",
-//       transcription: "[ˈräbər]",
-//       correctTranslate: "грабитель",
-//       answerOptions: ["Грабитель", "Дом", "Храм"]
-//     },
-//     {
-//       id: 4,
-//       word: "Robber",
-//       transcription: "[ˈräbər]",
-//       correctTranslate: "грабитель",
-//       answerOptions: ["Грабитель", "Дом", "Храм"]
-//     },
-//     {
-//       id: 5,
-//       word: "Robber",
-//       transcription: "[ˈräbər]",
-//       correctTranslate: "грабитель",
-//       answerOptions: ["Грабитель", "Дом", "Храм"]
-//     }
-//   ],
-//   memorized: [],
-//   selected: [],
-//   failings: [],
-//   favorite: []
-// };
-
 const FlashCardPage: FC = () => {
   const [isInit, setIsInit] = useState<boolean>(false);
 

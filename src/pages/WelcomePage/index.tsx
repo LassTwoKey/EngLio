@@ -4,49 +4,26 @@ import Typography from "../../ui/Typography";
 import PageWrapper from "../../ui/PageWrapper";
 import Button from "../../ui/Button";
 import { paths } from "../../data/constants";
+import { data } from "../../mock/welcome";
 
 import styles from "./index.module.scss";
 
-const technologies: { id: string; value: string }[] = [
-  {
-    id: "t1",
-    value: "React"
-  },
-  {
-    id: "t2",
-    value: "Redux Toolkit"
-  },
-  {
-    id: "t3",
-    value: "React Router v6"
-  },
-  {
-    id: "t4",
-    value: "TypeScript"
-  },
-  {
-    id: "t5",
-    value: "Classnames"
-  },
-  {
-    id: "t6",
-    value: "SCSS"
-  }
-];
-
 const WelcomePage: FC = () => {
+  const mainTitle = data.mainTitle;
+  const descr = data.descr;
+  const listTitle = data.listTitle;
+  const technologies = data.technologies;
   return (
     <PageWrapper className={cn(styles.backImg)} center>
       <div className="container py-6">
         <Typography tag="h1" className={cn("mb-4")}>
-          Добро пожаловать
+          {mainTitle}
         </Typography>
         <Typography tag="p" className={cn("mb-4", styles.text)}>
-          EngLio - это небольшое приложение для изуения английского языка по
-          карточкам.
+          {descr}
         </Typography>
         <Typography tag="h2" className={cn("mb-2", styles.title2)}>
-          Технологии, использованные в проекте:
+          {listTitle}
         </Typography>
         <ul className={cn("mb-4")}>
           {technologies.map(technology => (
