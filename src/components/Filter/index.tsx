@@ -4,6 +4,7 @@ import { useAppSelector } from "../../hooks/redux";
 import Typography from "../../ui/Typography";
 import Button from "../../ui/Button";
 import { getFilters } from "../../redux/modules/filters/selector";
+import { getCurrentFilter } from "../../utils/getCurrentFilter";
 
 import styles from "./index.module.scss";
 
@@ -16,9 +17,12 @@ const Filter: FC<FilterProps> = props => {
 
   const { setIsInit } = props;
   const [currentActive, setCurrentActive] = useState<string>("");
-  const clickHandler = (value: string) => {
+  const clickHandler = (value: string, action: string) => {
     setIsInit(true);
     setCurrentActive(value);
+
+    const currentFilterFunc = getCurrentFilter(action);
+    currentFilterFunc(/*some array*/);
   };
 
   return (
@@ -32,7 +36,7 @@ const Filter: FC<FilterProps> = props => {
             <Button
               key={filter.value}
               value={filter.value}
-              onClick={() => clickHandler(filter.value)}
+              onClick={() => clickHandler(filter.value, filter.action)}
               active={currentActive === filter.value}
               type="outlined"
             >

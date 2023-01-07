@@ -1,15 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  filterByOrder,
-  filterByMixed,
-  filterByReverse,
-  filterByMemorize,
-  filterByFailure
-} from "../../../utils/filters";
+import { FILTER_ACTIONS } from "../../../data/constants";
 
 interface IFiltersList {
+  action: string;
   value: string;
-  func: () => void;
 }
 
 interface IFiltersState {
@@ -19,24 +13,24 @@ interface IFiltersState {
 const initialState: IFiltersState = {
   items: [
     {
-      value: "По порядку",
-      func: filterByOrder
+      action: FILTER_ACTIONS.byOrder,
+      value: "По порядку"
     },
     {
-      value: "Смешанные",
-      func: filterByMixed
+      action: FILTER_ACTIONS.byMixed,
+      value: "Смешанные"
     },
     {
-      value: "Задом наперед",
-      func: filterByReverse
+      action: FILTER_ACTIONS.byReverse,
+      value: "Задом наперед"
     },
     {
-      value: "Выученные",
-      func: filterByMemorize
+      action: FILTER_ACTIONS.byMemorize,
+      value: "Выученные"
     },
     {
-      value: "Сложные",
-      func: filterByFailure
+      action: FILTER_ACTIONS.byFailure,
+      value: "Сложные"
     }
   ]
 };
