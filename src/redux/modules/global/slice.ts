@@ -1,15 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-export interface IGlobalState {
+interface IMenuList {
+  path: string;
+  value: string;
+}
+
+interface IHeader {
+  menuList: IMenuList[];
+  notifications: {
+    title: string;
+  };
+}
+
+interface IGlobalState {
   burgerMenuToggle: boolean;
   loader: boolean;
-  header: {
-    menuList: { path: string; value: string }[];
-    notifications: {
-      title: string;
-    };
-  };
+  header: IHeader;
 }
 
 const initialState: IGlobalState = {
@@ -36,7 +43,7 @@ const initialState: IGlobalState = {
   }
 };
 
-export const globalSlice = createSlice({
+const globalSlice = createSlice({
   name: "global",
   initialState,
   reducers: {

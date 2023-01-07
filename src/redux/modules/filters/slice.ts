@@ -7,11 +7,13 @@ import {
   filterByFailure
 } from "../../../utils/filters";
 
+interface IFiltersList {
+  value: string;
+  func: () => void;
+}
+
 interface IFiltersState {
-  items: {
-    value: string;
-    func: () => void;
-  }[];
+  items: IFiltersList[];
 }
 
 const initialState: IFiltersState = {
