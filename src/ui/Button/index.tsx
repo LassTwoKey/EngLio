@@ -14,6 +14,7 @@ interface ButtonProps extends IBaseUI {
   active?: boolean;
   disabled?: boolean;
   value?: string;
+  state?: any;
 }
 
 const Button: FC<ButtonProps> = props => {

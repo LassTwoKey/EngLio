@@ -2,8 +2,8 @@
 
 .cardMain {
   text-align: center;
-  .error & {
-    box-shadow: 0px 0px 10px $red;
-    background: lighten($red, 30%);
+  & > h3 {
+    overflow: hidden;
+    opacity: 0;
   }
 }

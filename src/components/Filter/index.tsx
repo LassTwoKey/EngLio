@@ -28,7 +28,11 @@ const Filter: FC<FilterProps> = props => {
   return (
     <div className="container d-flex fd-col">
       <div className="d-iflex fd-col">
-        <Typography className="mb-2 d-iflex jc-center" isBig tag="p">
+        <Typography
+          className={cn("mb-2 d-iflex jc-center", styles.title)}
+          isBig
+          tag="p"
+        >
           Фильтры:
         </Typography>
         <div className={cn("d-flex jc-center fwr-wrap mb-4", styles.actions)}>

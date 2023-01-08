@@ -1,7 +1,11 @@
 @import "./src/styles/includes/variables";
 
 .selection {
-  button {
+  label {
+    cursor: pointer;
+    input {
+      display: none;
+    }
     display: flex;
     width: 100%;
     padding: 12px 15px;
@@ -12,4 +16,16 @@
       background: lighten($secondary, 15%);
     }
   }
+}
+.disabled {
+  background: $gray;
+  cursor: default !important;
+  pointer-events: none;
+}
+
+.errorSel {
+  background: lighten($red, 20%);
+}
+.successSel {
+  background: lighten($green, 30%);
 }

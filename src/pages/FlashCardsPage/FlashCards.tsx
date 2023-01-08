@@ -26,7 +26,11 @@ const FlashCards: FC = () => {
                 {flashCard.descr}
               </Typography>
               <div className={styles.actions}>
-                <Button type="primary" to={`${flashCard.id}`}>
+                <Button
+                  type="primary"
+                  to={`${flashCard.id}`}
+                  state={{ id: flashCard.id }}
+                >
                   Начать
                 </Button>
               </div>

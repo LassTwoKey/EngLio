@@ -5,16 +5,28 @@ import Typography from "../../ui/Typography";
 
 import styles from "./index.module.scss";
 
-const FlashCard: FC = () => {
+interface FlashCardProps {
+  word: string;
+  transcription?: string;
+  correctTranslate: string;
+  className?: string;
+}
+
+const FlashCard: FC<FlashCardProps> = props => {
+  const { word, transcription, correctTranslate, className } = props;
   return (
-    <Card className={cn("mb-4 py-6", styles.cardMain)}>
+    <Card
+      className={cn("mb-4 py-6", styles.cardMain, {
+        [className as string]: !!className
+      })}
+    >
       <Typography tag="h2" className="mb-3">
-        Robber
+        {word}
       </Typography>
       <Typography tag="p" className="mb-3">
-        [ˈräbər]
+        {!!transcription ? transcription : "-"}
       </Typography>
-      <Typography tag="h3">Robber</Typography>
+      <Typography tag="h3">{correctTranslate}</Typography>
     </Card>
   );
 };

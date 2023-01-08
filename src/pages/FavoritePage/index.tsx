@@ -48,7 +48,7 @@ const FavoritePage: FC = () => {
 
   if (favoriteItems.length === 0) {
     content = (
-      <Typography tag="h3" isCenter>
+      <Typography tag="p" isBig isCenter>
         Список пуст
       </Typography>
     );

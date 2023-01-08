@@ -11,3 +11,32 @@
 .centered {
   flex: 1 1 auto;
 }
+
+.title {
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+  }
+}
+
+.errorBoxShadow {
+  box-shadow: 0px 0px 10px $red;
+  background: lighten($red, 30%);
+}
+.successBoxShadow {
+  box-shadow: 0px 0px 10px $green;
+  background: lighten($green, 30%);
+}
+
+// .errorSel {
+//   background: lighten($red, 30%);
+// }
+// .successSel {
+//   background: lighten($green, 30%);
+// }
+
+.showAnswer {
+  & > h3 {
+    overflow: visible;
+    opacity: 1;
+  }
+}
