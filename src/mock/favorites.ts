@@ -1,16 +1,18 @@
-export const data = {
+import { IFavorite } from "../types/Category";
+
+export const data: IFavorite = {
   words: {
     name: "Слова",
     list: [
       {
         id: 2,
-        word: "Think",
+        text: "Think",
         transcription: "[THiNGk]",
         translate: "думать"
       },
       {
         id: 3,
-        word: "Swim",
+        text: "Swim",
         transcription: "[swim]",
         translate: "плавать"
       }
@@ -24,8 +26,9 @@ export const data = {
     name: "Выражения",
     list: []
   },
-  ["phrasal-verbs" as string]: {
+  ["phrasal_verbs" as string]: {
     name: "Фразовые глаголы",
     list: []
   }
 };
+// phrasal_verbs   ["phrasal_verbs" as string]

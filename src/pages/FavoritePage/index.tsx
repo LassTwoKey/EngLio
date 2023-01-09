@@ -5,15 +5,21 @@ import PageWrapper from "../../ui/PageWrapper";
 import Typography from "../../ui/Typography";
 import Button from "../../ui/Button";
 import { data } from "../../mock/favorites";
+import { removeFromCategorie } from "../../utils/removeFromCategorie";
 
 import styles from "./index.module.scss";
 
 const FavoritePage: FC = () => {
-  const { id } = useParams();
+  const { id } = useParams<string>();
+
   if (!id) return null;
 
   const favoriteName = data[id].name;
   const favoriteItems = data[id].list;
+
+  const removeFromFavoriteHandler = (favoriteID: number) => {
+    removeFromCategorie(favoriteID, id);
+  };
 
   let content;
 
@@ -27,7 +33,7 @@ const FavoritePage: FC = () => {
           <div className="">
             <div className="d-flex ai-center">
               <Typography tag="h3" className="mr-2">
-                {favoriteItem.word}
+                {favoriteItem.text}
               </Typography>
               {favoriteItem.transcription && (
                 <Typography tag="p">{favoriteItem.transcription}</Typography>
@@ -39,7 +45,12 @@ const FavoritePage: FC = () => {
             <Button type="outlined" className="mr-2">
               Сложное
             </Button>
-            <Button type="primary">Убрать</Button>
+            <Button
+              type="primary"
+              onClick={() => removeFromFavoriteHandler(favoriteItem.id)}
+            >
+              Убрать
+            </Button>
           </div>
         </div>
       ))}

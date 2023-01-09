@@ -6,6 +6,7 @@ import Selection from "../Selection";
 import FlashCardActions from "../FlashCardActions";
 import Button from "../../ui/Button";
 import { ICard } from "../../types/Card";
+import { addToCategory } from "../../utils/addToCategorie";
 
 import styles from "./index.module.scss";
 
@@ -14,9 +15,12 @@ interface MainCardProps {
   numberOfCards: number;
   setCards: React.Dispatch<React.SetStateAction<ICard[]>>;
   setCorrectNum: React.Dispatch<React.SetStateAction<number>>;
+  categoryId: string;
 }
+
 const MainCard: FC<MainCardProps> = props => {
-  const { cardData, numberOfCards, setCards, setCorrectNum } = props;
+  const { cardData, numberOfCards, setCards, setCorrectNum, categoryId } =
+    props;
 
   const [currentNumber, setCurrentNumber] = useState<number>(1);
   const [errorSelect, setErrorSelect] = useState<boolean>(false);
@@ -38,12 +42,22 @@ const MainCard: FC<MainCardProps> = props => {
 
   const addToMemorizedHandler = () => {
     nextClickHandler();
+    if (!isAnswered) setCorrectNum(prevCount => prevCount + 1);
   };
   const addToFailingsHandler = () => {
     nextClickHandler();
   };
   const addToFavoriteHandler = () => {
-    nextClickHandler();
+    //nextClickHandler();
+    addToCategory(
+      {
+        id: cardData.id,
+        text: cardData.word,
+        transcription: cardData.transcription,
+        translate: cardData.correctTranslate
+      },
+      categoryId
+    );
   };
   return (
     <div className="container pb-4">

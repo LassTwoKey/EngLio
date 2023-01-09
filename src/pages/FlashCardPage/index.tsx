@@ -17,7 +17,7 @@ import { data as phrasalVerbs } from "../../mock/phrasal-verbs";
 //import styles from "./index.module.scss";
 
 const FlashCardPage: FC = () => {
-  const { id } = useParams();
+  const { id } = useParams<string>();
 
   const [isInit, setIsInit] = useState<boolean>(false);
   const [pageData, setPageData] = useState<ICard[]>([]); // tmp ...
@@ -48,6 +48,7 @@ const FlashCardPage: FC = () => {
     }
   }, [id]);
 
+  if (!id) return null;
   let cardData: ICard = cards[0];
   let numberOfCards = pageData.length;
   let content;
@@ -68,6 +69,7 @@ const FlashCardPage: FC = () => {
         numberOfCards={numberOfCards}
         setCards={setCards}
         setCorrectNum={setCorrectNum}
+        categoryId={id}
       />
     );
   }

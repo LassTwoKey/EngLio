@@ -18,7 +18,7 @@ export const data = [
       "Rerum expedita. Magnam possimus maxime eligendi neque error sequi accusantium vitae laborum amet nisi corporis asperiores ratione placeat ipsam, at officiis."
   },
   {
-    id: "phrasal-verbs",
+    id: "phrasal_verbs",
     title: "Фразовые глаголы",
     descr:
       "Magnam possimus maxime eligendi neque error sequi accusantium vitae laborum amet nisi corporis asperiores ratione placeat ipsam."
