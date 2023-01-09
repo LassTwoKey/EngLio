@@ -10,8 +10,9 @@ interface SelectionProps {
   items: IAnswer[];
   setErrorSelect: React.Dispatch<React.SetStateAction<boolean>>;
   setSuccessSelect: React.Dispatch<React.SetStateAction<boolean>>;
-  correctAnswer: string;
   setIsAnswered: React.Dispatch<React.SetStateAction<boolean>>;
+  setCorrectNum: React.Dispatch<React.SetStateAction<number>>;
+  correctAnswer: string;
   isAnswered: boolean;
   errorSelect: boolean;
   successSelect: boolean;
@@ -26,16 +27,16 @@ const Selection: FC<SelectionProps> = props => {
     setIsAnswered,
     isAnswered,
     errorSelect,
-    successSelect
+    successSelect,
+    setCorrectNum
   } = props;
-  console.log("log: ", items);
   const [answers, setAnswers] = useState<IAnswer[]>(items);
 
   useEffect(() => {
     setAnswers(items);
   }, [items]);
 
-  const ErrorSelectHandler = (
+  const validateSelectHandler = (
     e: React.ChangeEvent<HTMLInputElement>,
     value: string
   ) => {
@@ -54,6 +55,7 @@ const Selection: FC<SelectionProps> = props => {
     if (isCorrect) {
       setSuccessSelect(true);
       setErrorSelect(false);
+      setCorrectNum(prevCount => prevCount + 1);
     }
     if (!isCorrect) {
       setSuccessSelect(false);
@@ -79,7 +81,7 @@ const Selection: FC<SelectionProps> = props => {
             value={answer.value}
             id={answer.value}
             disabled={isAnswered}
-            onChange={e => ErrorSelectHandler(e, answer.value)}
+            onChange={e => validateSelectHandler(e, answer.value)}
           />
           {answer.value}
         </label>

@@ -13,9 +13,10 @@ interface MainCardProps {
   cardData: ICard;
   numberOfCards: number;
   setCards: React.Dispatch<React.SetStateAction<ICard[]>>;
+  setCorrectNum: React.Dispatch<React.SetStateAction<number>>;
 }
 const MainCard: FC<MainCardProps> = props => {
-  const { cardData, numberOfCards, setCards } = props;
+  const { cardData, numberOfCards, setCards, setCorrectNum } = props;
 
   const [currentNumber, setCurrentNumber] = useState<number>(1);
   const [errorSelect, setErrorSelect] = useState<boolean>(false);
@@ -67,6 +68,7 @@ const MainCard: FC<MainCardProps> = props => {
           correctAnswer={cardData.correctTranslate}
           errorSelect={errorSelect}
           successSelect={successSelect}
+          setCorrectNum={setCorrectNum}
         />
         <FlashCardActions
           onMemorized={addToMemorizedHandler}
