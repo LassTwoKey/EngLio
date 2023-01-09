@@ -9,15 +9,26 @@ interface FlashCardProps {
   word: string;
   transcription?: string;
   correctTranslate: string;
-  className?: string;
+  errorSelect: boolean;
+  successSelect: boolean;
+  isAnswered: boolean;
 }
 
 const FlashCard: FC<FlashCardProps> = props => {
-  const { word, transcription, correctTranslate, className } = props;
+  const {
+    word,
+    transcription,
+    correctTranslate,
+    errorSelect,
+    successSelect,
+    isAnswered
+  } = props;
   return (
     <Card
       className={cn("mb-4 py-6", styles.cardMain, {
-        [className as string]: !!className
+        [styles.showAnswer]: isAnswered,
+        [styles.errorBoxShadow]: errorSelect,
+        [styles.successBoxShadow]: successSelect
       })}
     >
       <Typography tag="h2" className="mb-3">

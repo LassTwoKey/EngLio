@@ -10,12 +10,11 @@ interface SelectionProps {
   items: IAnswer[];
   setErrorSelect: React.Dispatch<React.SetStateAction<boolean>>;
   setSuccessSelect: React.Dispatch<React.SetStateAction<boolean>>;
+  correctAnswer: string;
   setIsAnswered: React.Dispatch<React.SetStateAction<boolean>>;
   isAnswered: boolean;
   errorSelect: boolean;
   successSelect: boolean;
-  correctAnswer: string;
-  className?: string;
 }
 
 const Selection: FC<SelectionProps> = props => {
@@ -65,9 +64,6 @@ const Selection: FC<SelectionProps> = props => {
   return (
     <Card className={cn(styles.selection, "mb-2 pb-0 pt-0 pl-0 pr-0")}>
       {answers.map(answer => (
-        // <Button key={item} onClick={ErrorSelectHandler}>
-        //   {item}
-        // </Button>
         <label
           key={answer.value}
           htmlFor={answer.value}
