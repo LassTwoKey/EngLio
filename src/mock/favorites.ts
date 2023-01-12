@@ -1,6 +1,4 @@
-import { IFavorite } from "../types/Category";
-
-export const data: IFavorite = {
+export const data = {
   words: {
     name: "Слова",
     list: [

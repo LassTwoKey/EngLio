@@ -6,26 +6,32 @@ import Selection from "../Selection";
 import FlashCardActions from "../FlashCardActions";
 import Button from "../../ui/Button";
 import { ICard } from "../../types/Card";
-import { addToCategory } from "../../utils/addToCategorie";
+import { addToFavorite } from "../../lib/api";
 
 import styles from "./index.module.scss";
 
 interface MainCardProps {
   cardData: ICard;
   numberOfCards: number;
-  setCards: React.Dispatch<React.SetStateAction<ICard[]>>;
   setCorrectNum: React.Dispatch<React.SetStateAction<number>>;
+  setExistingCards: React.Dispatch<React.SetStateAction<ICard[] | null>>;
   categoryId: string;
 }
 
 const MainCard: FC<MainCardProps> = props => {
-  const { cardData, numberOfCards, setCards, setCorrectNum, categoryId } =
-    props;
+  const {
+    cardData,
+    numberOfCards,
+    setCorrectNum,
+    categoryId,
+    setExistingCards
+  } = props;
 
   const [currentNumber, setCurrentNumber] = useState<number>(1);
   const [errorSelect, setErrorSelect] = useState<boolean>(false);
   const [successSelect, setSuccessSelect] = useState<boolean>(false);
   const [isAnswered, setIsAnswered] = useState<boolean>(false);
+  const [isFavorite, setIsFavorite] = useState<boolean>(true);
 
   let answers = cardData?.answerOptions;
 
@@ -33,11 +39,13 @@ const MainCard: FC<MainCardProps> = props => {
     if (currentNumber < numberOfCards) {
       setCurrentNumber(prevNumber => prevNumber + 1);
     }
-    setCards(prevCards => prevCards.slice(1));
+
+    setExistingCards(prevState => (prevState ? prevState.slice(1) : prevState));
 
     setErrorSelect(false);
     setSuccessSelect(false);
     setIsAnswered(false);
+    setIsFavorite(true);
   };
 
   const addToMemorizedHandler = () => {
@@ -49,15 +57,18 @@ const MainCard: FC<MainCardProps> = props => {
   };
   const addToFavoriteHandler = () => {
     //nextClickHandler();
-    addToCategory(
-      {
-        id: cardData.id,
-        text: cardData.word,
-        transcription: cardData.transcription,
-        translate: cardData.correctTranslate
-      },
-      categoryId
-    );
+    if (isFavorite) {
+      addToFavorite(
+        {
+          id: cardData.id,
+          text: cardData.word,
+          transcription: cardData.transcription,
+          translate: cardData.correctTranslate
+        },
+        categoryId
+      );
+    }
+    setIsFavorite(false);
   };
   return (
     <div className="container pb-4">
@@ -88,14 +99,17 @@ const MainCard: FC<MainCardProps> = props => {
           onMemorized={addToMemorizedHandler}
           onFailings={addToFailingsHandler}
           onFavorite={addToFavoriteHandler}
+          isFavorite={isFavorite}
         />
-        <Button
-          type="primary"
-          onClick={nextClickHandler}
-          className={styles.nextBtn}
-        >
-          Далее
-        </Button>
+        {isAnswered && (
+          <Button
+            type="primary"
+            onClick={nextClickHandler}
+            className={styles.nextBtn}
+          >
+            Далее
+          </Button>
+        )}
       </div>
     </div>
   );

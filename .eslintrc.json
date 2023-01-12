@@ -43,6 +43,7 @@
       }
     ],
     "comma-dangle": ["warn", "never"],
-    "@typescript-eslint/comma-dangle": ["warn", "never"]
+    "@typescript-eslint/comma-dangle": ["warn", "never"],
+    "@typescript-eslint/indent": "off"
   }
 }

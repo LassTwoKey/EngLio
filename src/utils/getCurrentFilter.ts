@@ -21,7 +21,10 @@ export const getCurrentFilter = (value: string) => {
       return filterByFailure;
     default:
       return () => {
-        console.log("current filter function does not exist");
+        return () => {
+          console.log("no such function");
+          return [];
+        };
       };
   }
 };

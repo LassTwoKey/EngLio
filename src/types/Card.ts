@@ -4,9 +4,10 @@ export interface IAnswer {
 }
 
 export interface ICard {
-  id: number;
+  id: number | string;
   word: string;
   transcription: string;
   correctTranslate: string;
   answerOptions: IAnswer[];
+  prevState?: null;
 }

@@ -1,86 +1,91 @@
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 // import cn from "classnames";
-import CardsNotFound from "../../components/CardsNotFound";
-import CardsInfo from "../../components/CardsInfo";
 import Filter from "../../components/Filter";
 import MainCard from "../../components/MainCard";
 import CardResult from "../../components/CardResult";
 import PageWrapper from "../../ui/PageWrapper";
+import Info from "../../components/Info";
+import Loader from "../../ui/Loader";
+import InfoBlock from "../../ui/InfoBlock";
+import useHttp from "../../hooks/use-http";
 import { ICard } from "../../types/Card";
-
-import { data as words } from "../../mock/words";
-import { data as phrases } from "../../mock/phrases";
-import { data as expressions } from "../../mock/expressions";
-import { data as phrasalVerbs } from "../../mock/phrasal-verbs";
+import { getCards } from "../../lib/api";
+import { COUNT_LIMIT } from "../../data/constants";
 
 //import styles from "./index.module.scss";
 
 const FlashCardPage: FC = () => {
   const { id } = useParams<string>();
 
-  const [isInit, setIsInit] = useState<boolean>(false);
-  const [pageData, setPageData] = useState<ICard[]>([]); // tmp ...
-  const [cards, setCards] = useState<ICard[]>([]);
-  const [correctNum, setCorrectNum] = useState<number>(0);
+  const {
+    sendRequest,
+    status,
+    data: pageData,
+    error
+  } = useHttp(getCards, true);
 
+  const [isInit, setIsInit] = useState<boolean>(false);
+  const [cards, setCards] = useState<ICard[] | null>(null);
+  const [existingCards, setExistingCards] = useState<ICard[] | null>(null);
+  const [correctNum, setCorrectNum] = useState<number>(0);
   useEffect(() => {
-    // imitation fetching for id ...
-    switch (id) {
-      case "words":
-        setCards(words);
-        setPageData(words);
-        break;
-      case "phrasal-verbs":
-        setCards(phrases);
-        setPageData(phrases);
-        break;
-      case "phrases":
-        setCards(expressions);
-        setPageData(expressions);
-        break;
-      case "expressions":
-        setCards(phrasalVerbs);
-        setPageData(phrasalVerbs);
-        break;
-      default:
-        break;
-    }
-  }, [id]);
+    if (id) sendRequest(id);
+  }, [id, sendRequest]);
 
   if (!id) return null;
-  let cardData: ICard = cards[0];
-  let numberOfCards = pageData.length;
+
   let content;
-
-  if (isInit && numberOfCards === 0) {
-    content = <CardsNotFound />;
+  if (error) {
+    content = <InfoBlock type="error" title="Ошибка загрузки :(" />;
   }
 
-  if (isInit && numberOfCards > 0 && cards.length === 0) {
-    content = (
-      <CardResult numberOfCards={numberOfCards} numbeOfCorrect={correctNum} />
-    );
+  if (status === "pending") {
+    content = <Loader />;
   }
-  if (isInit && numberOfCards > 0 && cards.length > 0) {
+
+  if (existingCards && cards) {
+    if (isInit && existingCards.length > 0) {
+      content = (
+        <MainCard
+          cardData={existingCards[0]}
+          numberOfCards={COUNT_LIMIT}
+          setExistingCards={setExistingCards}
+          setCorrectNum={setCorrectNum}
+          categoryId={id}
+        />
+      );
+    }
+    if (isInit && existingCards.length === 0) {
+      content = (
+        <CardResult numberOfCards={COUNT_LIMIT} numbeOfCorrect={correctNum} />
+      );
+    }
+    if (isInit && cards.length === 0) {
+      content = <InfoBlock type="default" title="Карточки не были найдены" />;
+    }
+  }
+
+  if (!isInit) {
     content = (
-      <MainCard
-        cardData={cardData}
-        numberOfCards={numberOfCards}
-        setCards={setCards}
-        setCorrectNum={setCorrectNum}
-        categoryId={id}
+      <Info
+        type="default"
+        title="Выберите фильтр слов"
+        text="По выбранному фильтру будут выведены карточки"
       />
     );
   }
 
-  if (!isInit) {
-    content = <CardsInfo />;
-  }
-
   return (
     <PageWrapper goBack>
-      {<Filter setIsInit={setIsInit} />}
+      {
+        <Filter
+          setIsInit={setIsInit}
+          pageData={pageData}
+          setCards={setCards}
+          setExistingCards={setExistingCards}
+        />
+      }
       {content}
     </PageWrapper>
   );

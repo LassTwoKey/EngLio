@@ -3,3 +3,12 @@
 .centered {
   flex: 1 1 auto;
 }
+.error {
+  color: $red;
+}
+
+.defalut {
+  p {
+    color: $c-secondary;
+  }
+}

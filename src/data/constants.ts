@@ -12,3 +12,5 @@ export const FILTER_ACTIONS = {
   byMemorize: "byMemorize",
   byFailure: "byFailure"
 };
+
+export const COUNT_LIMIT = 3;
