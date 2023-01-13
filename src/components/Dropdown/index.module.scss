@@ -48,7 +48,7 @@
   }
 }
 
-.dropdown:hover .dropdownContent {
+.open .dropdownContent {
   opacity: 1;
   visibility: visible;
 }

@@ -25,22 +25,19 @@ const Headerbar: FC = () => {
     sendRequest();
   };
 
-  const notificationBtn = (
-    <Button
-      className={styles.notification}
-      icon="_icon-notification"
-      type="light"
-      onClick={clicknNotificationsHandler}
-    ></Button>
-  );
+  const clickAccountHandler = () => {};
 
-  const accountBtn = (
-    <Button
-      className={styles.account}
-      icon="_icon-account"
-      type="light"
-    ></Button>
-  );
+  const notificationBtn = {
+    className: styles.notification,
+    icon: "_icon-notification",
+    type: "light"
+  };
+
+  const accountBtn = {
+    className: styles.account,
+    icon: "_icon-account",
+    type: "light"
+  };
 
   const accountMenu = (
     <p className="p-2">Как разберусь с авторизацией, сделаю</p>
@@ -52,13 +49,15 @@ const Headerbar: FC = () => {
         list={notifications}
         status={status}
         error={error}
-        btnElement={notificationBtn}
         headerText="Уведомления"
+        btnOptions={notificationBtn}
+        onClick={clicknNotificationsHandler}
       />
       <Dropdown
-        btnElement={accountBtn}
         renderElement={accountMenu}
         heigth="100px"
+        btnOptions={accountBtn}
+        onClick={clickAccountHandler}
       />
       <Button
         className={cn("jc-between", styles.menuButton, {

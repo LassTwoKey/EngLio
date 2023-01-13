@@ -1,8 +1,10 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import cn from "classnames";
 import Typography from "../../ui/Typography";
 import Loader from "../../ui/Loader";
+import Button from "../../ui/Button";
 import { INotification } from "../../types/RequestData";
+import useComponentVisible from "../../hooks/useComponentVisible";
 
 import styles from "./index.module.scss";
 
@@ -10,14 +12,26 @@ type DropdownProps = {
   list?: INotification[];
   status?: string;
   error?: string;
-  btnElement: React.ReactNode;
+  btnOptions?: { className: string; icon: string; type: string };
   renderElement?: React.ReactNode;
   headerText?: string;
   heigth?: string;
+  onClick?: () => void;
 };
 
 const Dropdown: FC<DropdownProps> = props => {
-  const { list, btnElement, headerText, renderElement, heigth, status } = props;
+  const {
+    list,
+    btnOptions,
+    headerText,
+    renderElement,
+    heigth,
+    status,
+    onClick
+  } = props;
+
+  const { ref, isComponentVisible, setIsComponentVisible } =
+    useComponentVisible(false);
 
   const heightStyle = {
     height: heigth || "auto"
@@ -37,9 +51,28 @@ const Dropdown: FC<DropdownProps> = props => {
   );
   const menuElement = renderElement && renderElement;
 
+  const onClickButtonHanlder = () => {
+    if (onClick) {
+      onClick();
+    }
+    setIsComponentVisible((prev: any) => !prev);
+  };
+
   return (
-    <div className={styles.dropdown}>
-      {btnElement && btnElement}
+    <div
+      ref={ref}
+      className={cn(styles.dropdown, {
+        [styles.open]: isComponentVisible
+      })}
+    >
+      {btnOptions && (
+        <Button
+          type={btnOptions.type}
+          className={btnOptions.className}
+          icon={btnOptions.icon}
+          onClick={onClickButtonHanlder}
+        ></Button>
+      )}
       <div className={styles.dropdownContent} style={heightStyle}>
         {headerText && (
           <Typography tag="div" className={cn(styles.dropdownHeader, "p-2")}>
@@ -59,4 +92,4 @@ const Dropdown: FC<DropdownProps> = props => {
   );
 };
 
-export default Dropdown;
+export default React.memo(Dropdown);
