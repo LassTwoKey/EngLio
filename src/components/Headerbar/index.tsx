@@ -5,55 +5,33 @@ import { RootState } from "../../redux/store";
 import { setBurgerMenuToggle } from "../../redux/modules/global/slice";
 import Button from "../../ui/Button";
 import Dropdown from "../Dropdown";
+import useHttp from "../../hooks/use-http";
+import { getNotifications } from "../../lib/api";
 
 import styles from "./index.module.scss";
 
-const messages: { id: string; value: string }[] = [
-  {
-    id: "m1",
-    value:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-  },
-  {
-    id: "m2",
-    value:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-  },
-  {
-    id: "m3",
-    value:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-  },
-  {
-    id: "m4",
-    value:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-  },
-  {
-    id: "m5",
-    value:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-  },
-  {
-    id: "m6",
-    value:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-  },
-  {
-    id: "m7",
-    value:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-  }
-];
 const Headerbar: FC = () => {
   const dispatch = useDispatch();
+  const {
+    sendRequest,
+    status,
+    error,
+    data: notifications
+  } = useHttp(getNotifications);
+  console.log(notifications);
+
   const { burgerMenuToggle } = useSelector((state: RootState) => state.global);
+
+  const clicknNotificationsHandler = () => {
+    sendRequest();
+  };
 
   const notificationBtn = (
     <Button
       className={styles.notification}
       icon="_icon-notification"
       type="light"
+      onClick={clicknNotificationsHandler}
     ></Button>
   );
 
@@ -72,7 +50,9 @@ const Headerbar: FC = () => {
   return (
     <div className={cn("d-flex ai-center")}>
       <Dropdown
-        messages={messages}
+        list={notifications}
+        status={status}
+        error={error}
         btnElement={notificationBtn}
         headerText="Уведомления"
       />

@@ -1,11 +1,15 @@
 import { FC } from "react";
 import cn from "classnames";
 import Typography from "../../ui/Typography";
+import Loader from "../../ui/Loader";
+import { INotification } from "../../types/RequestData";
 
 import styles from "./index.module.scss";
 
 type DropdownProps = {
-  messages?: { id: string; value: string }[];
+  list?: INotification[];
+  status?: string;
+  error?: string;
   btnElement: React.ReactNode;
   renderElement?: React.ReactNode;
   headerText?: string;
@@ -13,20 +17,20 @@ type DropdownProps = {
 };
 
 const Dropdown: FC<DropdownProps> = props => {
-  const { messages, btnElement, headerText, renderElement, heigth } = props;
+  const { list, btnElement, headerText, renderElement, heigth, status } = props;
 
   const heightStyle = {
     height: heigth || "auto"
   };
 
-  const messageList = messages && (
+  const messageList = list && (
     <ul className={styles.dropdownTextList}>
-      {messages.length === 0 && (
+      {list.length === 0 && (
         <li className="p-2 d-iflex jc-center">Сообщений нет</li>
       )}
-      {messages.map(message => (
-        <Typography tag="li" key={message.id} className={cn("p-2")}>
-          {message.value}
+      {list.map(item => (
+        <Typography tag="li" key={item.id} className={cn("p-2")}>
+          {item.value}
         </Typography>
       ))}
     </ul>
@@ -42,8 +46,14 @@ const Dropdown: FC<DropdownProps> = props => {
             {headerText}
           </Typography>
         )}
-        {messageList}
-        {menuElement}
+        {status === "pending" ? (
+          <Loader />
+        ) : (
+          <>
+            {messageList}
+            {menuElement}
+          </>
+        )}
       </div>
     </div>
   );

@@ -27,3 +27,8 @@ export interface IFavoriteCategory {
   name?: string;
   list?: ICategoryItem[];
 }
+
+export interface INotification {
+  id: string;
+  value: string;
+}
