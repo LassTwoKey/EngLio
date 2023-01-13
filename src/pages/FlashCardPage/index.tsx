@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// import cn from "classnames";
+import cn from "classnames";
 import Filter from "../../components/Filter";
 import MainCard from "../../components/MainCard";
 import CardResult from "../../components/CardResult";
@@ -8,12 +8,13 @@ import PageWrapper from "../../ui/PageWrapper";
 import Info from "../../components/Info";
 import Loader from "../../ui/Loader";
 import InfoBlock from "../../ui/InfoBlock";
+import Button from "../../ui/Button";
 import useHttp from "../../hooks/use-http";
 import { ICard } from "../../types/Card";
 import { getCards } from "../../lib/api";
 import { COUNT_LIMIT } from "../../data/constants";
 
-//import styles from "./index.module.scss";
+import styles from "./index.module.scss";
 
 const FlashCardPage: FC = () => {
   const { id } = useParams<string>();
@@ -26,6 +27,7 @@ const FlashCardPage: FC = () => {
   } = useHttp(getCards, true);
 
   const [isInit, setIsInit] = useState<boolean>(false);
+  const [isBack, setIsBack] = useState<boolean>(false);
   const [cards, setCards] = useState<ICard[] | null>(null);
   const [existingCards, setExistingCards] = useState<ICard[] | null>(null);
   const [correctNum, setCorrectNum] = useState<number>(0);
@@ -34,6 +36,23 @@ const FlashCardPage: FC = () => {
   }, [id, sendRequest]);
 
   if (!id) return null;
+
+  const clickBackHandler = () => {
+    setIsInit(false);
+    setIsBack(false);
+  };
+
+  const backToFilters = isBack ? (
+    <div className="d-flex jc-center mb-2">
+      <Button
+        className={cn("d-iflex", styles.backBtn)}
+        type="outlined"
+        onClick={clickBackHandler}
+      >
+        <span className="_icon-return"></span> Вернуться
+      </Button>
+    </div>
+  ) : null;
 
   let content;
   if (error) {
@@ -53,6 +72,7 @@ const FlashCardPage: FC = () => {
           setExistingCards={setExistingCards}
           setCorrectNum={setCorrectNum}
           categoryId={id}
+          backToFilters={backToFilters}
         />
       );
     }
@@ -78,14 +98,26 @@ const FlashCardPage: FC = () => {
 
   return (
     <PageWrapper goBack>
-      {
+      {!isInit && (
         <Filter
           setIsInit={setIsInit}
+          setIsBack={setIsBack}
           pageData={pageData}
           setCards={setCards}
           setExistingCards={setExistingCards}
         />
-      }
+      )}
+      {/* {isBack && (
+        <div className="container d-flex jc-center mb-2">
+          <Button
+            className={cn("d-iflex", styles.backBtn)}
+            type="outlined"
+            onClick={clickBackHandler}
+          >
+            <span className="_icon-return"></span> Вернуться
+          </Button>
+        </div>
+      )} */}
       {content}
     </PageWrapper>
   );

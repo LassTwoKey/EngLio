@@ -12,8 +12,11 @@
     font-weight: 600;
     color: $c-secondary;
     transition: $transition-default;
-    &:hover {
-      background: lighten($secondary, 15%);
+
+    @media (any-hover: hover) {
+      &:hover {
+        background: lighten($secondary, 15%);
+      }
     }
   }
 }

@@ -1,19 +1,8 @@
 @import "./src/styles/includes/variables";
 
-.learnCard {
-  max-width: 400px;
-  text-align: center;
-}
-
-.nextBtn {
-}
-
-.centered {
-  flex: 1 1 auto;
-}
-
-.title {
-  @media screen and (max-width: 768px) {
+.backBtn {
+  gap: 5px;
+  span {
     font-size: 20px;
   }
 }

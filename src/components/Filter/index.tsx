@@ -14,15 +14,17 @@ interface FilterProps {
   pageData: ICard[];
   setCards: React.Dispatch<React.SetStateAction<ICard[] | null>>;
   setExistingCards: React.Dispatch<React.SetStateAction<ICard[] | null>>;
+  setIsBack: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Filter: FC<FilterProps> = props => {
   const filters = useAppSelector(getFilters).items;
 
-  const { setIsInit, pageData, setCards, setExistingCards } = props;
+  const { setIsInit, pageData, setCards, setExistingCards, setIsBack } = props;
   const [currentActive, setCurrentActive] = useState<string>("");
   const clickHandler = (value: string, action: string) => {
     setIsInit(true);
+    setIsBack(true);
     setCurrentActive(value);
 
     if (pageData) {

@@ -19,6 +19,7 @@ interface MainCardProps {
   setCorrectNum: React.Dispatch<React.SetStateAction<number>>;
   setExistingCards: React.Dispatch<React.SetStateAction<ICard[] | null>>;
   categoryId: string;
+  backToFilters?: React.ReactNode;
 }
 
 const MainCard: FC<MainCardProps> = props => {
@@ -27,7 +28,8 @@ const MainCard: FC<MainCardProps> = props => {
     numberOfCards,
     setCorrectNum,
     categoryId,
-    setExistingCards
+    setExistingCards,
+    backToFilters
   } = props;
   const {
     sendRequest,
@@ -100,6 +102,7 @@ const MainCard: FC<MainCardProps> = props => {
 
   return (
     <div className="container pb-4">
+      {backToFilters}
       <div className={cn(styles.learnCard, "mx-auto")}>
         <Typography tag="p" className={cn("mb-2", styles.title)}>
           {currentNumber}/{numberOfCards}
