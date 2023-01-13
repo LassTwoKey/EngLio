@@ -67,7 +67,7 @@ export async function getFavoritesByCategory(category: string) {
     throw new Error(data.message || "Could not fetch quotes.");
   }
 
-  return data;
+  return { name: data.name, list: data.list || null };
 }
 
 export async function removeFromFavorites(

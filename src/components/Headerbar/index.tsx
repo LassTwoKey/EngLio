@@ -18,7 +18,6 @@ const Headerbar: FC = () => {
     error,
     data: notifications
   } = useHttp(getNotifications);
-  console.log(notifications);
 
   const { burgerMenuToggle } = useSelector((state: RootState) => state.global);
 
