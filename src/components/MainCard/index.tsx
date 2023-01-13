@@ -1,12 +1,15 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import cn from "classnames";
 import Typography from "../../ui/Typography";
 import FlashCard from "../FlashCard";
 import Selection from "../Selection";
 import FlashCardActions from "../FlashCardActions";
 import Button from "../../ui/Button";
+import useHttp from "../../hooks/use-http";
 import { ICard } from "../../types/Card";
-import { addToFavorite } from "../../lib/api";
+import { ICategoryItem } from "../../types/RequestData";
+import { addToFavorite, getFavoritesByCategory } from "../../lib/api";
+import { isFavoritedCheck } from "../../utils/isFavoritedCheck";
 
 import styles from "./index.module.scss";
 
@@ -26,12 +29,23 @@ const MainCard: FC<MainCardProps> = props => {
     categoryId,
     setExistingCards
   } = props;
+  const {
+    sendRequest,
+    //status,
+    data: favoriteItems,
+    error
+  } = useHttp(getFavoritesByCategory, true);
+
+  useEffect(() => {
+    sendRequest(categoryId);
+  }, [sendRequest, categoryId]);
 
   const [currentNumber, setCurrentNumber] = useState<number>(1);
   const [errorSelect, setErrorSelect] = useState<boolean>(false);
   const [successSelect, setSuccessSelect] = useState<boolean>(false);
   const [isAnswered, setIsAnswered] = useState<boolean>(false);
-  const [isFavorite, setIsFavorite] = useState<boolean>(true);
+  const [isFavorited, setIsFavorited] = useState<boolean>(false);
+  const [isSumbitted, setIsSumbitted] = useState<boolean>(false);
 
   let answers = cardData?.answerOptions;
 
@@ -45,7 +59,8 @@ const MainCard: FC<MainCardProps> = props => {
     setErrorSelect(false);
     setSuccessSelect(false);
     setIsAnswered(false);
-    setIsFavorite(true);
+    setIsFavorited(false);
+    setIsSumbitted(false);
   };
 
   const addToMemorizedHandler = () => {
@@ -56,20 +71,33 @@ const MainCard: FC<MainCardProps> = props => {
     nextClickHandler();
   };
   const addToFavoriteHandler = () => {
-    //nextClickHandler();
-    if (isFavorite) {
-      addToFavorite(
-        {
-          id: cardData.id,
-          text: cardData.word,
-          transcription: cardData.transcription,
-          translate: cardData.correctTranslate
-        },
-        categoryId
-      );
+    setIsFavorited(true);
+    let newitem: ICategoryItem = {
+      id: cardData.id,
+      text: cardData.word,
+      transcription: cardData.transcription,
+      translate: cardData.correctTranslate
+    };
+
+    let isSend = !isFavoritedCheck(favoriteItems.list, cardData.id);
+
+    if (isSend && !isSumbitted) {
+      addToFavorite(newitem, categoryId);
+      setIsSumbitted(true);
     }
-    setIsFavorite(false);
+    if (error) {
+      console.log("Items loading error");
+    }
   };
+
+  let isFavoriteActive = false;
+  if (favoriteItems?.list) {
+    isFavoriteActive = isFavoritedCheck(favoriteItems.list, cardData.id);
+  }
+  if (isFavorited) {
+    isFavoriteActive = isFavorited;
+  }
+
   return (
     <div className="container pb-4">
       <div className={cn(styles.learnCard, "mx-auto")}>
@@ -99,7 +127,7 @@ const MainCard: FC<MainCardProps> = props => {
           onMemorized={addToMemorizedHandler}
           onFailings={addToFailingsHandler}
           onFavorite={addToFavoriteHandler}
-          isFavorite={isFavorite}
+          isFavorite={isFavoriteActive}
         />
         {isAnswered && (
           <Button

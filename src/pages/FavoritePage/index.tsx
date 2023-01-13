@@ -9,20 +9,18 @@ import Loader from "../../ui/Loader";
 import InfoBlock from "../../ui/InfoBlock";
 import { getFavoritesByCategory } from "../../lib/api";
 import { ICategoryItem, IFavoriteCategory } from "../../types/RequestData";
-import { removeFromList } from "../../utils/removeFromList";
+//import { removeFromObj } from "../../utils/removeFromList";
 import { removeFromFavorites } from "../../lib/api";
+import { objToArr } from "../../utils/objToArr";
 
 import styles from "./index.module.scss";
 
+interface FavoriteItem extends ICategoryItem {
+  uniqueId: string;
+}
+
 const FavoritePage: FC = () => {
   const { id } = useParams<string>();
-
-  // const {
-  //   sendRequest,
-  //   status,
-  //   //data: favorites,
-  //   error
-  // } = useHttp(getFavoritesByCategory, true);
   const [favorites, setFavorites] = useState<IFavoriteCategory>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState(null);
@@ -41,16 +39,24 @@ const FavoritePage: FC = () => {
   }, [id]);
 
   useEffect(() => {
-    //if (id) loadData(id);
     loadData();
   }, [loadData]);
 
   if (!id) return null;
 
-  const removeFromFavoriteHandler = (removeId: number | string) => {
+  const removeFromFavoriteHandler = (removeId: string) => {
     removeFromFavorites(id, removeId);
-    const updatedFavorites = removeFromList(removeId, favorites.list);
-    setFavorites({ ...favorites, list: updatedFavorites });
+    if (favorites.list) {
+      const newList: any = {};
+      for (const key in favorites.list) {
+        if (Object.prototype.hasOwnProperty.call(favorites.list, key)) {
+          if (key !== removeId) {
+            newList[key] = favorites.list[key];
+          }
+        }
+      }
+      setFavorites({ ...favorites, list: newList });
+    }
   };
 
   let content;
@@ -64,18 +70,18 @@ const FavoritePage: FC = () => {
 
   if (favorites) {
     if (favorites.list) {
-      if (favorites.list.length === 0) {
+      if (objToArr(favorites.list).length === 0) {
         content = (
           <Typography tag="p" isBig isCenter>
             Список пуст
           </Typography>
         );
       }
-      if (favorites.list.length > 0) {
+      if (objToArr(favorites.list).length > 0) {
         content = (
           <ul>
             {favorites &&
-              favorites.list.map((favoriteItem: ICategoryItem) => (
+              objToArr(favorites.list).map((favoriteItem: FavoriteItem) => (
                 <div
                   key={favoriteItem.id}
                   className={cn("d-flex jc-between py-4", styles.item)}
@@ -99,7 +105,9 @@ const FavoritePage: FC = () => {
                     </Button>
                     <Button
                       type="primary"
-                      onClick={() => removeFromFavoriteHandler(favoriteItem.id)}
+                      onClick={() =>
+                        removeFromFavoriteHandler(favoriteItem.uniqueId)
+                      }
                     >
                       Убрать
                     </Button>

@@ -4,7 +4,7 @@ export interface IAnswer {
 }
 
 export interface ICard {
-  id: number | string;
+  id: string;
   word: string;
   transcription: string;
   correctTranslate: string;

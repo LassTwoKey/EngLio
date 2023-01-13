@@ -17,7 +17,7 @@ export interface IRequestedWelcome {
 }
 
 export interface ICategoryItem {
-  id: number | string;
+  id: string;
   text: string;
   transcription: string;
   translate: string;

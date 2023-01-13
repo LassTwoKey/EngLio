@@ -14,9 +14,8 @@ interface CardActionsProps {
 const FlashCardActions: FC<CardActionsProps> = props => {
   const { onMemorized, onFailings, onFavorite, isFavorite } = props;
   const favoriteClass = cn(styles.favorite, {
-    [styles.bookmarkActive]: !isFavorite
+    [styles.bookmarkActive]: isFavorite
   });
-  console.log(isFavorite);
 
   return (
     <div className={cn(styles.cartAction, "mb-2 d-flex jc-center")}>

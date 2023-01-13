@@ -1,4 +1,4 @@
-import { ICategoryItem, IFavoriteCategory } from "../types/RequestData";
+import { ICategoryItem } from "../types/RequestData";
 import { ICard } from "../types/Card";
 
 export const BASE_URL =
@@ -38,8 +38,8 @@ export async function getCards(category: string) {
 
   for (const key in data) {
     const favoritesObj = {
-      id: key,
-      ...data[key]
+      ...data[key],
+      id: key
     };
 
     cardsData.push(favoritesObj);
@@ -67,19 +67,7 @@ export async function getFavoritesByCategory(category: string) {
     throw new Error(data.message || "Could not fetch quotes.");
   }
 
-  const list = [];
-
-  for (const key in data.list) {
-    const favoritesObj = {
-      ...data.list[key],
-      id: key
-    };
-
-    list.push(favoritesObj);
-  }
-  const favoritesData: IFavoriteCategory = { name: data.name, list: list };
-
-  return favoritesData;
+  return data;
 }
 
 export async function removeFromFavorites(

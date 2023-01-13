@@ -20,8 +20,8 @@ const CardResult: FC<CardResultProps> = props => {
   return (
     <div className="container mt-6 pb-4">
       <Card className={cn("mb-2", styles.card)}>
-        <Typography tag="h2" className="mb-2" isCenter>
-          Резутат
+        <Typography tag="h2" className="mb-4" isCenter>
+          Результат
         </Typography>
         <Typography tag="p" className="mb-4" isCenter>
           {numbeOfCorrect}/{numberOfCards}
