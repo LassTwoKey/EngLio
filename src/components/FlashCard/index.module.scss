@@ -9,12 +9,12 @@
 }
 
 .errorBoxShadow {
-  box-shadow: 0px 0px 10px $red;
+  box-shadow: 0px 0px 15px lighten($red, 20%);
   background: lighten($red, 30%);
 }
 .successBoxShadow {
-  box-shadow: 0px 0px 10px $green;
-  background: lighten($green, 30%);
+  box-shadow: 0px 0px 15px lighten($green, 25%);
+  background: lighten($green, 45%);
 }
 
 .showAnswer {

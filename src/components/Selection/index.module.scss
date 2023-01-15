@@ -2,6 +2,9 @@
 
 .selection {
   label {
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
     cursor: pointer;
     input {
       display: none;
@@ -11,6 +14,8 @@
     padding: 12px 15px;
     font-weight: 600;
     color: $c-secondary;
+    border-radius: $br-soft-square;
+    border: 2px solid lighten($c-fivefold, 40%);
     transition: $transition-default;
 
     @media (any-hover: hover) {
@@ -21,14 +26,14 @@
   }
 }
 .disabled {
-  background: $gray;
+  //background: $gray;
   cursor: default !important;
   pointer-events: none;
 }
 
 .errorSel {
-  background: lighten($red, 20%);
+  background: lighten($red, 30%);
 }
 .successSel {
-  background: lighten($green, 30%);
+  background: lighten($green, 45%);
 }

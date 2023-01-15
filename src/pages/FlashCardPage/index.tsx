@@ -1,6 +1,5 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useReducer } from "react";
 import { useParams } from "react-router-dom";
-import cn from "classnames";
 import Filter from "../../components/Filter";
 import MainCard from "../../components/MainCard";
 import CardResult from "../../components/CardResult";
@@ -8,85 +7,109 @@ import PageWrapper from "../../ui/PageWrapper";
 import Info from "../../components/Info";
 import Loader from "../../ui/Loader";
 import InfoBlock from "../../ui/InfoBlock";
-import Button from "../../ui/Button";
+import NextButtonCard from "../../components/NextButtonCard";
 import useHttp from "../../hooks/use-http";
-import { ICard } from "../../types/Card";
-import { getCards } from "../../lib/api";
+import { getCards, getFavoritesByCategory } from "../../lib/api";
 import { COUNT_LIMIT } from "../../data/constants";
+import { ActionKind } from "../../data/enums";
+import {
+  flashCardReducer,
+  initialFlashCardState
+} from "../../reducers/flashCardReducer";
 
-import styles from "./index.module.scss";
+//import styles from "./index.module.scss";
 
 const FlashCardPage: FC = () => {
   const { id } = useParams<string>();
 
   const {
-    sendRequest,
-    status,
+    sendRequest: sendCardsRequest,
+    status: cardsStatus,
     data: pageData,
-    error
+    error: errorCards
   } = useHttp(getCards, true);
 
-  const [isInit, setIsInit] = useState<boolean>(false);
-  const [isBack, setIsBack] = useState<boolean>(false);
-  const [cards, setCards] = useState<ICard[] | null>(null);
-  const [existingCards, setExistingCards] = useState<ICard[] | null>(null);
-  const [correctNum, setCorrectNum] = useState<number>(0);
+  const {
+    sendRequest: sendRequestFavorites,
+    //status,
+    data: favoriteItems,
+    error: errorFavorites
+  } = useHttp(getFavoritesByCategory, true);
+
+  const [flashCardState, dispatchFlashCard] = useReducer(
+    flashCardReducer,
+    initialFlashCardState
+  );
+
   useEffect(() => {
-    if (id) sendRequest(id);
-  }, [id, sendRequest]);
+    if (id) sendCardsRequest(id);
+    sendRequestFavorites(id);
+  }, [id, sendCardsRequest, sendRequestFavorites]);
 
   if (!id) return null;
 
-  const clickBackHandler = () => {
-    setIsInit(false);
-    setIsBack(false);
+  const nextClickHandler = () => {
+    if (flashCardState.currentNumber < COUNT_LIMIT) {
+      dispatchFlashCard({ type: ActionKind.SetCurrentNumber });
+    }
+
+    if (flashCardState.existingCards.length > 0) {
+      dispatchFlashCard({
+        type: ActionKind.SetExistingCards,
+        payload: flashCardState.existingCards.slice(1)
+      });
+    }
+
+    dispatchFlashCard({ type: ActionKind.SetErrorSelect, payload: false });
+    dispatchFlashCard({ type: ActionKind.SetSuccessSelect, payload: false });
+    dispatchFlashCard({ type: ActionKind.SetIsAnswered, payload: false });
+    dispatchFlashCard({ type: ActionKind.SetIsFavorited, payload: false });
+    dispatchFlashCard({ type: ActionKind.SetIsSumbitted, payload: false });
   };
 
-  const backToFilters = isBack ? (
-    <div className="d-flex jc-center mb-2">
-      <Button
-        className={cn("d-iflex", styles.backBtn)}
-        type="outlined"
-        onClick={clickBackHandler}
-      >
-        <span className="_icon-return"></span> Вернуться
-      </Button>
-    </div>
-  ) : null;
-
   let content;
-  if (error) {
+  if (errorCards) {
     content = <InfoBlock type="error" title="Ошибка загрузки :(" />;
   }
 
-  if (status === "pending") {
+  if (cardsStatus === "pending") {
     content = <Loader />;
   }
 
-  if (existingCards && cards) {
-    if (isInit && existingCards.length > 0) {
+  if (flashCardState.existingCards && flashCardState.cards) {
+    if (flashCardState.isInit && flashCardState.existingCards.length > 0) {
       content = (
         <MainCard
-          cardData={existingCards[0]}
           numberOfCards={COUNT_LIMIT}
-          setExistingCards={setExistingCards}
-          setCorrectNum={setCorrectNum}
           categoryId={id}
-          backToFilters={backToFilters}
+          favoriteItems={favoriteItems}
+          error={errorFavorites}
+          nextClickHandler={nextClickHandler}
+          cardData={flashCardState.existingCards[0]}
+          currentNumber={flashCardState.currentNumber}
+          errorSelect={flashCardState.errorSelect}
+          successSelect={flashCardState.successSelect}
+          isAnswered={flashCardState.isAnswered}
+          isFavorited={flashCardState.isFavorited}
+          isSumbitted={flashCardState.isSumbitted}
+          dispatchFlashCard={dispatchFlashCard}
         />
       );
     }
-    if (isInit && existingCards.length === 0) {
+    if (flashCardState.isInit && flashCardState.existingCards.length === 0) {
       content = (
-        <CardResult numberOfCards={COUNT_LIMIT} numbeOfCorrect={correctNum} />
+        <CardResult
+          numberOfCards={COUNT_LIMIT}
+          numbeOfCorrect={flashCardState.correctNum}
+        />
       );
     }
-    if (isInit && cards.length === 0) {
+    if (flashCardState.isInit && flashCardState.cards.length === 0) {
       content = <InfoBlock type="default" title="Карточки не были найдены" />;
     }
   }
 
-  if (!isInit) {
+  if (!flashCardState.isInit) {
     content = (
       <Info
         type="default"
@@ -97,28 +120,14 @@ const FlashCardPage: FC = () => {
   }
 
   return (
-    <PageWrapper goBack>
-      {!isInit && (
-        <Filter
-          setIsInit={setIsInit}
-          setIsBack={setIsBack}
-          pageData={pageData}
-          setCards={setCards}
-          setExistingCards={setExistingCards}
-        />
+    <PageWrapper className="d-flex fd-col" goBack>
+      {!flashCardState.isInit && (
+        <Filter pageData={pageData} dispatchFlashCard={dispatchFlashCard} />
       )}
-      {/* {isBack && (
-        <div className="container d-flex jc-center mb-2">
-          <Button
-            className={cn("d-iflex", styles.backBtn)}
-            type="outlined"
-            onClick={clickBackHandler}
-          >
-            <span className="_icon-return"></span> Вернуться
-          </Button>
-        </div>
-      )} */}
       {content}
+      {flashCardState.isAnswered && (
+        <NextButtonCard nextClickHandler={nextClickHandler} />
+      )}
     </PageWrapper>
   );
 };

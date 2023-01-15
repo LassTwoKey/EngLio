@@ -1,34 +1,27 @@
 import React, { FC, useState, useEffect } from "react";
 import cn from "classnames";
-import Card from "../../ui/Card";
-//import Button from "../../ui/Button";
 import { IAnswer } from "../../types/Card";
+import { ActionKind } from "../../data/enums";
 
 import styles from "./index.module.scss";
 
 interface SelectionProps {
   items: IAnswer[];
-  setErrorSelect: React.Dispatch<React.SetStateAction<boolean>>;
-  setSuccessSelect: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsAnswered: React.Dispatch<React.SetStateAction<boolean>>;
-  setCorrectNum: React.Dispatch<React.SetStateAction<number>>;
   correctAnswer: string;
   isAnswered: boolean;
   errorSelect: boolean;
   successSelect: boolean;
+  dispatchFlashCard: React.Dispatch<any>;
 }
 
 const Selection: FC<SelectionProps> = props => {
   const {
     items,
-    setErrorSelect,
-    setSuccessSelect,
     correctAnswer,
-    setIsAnswered,
     isAnswered,
     errorSelect,
     successSelect,
-    setCorrectNum
+    dispatchFlashCard
   } = props;
   const [answers, setAnswers] = useState<IAnswer[]>(items);
 
@@ -53,18 +46,18 @@ const Selection: FC<SelectionProps> = props => {
     setAnswers(result);
 
     if (isCorrect) {
-      setSuccessSelect(true);
-      setErrorSelect(false);
-      setCorrectNum(prevCount => prevCount + 1);
+      dispatchFlashCard({ type: ActionKind.SetSuccessSelect, payload: true });
+      dispatchFlashCard({ type: ActionKind.SetErrorSelect, payload: false });
+      dispatchFlashCard({ type: ActionKind.SetCorrectNum });
     }
     if (!isCorrect) {
-      setSuccessSelect(false);
-      setErrorSelect(true);
+      dispatchFlashCard({ type: ActionKind.SetSuccessSelect, payload: false });
+      dispatchFlashCard({ type: ActionKind.SetErrorSelect, payload: true });
     }
-    setIsAnswered(true);
+    dispatchFlashCard({ type: ActionKind.SetIsAnswered, payload: true });
   };
   return (
-    <Card className={cn(styles.selection, "mb-2 pb-0 pt-0 pl-0 pr-0")}>
+    <div className={cn(styles.selection, "mb-2 pb-0 pt-0 pl-0 pr-0")}>
       {answers.map(answer => (
         <label
           key={answer.value}
@@ -86,7 +79,7 @@ const Selection: FC<SelectionProps> = props => {
           {answer.value}
         </label>
       ))}
-    </Card>
+    </div>
   );
 };
 

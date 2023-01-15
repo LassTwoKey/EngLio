@@ -6,36 +6,61 @@ import Button from "../../ui/Button";
 import { getFilters } from "../../redux/modules/filters/selector";
 import { getCurrentFilter } from "../../utils/getCurrentFilter";
 import { ICard } from "../../types/Card";
+import { ActionKind } from "../../data/enums";
 
 import styles from "./index.module.scss";
 
 interface FilterProps {
-  setIsInit: (state: boolean) => void;
+  // setIsInit: (state: boolean) => void;
   pageData: ICard[];
-  setCards: React.Dispatch<React.SetStateAction<ICard[] | null>>;
-  setExistingCards: React.Dispatch<React.SetStateAction<ICard[] | null>>;
-  setIsBack: React.Dispatch<React.SetStateAction<boolean>>;
+  // setCards: React.Dispatch<React.SetStateAction<ICard[] | null>>;
+  // setExistingCards: React.Dispatch<React.SetStateAction<ICard[] | null>>;
+  dispatchFlashCard: React.Dispatch<any>;
 }
 
 const Filter: FC<FilterProps> = props => {
   const filters = useAppSelector(getFilters).items;
 
-  const { setIsInit, pageData, setCards, setExistingCards, setIsBack } = props;
+  // const { setIsInit, pageData, setCards, setExistingCards, dispatchFlashCard } =
+  //   props;
+  const { dispatchFlashCard, pageData } = props;
   const [currentActive, setCurrentActive] = useState<string>("");
   const clickHandler = (value: string, action: string) => {
-    setIsInit(true);
-    setIsBack(true);
+    //setIsInit(true);
+    dispatchFlashCard({ type: ActionKind.SetIsInit, payload: true });
     setCurrentActive(value);
 
     if (pageData) {
-      setCards(pageData);
+      //setCards(pageData);
+      dispatchFlashCard({ type: ActionKind.SetCards, payload: pageData });
 
       const currentFunc = getCurrentFilter(action);
       const sortedCards = currentFunc([...pageData]);
 
-      setExistingCards(sortedCards);
+      //setExistingCards(sortedCards);
+      dispatchFlashCard({
+        type: ActionKind.SetExistingCards,
+        payload: sortedCards
+      });
     }
   };
+
+  // const clickHandler1 = (value: string, action: string) => {
+  //   dispatchFlashCard({ type: ActionKind.SetIsInit, payload: false });
+  //   setCurrentActive(value);
+
+  //   if (pageData) {
+  //     dispatchFlashCard({ type: ActionKind.SetCards, payload: pageData });
+
+  //     const currentFunc = getCurrentFilter(action);
+  //     const sortedCards = currentFunc([...pageData]);
+
+  //     dispatchFlashCard({
+  //       type: ActionKind.SetExistingCards,
+  //       payload: sortedCards
+  //     });
+  //   }
+  // };
 
   return (
     <div className="container d-flex fd-col">

@@ -25,7 +25,7 @@ const FlashCard: FC<FlashCardProps> = props => {
   } = props;
   return (
     <Card
-      className={cn("mb-4 py-6", styles.cardMain, {
+      className={cn("mb-4 py-10", styles.cardMain, {
         [styles.showAnswer]: isAnswered,
         [styles.errorBoxShadow]: errorSelect,
         [styles.successBoxShadow]: successSelect

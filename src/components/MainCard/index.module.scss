@@ -1,11 +1,21 @@
 @import "./src/styles/includes/variables";
 
-.learnCard {
-  max-width: 400px;
-  text-align: center;
+.contLearnCard {
+  @media (max-width: 468px) {
+    flex: 1 1 auto;
+  }
+
+  //transform: translate(-);
+  margin-top: -20px;
+}
+.counter {
+  border-radius: $br-soft-square;
+  border: 2px solid lighten($c-fivefold, 40%);
 }
 
-.nextBtn {
+.learnCard {
+  max-width: 380px;
+  text-align: center;
 }
 
 .centered {
