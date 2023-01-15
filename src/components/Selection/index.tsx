@@ -1,7 +1,12 @@
 import React, { FC, useState, useEffect } from "react";
 import cn from "classnames";
 import { IAnswer } from "../../types/Card";
-import { ActionKind } from "../../data/enums";
+import {
+  setSuccessSelect,
+  setErrorSelect,
+  setCorrectNum,
+  setIsAnswered
+} from "../../reducers/flashCardReducer";
 
 import styles from "./index.module.scss";
 
@@ -46,15 +51,15 @@ const Selection: FC<SelectionProps> = props => {
     setAnswers(result);
 
     if (isCorrect) {
-      dispatchFlashCard({ type: ActionKind.SetSuccessSelect, payload: true });
-      dispatchFlashCard({ type: ActionKind.SetErrorSelect, payload: false });
-      dispatchFlashCard({ type: ActionKind.SetCorrectNum });
+      dispatchFlashCard(setSuccessSelect(true));
+      dispatchFlashCard(setErrorSelect(false));
+      dispatchFlashCard(setCorrectNum());
     }
     if (!isCorrect) {
-      dispatchFlashCard({ type: ActionKind.SetSuccessSelect, payload: false });
-      dispatchFlashCard({ type: ActionKind.SetErrorSelect, payload: true });
+      dispatchFlashCard(setSuccessSelect(false));
+      dispatchFlashCard(setErrorSelect(true));
     }
-    dispatchFlashCard({ type: ActionKind.SetIsAnswered, payload: true });
+    dispatchFlashCard(setIsAnswered(true));
   };
   return (
     <div className={cn(styles.selection, "mb-2 pb-0 pt-0 pl-0 pr-0")}>

@@ -11,10 +11,16 @@ import NextButtonCard from "../../components/NextButtonCard";
 import useHttp from "../../hooks/use-http";
 import { getCards, getFavoritesByCategory } from "../../lib/api";
 import { COUNT_LIMIT } from "../../data/constants";
-import { ActionKind } from "../../data/enums";
+import { setExistingCards } from "../../reducers/flashCardReducer";
 import {
   flashCardReducer,
-  initialFlashCardState
+  initialFlashCardState,
+  setErrorSelect,
+  setSuccessSelect,
+  setIsAnswered,
+  setIsFavorited,
+  setIsSumbitted,
+  setCurrentNumber
 } from "../../reducers/flashCardReducer";
 
 //import styles from "./index.module.scss";
@@ -50,21 +56,20 @@ const FlashCardPage: FC = () => {
 
   const nextClickHandler = () => {
     if (flashCardState.currentNumber < COUNT_LIMIT) {
-      dispatchFlashCard({ type: ActionKind.SetCurrentNumber });
+      dispatchFlashCard(setCurrentNumber());
     }
 
     if (flashCardState.existingCards.length > 0) {
-      dispatchFlashCard({
-        type: ActionKind.SetExistingCards,
-        payload: flashCardState.existingCards.slice(1)
-      });
+      dispatchFlashCard(
+        setExistingCards(flashCardState.existingCards.slice(1))
+      );
     }
 
-    dispatchFlashCard({ type: ActionKind.SetErrorSelect, payload: false });
-    dispatchFlashCard({ type: ActionKind.SetSuccessSelect, payload: false });
-    dispatchFlashCard({ type: ActionKind.SetIsAnswered, payload: false });
-    dispatchFlashCard({ type: ActionKind.SetIsFavorited, payload: false });
-    dispatchFlashCard({ type: ActionKind.SetIsSumbitted, payload: false });
+    dispatchFlashCard(setErrorSelect(false));
+    dispatchFlashCard(setSuccessSelect(false));
+    dispatchFlashCard(setIsAnswered(false));
+    dispatchFlashCard(setIsFavorited(false));
+    dispatchFlashCard(setIsSumbitted(false));
   };
 
   let content;

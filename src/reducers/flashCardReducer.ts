@@ -1,5 +1,17 @@
 import { InitialFlashCardState } from "../types/FlashCardState";
-import { ActionKind } from "../data/enums";
+
+export enum ActionKind {
+  SetIsInit = "setIsInit",
+  SetCards = "setCards",
+  SetExistingCards = "setExistingCards",
+  SetCorrectNum = "setCorrectNum",
+  SetCurrentNumber = "setCurrentNumber",
+  SetErrorSelect = "setErrorSelect",
+  SetSuccessSelect = "setSuccessSelect",
+  SetIsAnswered = "setIsAnswered",
+  SetIsFavorited = "setIsFavorited",
+  SetIsSumbitted = "setIsSumbitted"
+}
 
 export const initialFlashCardState = {
   isInit: false,
@@ -42,3 +54,42 @@ export const flashCardReducer = (state: InitialFlashCardState, action: any) => {
       return { ...state };
   }
 };
+
+export const setIsInit = (payload: any) => ({
+  type: ActionKind.SetIsInit,
+  payload: payload
+});
+export const setCards = (payload: any) => ({
+  type: ActionKind.SetCards,
+  payload: payload
+});
+export const setExistingCards = (payload: any) => ({
+  type: ActionKind.SetExistingCards,
+  payload: payload
+});
+export const setCorrectNum = () => ({
+  type: ActionKind.SetCorrectNum
+});
+export const setCurrentNumber = () => ({
+  type: ActionKind.SetCurrentNumber
+});
+export const setErrorSelect = (payload: any) => ({
+  type: ActionKind.SetErrorSelect,
+  payload: payload
+});
+export const setSuccessSelect = (payload: any) => ({
+  type: ActionKind.SetSuccessSelect,
+  payload: payload
+});
+export const setIsAnswered = (payload: any) => ({
+  type: ActionKind.SetIsAnswered,
+  payload: payload
+});
+export const setIsFavorited = (payload: any) => ({
+  type: ActionKind.SetIsFavorited,
+  payload: payload
+});
+export const setIsSumbitted = (payload: any) => ({
+  type: ActionKind.SetIsSumbitted,
+  payload: payload
+});

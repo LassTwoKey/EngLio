@@ -9,7 +9,7 @@ import { addToFavorite } from "../../lib/api";
 import { isFavoritedCheck } from "../../utils/isFavoritedCheck";
 import { ICard } from "../../types/Card";
 import { IFavoriteCategory } from "../../types/RequestData";
-import { ActionKind } from "../../data/enums";
+import { setCorrectNum, setIsFavorited } from "../../reducers/flashCardReducer";
 
 import styles from "./index.module.scss";
 
@@ -51,14 +51,14 @@ const MainCard: FC<MainCardProps> = props => {
   const addToMemorizedHandler = () => {
     nextClickHandler();
     if (!isAnswered) {
-      dispatchFlashCard({ type: ActionKind.SetCorrectNum });
+      dispatchFlashCard(setCorrectNum());
     }
   };
   const addToFailingsHandler = () => {
     nextClickHandler();
   };
   const addToFavoriteHandler = () => {
-    dispatchFlashCard({ type: ActionKind.SetIsFavorited, payload: true });
+    dispatchFlashCard(setIsFavorited(true));
     let newitem: ICategoryItem = {
       id: cardData.id,
       text: cardData.word,
@@ -70,7 +70,7 @@ const MainCard: FC<MainCardProps> = props => {
 
     if (isSend && !isSumbitted) {
       addToFavorite(newitem, categoryId);
-      dispatchFlashCard({ type: ActionKind.SetIsSumbitted, payload: true });
+      dispatchFlashCard(setIsFavorited(true));
     }
     if (error) {
       console.log("Items loading error");
