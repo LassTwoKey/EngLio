@@ -9,7 +9,11 @@ import { addToFavorite } from "../../lib/api";
 import { isFavoritedCheck } from "../../utils/isFavoritedCheck";
 import { ICard } from "../../types/Card";
 import { IFavoriteCategory } from "../../types/RequestData";
-import { setCorrectNum, setIsFavorited } from "../../reducers/flashCardReducer";
+import {
+  setCorrectNum,
+  setIsFavorited,
+  setIsSumbitted
+} from "../../reducers/flashCardReducer";
 
 import styles from "./index.module.scss";
 
@@ -70,7 +74,7 @@ const MainCard: FC<MainCardProps> = props => {
 
     if (isSend && !isSumbitted) {
       addToFavorite(newitem, categoryId);
-      dispatchFlashCard(setIsFavorited(true));
+      dispatchFlashCard(setIsSumbitted(true));
     }
     if (error) {
       console.log("Items loading error");

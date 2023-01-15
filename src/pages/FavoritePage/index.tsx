@@ -115,14 +115,21 @@ const FavoritePage: FC = () => {
             ))}
         </ul>
       );
-    }
-    if (objToArr(favorites.list).length === 0) {
+    } else {
       content = (
         <Typography tag="p" isBig isCenter>
           Список пуст
         </Typography>
       );
     }
+  }
+
+  if (favorites.list === null) {
+    content = (
+      <Typography tag="p" isBig isCenter>
+        Список пуст
+      </Typography>
+    );
   }
 
   return (
