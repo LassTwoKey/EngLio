@@ -109,9 +109,18 @@ const FlashCardPage: FC = () => {
         />
       );
     }
+
     if (flashCardState.isInit && flashCardState.cards.length === 0) {
       content = <InfoBlock type="default" title="Карточки не были найдены" />;
     }
+  }
+
+  if (
+    flashCardState.isInit &&
+    !flashCardState.existingCards &&
+    flashCardState.cards.length === 0
+  ) {
+    content = <InfoBlock type="default" title="Карточки не были найдены" />;
   }
 
   if (!flashCardState.isInit) {

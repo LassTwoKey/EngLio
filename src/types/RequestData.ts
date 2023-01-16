@@ -2,6 +2,7 @@ export interface IRequestedCategory {
   descr: string;
   id: string;
   title: string;
+  img: string;
 }
 
 export interface ITechnology {
@@ -31,4 +32,9 @@ export interface IFavoriteCategory {
 export interface INotification {
   id: string;
   value: string;
+}
+
+export interface ISection {
+  id: string;
+  name: string;
 }

@@ -1,0 +1,34 @@
+@import "./src/styles/includes/variables";
+
+.categoriesItem {
+  img {
+    border-radius: $br-default;
+  }
+  transition: $transition-default;
+  color: $c-secondary;
+  &:hover {
+    color: $c-primary;
+  }
+}
+.categoryImage {
+  position: relative;
+  width: 400px;
+  height: 270px;
+  @media (max-width: 992px) {
+    width: 200px;
+    height: 150px;
+  }
+  @media (max-width: 460px) {
+    width: 100%;
+    max-width: 100%;
+    height: 140px;
+  }
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

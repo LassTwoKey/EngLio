@@ -10,9 +10,10 @@ import Layout from "../layout/Layout";
 import FlashCards from "../pages/FlashCardsPage/FlashCards";
 import ErrorPage from "../pages/ErrorPage";
 import FlashCardPage from "../pages/FlashCardPage";
-import FavoritesPage from "../pages/FavoritesPage";
-import FavoritePage from "../pages/FavoritePage";
+import LearnPage from "../pages/LearnPage";
+import CategoryLearnPage from "../pages/CategoryLearnPage";
 import { paths } from "../data/constants";
+import { SECTIONS } from "../data/constants";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,8 +24,15 @@ export const router = createBrowserRouter(
       <Route path={`${paths.flashcards}`} element={<FlashCards />} />
       <Route path={`${paths.flashcards}/:id`} element={<FlashCardPage />} />
 
-      <Route path={`${paths.favorite}`} element={<FavoritesPage />} />
-      <Route path={`${paths.favorite}/:id`} element={<FavoritePage />} />
+      <Route path={`${paths.learn}/:id`} element={<LearnPage />}></Route>
+
+      <Route
+        path={`${paths.learn}`}
+        element={
+          <Navigate replace to={`/${paths.learn}/${SECTIONS.favorites}`} />
+        }
+      />
+      <Route path={`${paths.learn}/:id/:id`} element={<CategoryLearnPage />} />
     </Route>
   )
 );

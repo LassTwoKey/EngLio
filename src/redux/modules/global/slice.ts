@@ -13,10 +13,16 @@ interface IHeader {
   };
 }
 
+interface ISection {
+  id: string;
+  name: string;
+}
+
 interface IGlobalState {
   burgerMenuToggle: boolean;
   loader: boolean;
   header: IHeader;
+  sections: ISection[];
 }
 
 const initialState: IGlobalState = {
@@ -33,14 +39,28 @@ const initialState: IGlobalState = {
         value: "Карточки"
       },
       {
-        path: "/favorite",
-        value: "Избранное"
+        path: "/learn",
+        value: "Обучение"
       }
     ],
     notifications: {
       title: "Уведомления"
     }
-  }
+  },
+  sections: [
+    {
+      id: "favorites",
+      name: "Избранные"
+    },
+    {
+      id: "memorized",
+      name: "Выученные"
+    },
+    {
+      id: "failures",
+      name: "Сложные"
+    }
+  ]
 };
 
 const globalSlice = createSlice({

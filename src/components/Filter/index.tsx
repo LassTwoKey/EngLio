@@ -3,6 +3,7 @@ import cn from "classnames";
 import { useAppSelector } from "../../hooks/redux";
 import Typography from "../../ui/Typography";
 import Button from "../../ui/Button";
+import Select from "../../ui/Select";
 import { getFilters } from "../../redux/modules/filters/selector";
 import { getCurrentFilter } from "../../utils/getCurrentFilter";
 import { ICard } from "../../types/Card";
@@ -29,13 +30,36 @@ const Filter: FC<FilterProps> = props => {
     setCurrentActive(value);
 
     if (pageData) {
-      dispatchFlashCard(setCards(true));
+      dispatchFlashCard(setCards(pageData));
 
       const currentFunc = getCurrentFilter(action);
       const sortedCards = currentFunc([...pageData]);
 
-      dispatchFlashCard(setExistingCards(sortedCards));
+      if (sortedCards.length > 0)
+        dispatchFlashCard(setExistingCards(sortedCards));
     }
+  };
+
+  const selectData = {
+    name: "words",
+    optns: [
+      {
+        value: "1",
+        text: "100-200"
+      },
+      {
+        value: "2",
+        text: "200-300"
+      },
+      {
+        value: "3",
+        text: "300-400"
+      },
+      {
+        value: "4",
+        text: "500-1000"
+      }
+    ]
   };
 
   return (
@@ -61,6 +85,12 @@ const Filter: FC<FilterProps> = props => {
             </Button>
           ))}
         </div>
+      </div>
+      <div className={cn("d-flex ai-center jc-center", styles.selLine)}>
+        <Typography className={styles.title} isBig tag="p">
+          Категории слов:
+        </Typography>
+        <Select name={selectData.name} optns={selectData.optns} />
       </div>
     </div>
   );

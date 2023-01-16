@@ -1,0 +1,39 @@
+@import "./src/styles/includes/variables";
+
+.select {
+  font-weight: 600;
+  padding: 12px 14px;
+  overflow: hidden;
+  line-height: 20px;
+  border-radius: 14px;
+  border: 1px solid lighten($primary, 20%);
+  transition: $transition-default;
+  color: lighten($primary, 15%);
+  background: transparent;
+  cursor: pointer;
+
+  &:hover {
+    color: $primary;
+    border: 1px solid $primary;
+  }
+
+  // &[disabled] {
+  //   background: #ede8e8;
+  //   color: #afacac;
+
+  //   span {
+  //     color: #c9c9c9;
+  //   }
+  // }
+  // &.active {
+  //   background: $primary;
+  //   color: $tertiary;
+  //   transition: $transition-default;
+  //   border-color: $primary;
+  //   &:hover {
+  //     color: $bg-primary;
+  //     background: $lightPrimary;
+  //     border-color: $lightPrimary;
+  //   }
+  // }
+}

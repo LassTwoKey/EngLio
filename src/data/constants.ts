@@ -2,7 +2,13 @@ export const paths = {
   main: "/",
   welcome: "/welcome",
   flashcards: "flashcards",
-  favorite: "favorite"
+  learn: "learn"
+};
+
+export const SECTIONS = {
+  favorites: "favorites",
+  memorized: "memorized",
+  failures: "failures"
 };
 
 export const FILTER_ACTIONS = {

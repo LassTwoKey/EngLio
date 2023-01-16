@@ -4,6 +4,17 @@ import { ICard } from "../types/Card";
 export const BASE_URL =
   "https://englio-default-rtdb.europe-west1.firebasedatabase.app";
 
+export async function getSections() {
+  const response = await fetch(`${BASE_URL}/sections.json`);
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Could not fetch quotes.");
+  }
+
+  return data;
+}
+
 export async function getCategories() {
   const response = await fetch(`${BASE_URL}/categories.json`);
   const data = await response.json();

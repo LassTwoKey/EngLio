@@ -1,0 +1,83 @@
+@import "./src/styles/includes/variables";
+
+.tabControls {
+  gap: 15px;
+}
+.link {
+  padding: 10px 0px;
+  user-select: none;
+}
+.active {
+  color: $primary;
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    left: 0;
+    bottom: -2px;
+    background: $primary;
+  }
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: 400px 400px;
+  column-gap: 30px;
+  row-gap: 40px;
+  @media (max-width: 992px) {
+    grid-template-columns: 200px 200px;
+    column-gap: 25px;
+    row-gap: 30px;
+  }
+  @media (max-width: 460px) {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 15px;
+    row-gap: 20px;
+  }
+}
+.categoriesItem {
+  img {
+    border-radius: $br-default;
+  }
+  transition: $transition-default;
+  color: $c-secondary;
+  &:hover {
+    color: $c-primary;
+  }
+}
+.categoryImage {
+  position: relative;
+  width: 400px;
+  height: 270px;
+  @media (max-width: 992px) {
+    width: 200px;
+    height: 150px;
+  }
+  @media (max-width: 460px) {
+    width: 100%;
+    max-width: 100%;
+    height: 140px;
+  }
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.button {
+  display: block;
+  width: 100%;
+  height: 100%;
+  &:hover {
+    background: $bg-secondary;
+    background: lighten($secondary, 15%);
+    box-shadow: 0px 0px 7px lighten($secondary, 15%);
+  }
+  transition: $transition-default;
+}

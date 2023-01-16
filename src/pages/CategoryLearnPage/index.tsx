@@ -17,7 +17,7 @@ interface FavoriteItem extends ICategoryItem {
   uniqueId: string;
 }
 
-const FavoritePage: FC = () => {
+const CategoryLearnPage: FC = () => {
   const { id } = useParams<string>();
   const [favorites, setFavorites] = useState<IFavoriteCategory | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -39,6 +39,8 @@ const FavoritePage: FC = () => {
   useEffect(() => {
     loadData();
   }, [loadData]);
+
+  console.log(id);
 
   if (!id) return null;
 
@@ -139,4 +141,4 @@ const FavoritePage: FC = () => {
   );
 };
 
-export default FavoritePage;
+export default CategoryLearnPage;
