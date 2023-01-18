@@ -1,26 +1,15 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import cn from "classnames";
 import Typography from "../../ui/Typography";
 import PageWrapper from "../../ui/PageWrapper";
 import Button from "../../ui/Button";
-import useHttp from "../../hooks/use-http";
 import { paths } from "../../data/constants";
-import { getWelcome } from "../../lib/api";
-import { ITechnology } from "../../types/RequestData";
+import { useWelcomeQuery } from "../../lib/welcomeApi";
 
 import styles from "./index.module.scss";
 
 const WelcomePage: FC = () => {
-  const {
-    sendRequest,
-    //status,
-    data: info,
-    error
-  } = useHttp(getWelcome, true);
-
-  useEffect(() => {
-    sendRequest();
-  }, [sendRequest]);
+  const { data: info, error } = useWelcomeQuery();
 
   if (error) {
     return (
@@ -47,7 +36,7 @@ const WelcomePage: FC = () => {
             {info.listTitle}
           </Typography>
           <ul className={cn("mb-4")}>
-            {info.technologies.map((technology: ITechnology) => (
+            {info.technologies.map(technology => (
               <Typography key={technology.id} tag="li" isBig>
                 - {technology.value}
               </Typography>

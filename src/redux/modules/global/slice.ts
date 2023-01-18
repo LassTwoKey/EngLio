@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { getWelcome } from "../../../lib/api";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface IMenuList {
@@ -23,6 +24,7 @@ interface IGlobalState {
   loader: boolean;
   header: IHeader;
   sections: ISection[];
+  loading?: "idle" | "pending" | "succeeded" | "failed";
 }
 
 const initialState: IGlobalState = {

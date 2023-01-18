@@ -1,4 +1,6 @@
 import { FC } from "react";
+import { SerializedError } from "@reduxjs/toolkit";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
 import cn from "classnames";
 import Typography from "../../ui/Typography";
 import FlashCard from "../FlashCard";
@@ -14,7 +16,6 @@ import {
   setIsFavorited,
   setIsSumbitted
 } from "../../reducers/flashCardReducer";
-
 import styles from "./index.module.scss";
 
 interface MainCardProps {
@@ -23,7 +24,7 @@ interface MainCardProps {
   categoryId: string;
   nextClickHandler: () => void;
   favoriteItems: IFavoriteCategory;
-  error: string;
+  error: string | FetchBaseQueryError | SerializedError | undefined;
   currentNumber: number;
   errorSelect: boolean;
   successSelect: boolean;

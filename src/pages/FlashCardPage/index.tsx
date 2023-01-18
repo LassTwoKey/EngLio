@@ -1,4 +1,4 @@
-import { FC, useEffect, useReducer } from "react";
+import { FC, useReducer } from "react";
 import { useParams } from "react-router-dom";
 import Filter from "../../components/Filter";
 import MainCard from "../../components/MainCard";
@@ -8,8 +8,6 @@ import Info from "../../components/Info";
 import Loader from "../../ui/Loader";
 import InfoBlock from "../../ui/InfoBlock";
 import NextButtonCard from "../../components/NextButtonCard";
-import useHttp from "../../hooks/use-http";
-import { getCards, getFavoritesByCategory } from "../../lib/api";
 import { COUNT_LIMIT } from "../../data/constants";
 import { setExistingCards } from "../../reducers/flashCardReducer";
 import {
@@ -22,37 +20,31 @@ import {
   setIsSumbitted,
   setCurrentNumber
 } from "../../reducers/flashCardReducer";
+import { useFlashcardsQuery } from "../../lib/flashcardApi";
+import { useFavoritesByIdQuery } from "../../lib/favoritesApi";
 
 //import styles from "./index.module.scss";
 
 const FlashCardPage: FC = () => {
-  const { id } = useParams<string>();
+  const { id } = useParams() as { id: string };
 
   const {
-    sendRequest: sendCardsRequest,
-    status: cardsStatus,
     data: pageData,
+    isLoading: pageDataIsLoading,
     error: errorCards
-  } = useHttp(getCards, true);
+  } = useFlashcardsQuery(id);
 
-  const {
-    sendRequest: sendRequestFavorites,
-    //status,
-    data: favoriteItems,
-    error: errorFavorites
-  } = useHttp(getFavoritesByCategory, true);
+  const { data: favoriteItems, error: errorFavorites } =
+    useFavoritesByIdQuery(id);
+
+  const { data } = useFlashcardsQuery(id);
 
   const [flashCardState, dispatchFlashCard] = useReducer(
     flashCardReducer,
     initialFlashCardState
   );
 
-  useEffect(() => {
-    if (id) sendCardsRequest(id);
-    sendRequestFavorites(id);
-  }, [id, sendCardsRequest, sendRequestFavorites]);
-
-  if (!id) return null;
+  if (!data) return null;
 
   const nextClickHandler = () => {
     if (flashCardState.currentNumber < COUNT_LIMIT) {
@@ -77,7 +69,7 @@ const FlashCardPage: FC = () => {
     content = <InfoBlock type="error" title="Ошибка загрузки :(" />;
   }
 
-  if (cardsStatus === "pending") {
+  if (pageDataIsLoading) {
     content = <Loader />;
   }
 
@@ -135,7 +127,7 @@ const FlashCardPage: FC = () => {
 
   return (
     <PageWrapper className="d-flex fd-col" goBack>
-      {!flashCardState.isInit && (
+      {!flashCardState.isInit && pageData && (
         <Filter pageData={pageData} dispatchFlashCard={dispatchFlashCard} />
       )}
       {content}

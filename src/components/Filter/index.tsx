@@ -33,6 +33,7 @@ const Filter: FC<FilterProps> = props => {
       dispatchFlashCard(setCards(pageData));
 
       const currentFunc = getCurrentFilter(action);
+
       const sortedCards = currentFunc([...pageData]);
 
       if (sortedCards.length > 0)

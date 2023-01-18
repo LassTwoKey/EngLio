@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import CategoryItem from "../CategoryItem";
-import { IRequestedCategory } from "../../types/RequestData";
+//import { IRequestedCategory } from "../../types/RequestData";
 
 //import styles from "./index.module.scss";
 
@@ -15,7 +15,7 @@ const CategoryList: FC<CategoryItemProps> = props => {
   return (
     <>
       {categories &&
-        categories.map((category: IRequestedCategory) => (
+        categories.map((category: any) => (
           <Link key={category.id} to={`${category.id}`}>
             <CategoryItem img={category.img} name={category.title} />
           </Link>
