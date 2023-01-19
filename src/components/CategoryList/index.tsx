@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import CategoryItem from "../CategoryItem";
-//import { IRequestedCategory } from "../../types/RequestData";
 
 //import styles from "./index.module.scss";
 

@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC } from "react";
 import { useParams } from "react-router-dom";
 import cn from "classnames";
 import PageWrapper from "../../ui/PageWrapper";
@@ -6,10 +6,12 @@ import Typography from "../../ui/Typography";
 import Button from "../../ui/Button";
 import Loader from "../../ui/Loader";
 import InfoBlock from "../../ui/InfoBlock";
-import { getFavoritesByCategory } from "../../lib/api";
-import { ICategoryItem, IFavoriteCategory } from "../../types/RequestData";
-import { removeFromFavorites } from "../../lib/api";
+import { ICategoryItem } from "../../types/Categories";
 import { objToArr } from "../../utils/objToArr";
+import {
+  useFavoritesByIdQuery,
+  useDeleteFavoriteMutation
+} from "../../lib/favoritesApi";
 
 import styles from "./index.module.scss";
 
@@ -18,55 +20,31 @@ interface FavoriteItem extends ICategoryItem {
 }
 
 const CategoryLearnPage: FC = () => {
-  const { id } = useParams<string>();
-  const [favorites, setFavorites] = useState<IFavoriteCategory | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState(null);
+  const { id } = useParams() as { id: string };
+  const {
+    data: favorites,
+    error: getError,
+    isLoading: isGetLoading,
+    isSuccess: isGetSuccess,
+    refetch
+  } = useFavoritesByIdQuery(id);
 
-  const loadData = useCallback(async () => {
-    if (id) {
-      setIsLoading(true);
-      try {
-        const responseData = await getFavoritesByCategory(id);
-        setFavorites(responseData);
-      } catch (err: any) {
-        setError(err.message);
-      }
-      setIsLoading(false);
-    }
-  }, [id]);
+  const [deleteFavorite] = useDeleteFavoriteMutation();
 
-  useEffect(() => {
-    loadData();
-  }, [loadData]);
-
-  console.log(id);
-
-  if (!id) return null;
-
-  const removeFromFavoriteHandler = (removeId: string) => {
-    removeFromFavorites(id, removeId);
-
-    if (!favorites) return;
-    if (favorites.list) {
-      const newList: any = {};
-      for (const key in favorites.list) {
-        if (Object.prototype.hasOwnProperty.call(favorites.list, key)) {
-          if (key !== removeId) {
-            newList[key] = favorites.list[key];
-          }
-        }
-      }
-      setFavorites({ ...favorites, list: newList });
-    }
+  const removeFromFavoriteHandler = async (removeId: string) => {
+    await deleteFavorite({
+      category: id,
+      id: removeId
+    });
+    refetch();
   };
 
   let content;
 
-  if (isLoading) {
+  if (isGetLoading) {
     content = <Loader />;
   }
-  if (error) {
+  if (getError) {
     content = <InfoBlock type="error" title="Ошибка загрузки" />;
   }
 
@@ -77,7 +55,7 @@ const CategoryLearnPage: FC = () => {
       </PageWrapper>
     );
   }
-  if (favorites.list) {
+  if (isGetSuccess) {
     if (objToArr(favorites.list).length > 0) {
       content = (
         <ul>

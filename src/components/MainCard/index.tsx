@@ -6,16 +6,16 @@ import Typography from "../../ui/Typography";
 import FlashCard from "../FlashCard";
 import Selection from "../Selection";
 import FlashCardActions from "../FlashCardActions";
-import { ICategoryItem } from "../../types/RequestData";
-import { addToFavorite } from "../../lib/api";
+import { ICategoryItem } from "../../types/Categories";
 import { isFavoritedCheck } from "../../utils/isFavoritedCheck";
 import { ICard } from "../../types/Card";
-import { IFavoriteCategory } from "../../types/RequestData";
+import { IFavoriteCategory } from "../../types/Favorite";
 import {
   setCorrectNum,
   setIsFavorited,
   setIsSumbitted
 } from "../../reducers/flashCardReducer";
+import { useAddFavoriteMutation } from "../../lib/favoritesApi";
 import styles from "./index.module.scss";
 
 interface MainCardProps {
@@ -51,18 +51,19 @@ const MainCard: FC<MainCardProps> = props => {
     dispatchFlashCard
   } = props;
 
+  const [addFavorite] = useAddFavoriteMutation();
   let answers = cardData?.answerOptions;
 
-  const addToMemorizedHandler = () => {
+  const addToMemorizedHandler = async () => {
     nextClickHandler();
     if (!isAnswered) {
       dispatchFlashCard(setCorrectNum());
     }
   };
-  const addToFailingsHandler = () => {
+  const addToFailingsHandler = async () => {
     nextClickHandler();
   };
-  const addToFavoriteHandler = () => {
+  const addToFavoriteHandler = async () => {
     dispatchFlashCard(setIsFavorited(true));
     let newitem: ICategoryItem = {
       id: cardData.id,
@@ -74,7 +75,10 @@ const MainCard: FC<MainCardProps> = props => {
     let isSend = !isFavoritedCheck(favoriteItems.list, cardData.id);
 
     if (isSend && !isSumbitted) {
-      addToFavorite(newitem, categoryId);
+      await addFavorite({
+        id: categoryId,
+        body: newitem
+      });
       dispatchFlashCard(setIsSumbitted(true));
     }
     if (error) {

@@ -1,17 +1,19 @@
 import React, { FC } from "react";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
+import { SerializedError } from "@reduxjs/toolkit";
 import cn from "classnames";
 import Typography from "../../ui/Typography";
 import Loader from "../../ui/Loader";
 import Button from "../../ui/Button";
-import { INotification } from "../../types/RequestData";
+import { INotification } from "../../types/Notification";
 import useComponentVisible from "../../hooks/useComponentVisible";
 
 import styles from "./index.module.scss";
 
 type DropdownProps = {
   list?: INotification[];
-  status?: string;
-  error?: string;
+  isLoading?: boolean;
+  error?: string | FetchBaseQueryError | SerializedError | undefined;
   btnOptions?: { className: string; icon: string; type: string };
   renderElement?: React.ReactNode;
   headerText?: string;
@@ -26,7 +28,7 @@ const Dropdown: FC<DropdownProps> = props => {
     headerText,
     renderElement,
     heigth,
-    status,
+    isLoading,
     onClick
   } = props;
 
@@ -79,7 +81,7 @@ const Dropdown: FC<DropdownProps> = props => {
             {headerText}
           </Typography>
         )}
-        {status === "pending" ? (
+        {isLoading ? (
           <Loader />
         ) : (
           <>

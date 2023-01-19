@@ -73,7 +73,7 @@ const FlashCardPage: FC = () => {
     content = <Loader />;
   }
 
-  if (flashCardState.existingCards && flashCardState.cards) {
+  if (favoriteItems && flashCardState.existingCards && flashCardState.cards) {
     if (flashCardState.isInit && flashCardState.existingCards.length > 0) {
       content = (
         <MainCard

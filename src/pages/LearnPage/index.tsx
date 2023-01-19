@@ -1,40 +1,26 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import cn from "classnames";
 import PageWrapper from "../../ui/PageWrapper";
 import Typography from "../../ui/Typography";
 import InfoBlock from "../../ui/InfoBlock";
 import Loader from "../../ui/Loader";
-import useHttp from "../../hooks/use-http";
 import CategoryList from "../../components/CategoryList";
-import { getCategories } from "../../lib/api";
 import { useAppSelector } from "../../hooks/redux";
 import { RootState } from "../../redux/store";
+import { useCategoriesQuery } from "../../lib/categoriesApi";
 
 import styles from "./index.module.scss";
 
 const LearnPage: FC = () => {
-  const {
-    sendRequest: sendRequestCategories,
-    status: categoriesStatus,
-    data: categories,
-    error: errorCategories
-  } = useHttp(getCategories, true);
-
-  const { id } = useParams();
+  const { id } = useParams() as { id: string };
+  const { data: categories, error, isLoading } = useCategoriesQuery();
   const { sections } = useAppSelector((state: RootState) => state.global);
-
-  useEffect(() => {
-    sendRequestCategories();
-  }, [sendRequestCategories]);
-
-  if (!id) return null;
-
   return (
     <PageWrapper>
       <div className="container pb-6">
-        {categoriesStatus === "pending" && <Loader />}
-        {errorCategories && <InfoBlock type="error" title="Ошибка загрузки" />}
+        {isLoading && <Loader />}
+        {error && <InfoBlock type="error" title="Ошибка загрузки" />}
         <div className={cn("d-flex pb-4", styles.tabControls)}>
           {sections.map(section => (
             <NavLink

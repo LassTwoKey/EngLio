@@ -4,3 +4,10 @@ export interface ICategory {
   title: string;
   img: string;
 }
+
+export interface ICategoryItem {
+  id: string;
+  text: string;
+  transcription: string;
+  translate: string;
+}

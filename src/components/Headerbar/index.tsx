@@ -5,25 +5,15 @@ import { RootState } from "../../redux/store";
 import { setBurgerMenuToggle } from "../../redux/modules/global/slice";
 import Button from "../../ui/Button";
 import Dropdown from "../Dropdown";
-import useHttp from "../../hooks/use-http";
-import { getNotifications } from "../../lib/api";
+import { useNotificationsQuery } from "../../lib/notificationApi";
 
 import styles from "./index.module.scss";
 
 const Headerbar: FC = () => {
   const dispatch = useDispatch();
-  const {
-    sendRequest,
-    status,
-    error,
-    data: notifications
-  } = useHttp(getNotifications);
+  const { data: notifications, error, isLoading } = useNotificationsQuery();
 
   const { burgerMenuToggle } = useSelector((state: RootState) => state.global);
-
-  const clicknNotificationsHandler = () => {
-    sendRequest();
-  };
 
   const clickAccountHandler = () => {};
 
@@ -47,11 +37,10 @@ const Headerbar: FC = () => {
     <div className={cn("d-flex ai-center")}>
       <Dropdown
         list={notifications}
-        status={status}
+        isLoading={isLoading}
         error={error}
         headerText="Уведомления"
         btnOptions={notificationBtn}
-        onClick={clicknNotificationsHandler}
       />
       <Dropdown
         renderElement={accountMenu}

@@ -1,4 +1,4 @@
-import { ICategoryItem } from "../types/RequestData";
+import { ICategoryItem } from "../types/Categories";
 import { ICard } from "../types/Card";
 
 export const BASE_URL =
@@ -99,8 +99,6 @@ export async function addToFavorite(
   favoriteData: ICategoryItem,
   category: string | number
 ) {
-  console.log(`${BASE_URL}/favorites/${category}/list.json`);
-
   const response = await fetch(`${BASE_URL}/favorites/${category}/list.json`, {
     method: "POST",
     body: JSON.stringify(favoriteData),

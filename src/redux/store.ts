@@ -4,6 +4,7 @@ import welcomeApi from "../lib/welcomeApi";
 import categoriesApi from "../lib/categoriesApi";
 import flashCardApi from "../lib/flashcardApi";
 import favoritesApi from "../lib/favoritesApi";
+import notificationApi from "../lib/notificationApi";
 
 import globalSlice from "./modules/global/slice";
 import filtersSlice from "./modules/filters/slice";
@@ -14,7 +15,8 @@ const reducers = {
   [welcomeApi.reducerPath]: welcomeApi.reducer,
   [categoriesApi.reducerPath]: categoriesApi.reducer,
   [flashCardApi.reducerPath]: flashCardApi.reducer,
-  [favoritesApi.reducerPath]: favoritesApi.reducer
+  [favoritesApi.reducerPath]: favoritesApi.reducer,
+  [notificationApi.reducerPath]: notificationApi.reducer
 };
 
 const rootReducer = combineReducers({
@@ -28,7 +30,8 @@ export const store = configureStore({
       welcomeApi.middleware,
       categoriesApi.middleware,
       flashCardApi.middleware,
-      favoritesApi.middleware
+      favoritesApi.middleware,
+      notificationApi.middleware
     )
 });
 
