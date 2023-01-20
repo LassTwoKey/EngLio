@@ -25,8 +25,7 @@ const CategoryLearnPage: FC = () => {
     data: favorites,
     error: getError,
     isLoading: isGetLoading,
-    isSuccess: isGetSuccess,
-    refetch
+    isSuccess: isGetSuccess
   } = useFavoritesByIdQuery(id);
 
   const [deleteFavorite] = useDeleteFavoriteMutation();
@@ -36,7 +35,6 @@ const CategoryLearnPage: FC = () => {
       category: id,
       id: removeId
     });
-    refetch();
   };
 
   let content;
