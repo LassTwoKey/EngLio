@@ -23,7 +23,6 @@ interface IGlobalState {
   loader: boolean;
   header: IHeader;
   sections: ISection[];
-  loading?: "idle" | "pending" | "succeeded" | "failed";
 }
 
 const initialState: IGlobalState = {

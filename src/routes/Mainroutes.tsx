@@ -11,7 +11,6 @@ import FlashCards from "../pages/FlashCardsPage/FlashCards";
 import ErrorPage from "../pages/ErrorPage";
 import FlashCardPage from "../pages/FlashCardPage";
 import LearnPage from "../pages/LearnPage";
-import CategoryLearnPage from "../pages/CategoryLearnPage";
 import { paths } from "../data/constants";
 import { SECTIONS } from "../data/constants";
 
@@ -32,7 +31,6 @@ export const router = createBrowserRouter(
           <Navigate replace to={`/${paths.learn}/${SECTIONS.favorites}`} />
         }
       />
-      <Route path={`${paths.learn}/:id/:id`} element={<CategoryLearnPage />} />
     </Route>
   )
 );

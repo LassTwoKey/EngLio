@@ -10,4 +10,5 @@ export interface ICategoryItem {
   text: string;
   transcription: string;
   translate: string;
+  uniqueId?: string;
 }

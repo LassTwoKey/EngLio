@@ -1,11 +1,11 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import welcomeApi from "../lib/welcomeApi";
-import categoriesApi from "../lib/categoriesApi";
-import flashCardApi from "../lib/flashcardApi";
-import favoritesApi from "../lib/favoritesApi";
-import notificationApi from "../lib/notificationApi";
-import sectionApi from "../lib/sectionApi";
+import welcomeApi from "../api/welcomeApi";
+import categoriesApi from "../api/categoriesApi";
+import flashCardApi from "../api/flashcardApi";
+import favoritesApi from "../api/favoritesApi";
+import notificationApi from "../api/notificationApi";
+import sectionApi from "../api/sectionApi";
 
 import globalSlice from "./modules/global/slice";
 import filtersSlice from "./modules/filters/slice";

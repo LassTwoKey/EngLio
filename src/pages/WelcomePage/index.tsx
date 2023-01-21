@@ -4,7 +4,7 @@ import Typography from "../../ui/Typography";
 import PageWrapper from "../../ui/PageWrapper";
 import Button from "../../ui/Button";
 import { paths } from "../../data/constants";
-import { useWelcomeQuery } from "../../lib/welcomeApi";
+import { useWelcomeQuery } from "../../api/welcomeApi";
 
 import styles from "./index.module.scss";
 

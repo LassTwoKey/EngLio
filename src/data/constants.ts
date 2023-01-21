@@ -20,3 +20,10 @@ export const FILTER_ACTIONS = {
 };
 
 export const COUNT_LIMIT = 3;
+
+export const CATEGORIES = [
+  ["words", "Слова"],
+  ["phrases", "Словосочетания"],
+  ["expressions", "Выражения"],
+  ["phrasal_verbs", "Фразовые глаголы"]
+];

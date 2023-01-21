@@ -5,7 +5,7 @@ import Typography from "../../ui/Typography";
 import Card from "../../ui/Card";
 import Button from "../../ui/Button";
 import InfoBlock from "../../ui/InfoBlock";
-import { useCategoriesQuery } from "../../lib/categoriesApi";
+import { useCategoriesQuery } from "../../api/categoriesApi";
 
 import styles from "./FlashCards.module.scss";
 

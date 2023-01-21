@@ -20,8 +20,9 @@ import {
   setIsSumbitted,
   setCurrentNumber
 } from "../../reducers/flashCardReducer";
-import { useFlashcardsQuery } from "../../lib/flashcardApi";
-import { useFavoritesByIdQuery } from "../../lib/favoritesApi";
+import { useFlashcardsQuery } from "../../api/flashcardApi";
+import { useSectionDataQuery } from "../../api/sectionApi";
+import { SECTIONS } from "../../data/constants";
 
 //import styles from "./index.module.scss";
 
@@ -34,17 +35,14 @@ const FlashCardPage: FC = () => {
     error: errorCards
   } = useFlashcardsQuery(id);
 
-  const { data: favoriteItems, error: errorFavorites } =
-    useFavoritesByIdQuery(id);
-
-  const { data } = useFlashcardsQuery(id);
+  const { data: memorized } = useSectionDataQuery(SECTIONS.memorized);
+  const { data: failures } = useSectionDataQuery(SECTIONS.failures);
+  const { data: favorites } = useSectionDataQuery(SECTIONS.favorites);
 
   const [flashCardState, dispatchFlashCard] = useReducer(
     flashCardReducer,
     initialFlashCardState
   );
-
-  if (!data) return null;
 
   const nextClickHandler = () => {
     if (flashCardState.currentNumber < COUNT_LIMIT) {
@@ -73,14 +71,17 @@ const FlashCardPage: FC = () => {
     content = <Loader />;
   }
 
-  if (favoriteItems && flashCardState.existingCards && flashCardState.cards) {
+  const isLaodedAll = favorites && memorized && failures;
+
+  if (isLaodedAll && flashCardState.existingCards && flashCardState.cards) {
     if (flashCardState.isInit && flashCardState.existingCards.length > 0) {
       content = (
         <MainCard
           numberOfCards={COUNT_LIMIT}
           categoryId={id}
-          favoriteItems={favoriteItems}
-          error={errorFavorites}
+          memorized={memorized}
+          failures={failures}
+          favorites={favorites}
           nextClickHandler={nextClickHandler}
           cardData={flashCardState.existingCards[0]}
           currentNumber={flashCardState.currentNumber}

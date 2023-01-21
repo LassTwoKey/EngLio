@@ -1,6 +1,4 @@
 import { FC } from "react";
-import { SerializedError } from "@reduxjs/toolkit";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
 import cn from "classnames";
 import Typography from "../../ui/Typography";
 import FlashCard from "../FlashCard";
@@ -15,7 +13,10 @@ import {
   setIsFavorited,
   setIsSumbitted
 } from "../../reducers/flashCardReducer";
-import { useAddFavoriteMutation } from "../../lib/favoritesApi";
+import { SECTIONS } from "../../data/constants";
+import { useAddSectionDataMutation } from "../../api/sectionApi";
+import { addItem, isMatchData } from "../../utils/flashcardData";
+
 import styles from "./index.module.scss";
 
 interface MainCardProps {
@@ -23,8 +24,9 @@ interface MainCardProps {
   numberOfCards: number;
   categoryId: string;
   nextClickHandler: () => void;
-  favoriteItems: IFavoriteCategory;
-  error: string | FetchBaseQueryError | SerializedError | undefined;
+  memorized: IFavoriteCategory;
+  failures: IFavoriteCategory;
+  favorites: IFavoriteCategory;
   currentNumber: number;
   errorSelect: boolean;
   successSelect: boolean;
@@ -40,8 +42,9 @@ const MainCard: FC<MainCardProps> = props => {
     numberOfCards,
     categoryId,
     nextClickHandler,
-    favoriteItems,
-    error,
+    favorites,
+    failures,
+    memorized,
     currentNumber,
     errorSelect,
     successSelect,
@@ -51,44 +54,55 @@ const MainCard: FC<MainCardProps> = props => {
     dispatchFlashCard
   } = props;
 
-  const [addFavorite] = useAddFavoriteMutation();
+  const [addItemData] = useAddSectionDataMutation();
   let answers = cardData?.answerOptions;
+
+  let newitem: ICategoryItem = {
+    id: cardData.id,
+    text: cardData.word,
+    transcription: cardData.transcription,
+    translate: cardData.correctTranslate
+  };
 
   const addToMemorizedHandler = async () => {
     nextClickHandler();
     if (!isAnswered) {
       dispatchFlashCard(setCorrectNum());
     }
+    if (!memorized) return;
+
+    const isMatch = isMatchData(memorized, categoryId, cardData.id);
+    if (isMatch) return;
+
+    addItem(addItemData, SECTIONS.memorized, categoryId, newitem);
   };
   const addToFailingsHandler = async () => {
     nextClickHandler();
+    if (!failures) return;
+
+    const isMatch = isMatchData(failures, categoryId, cardData.id);
+    if (isMatch) return;
+
+    addItem(addItemData, SECTIONS.failures, categoryId, newitem);
   };
   const addToFavoriteHandler = async () => {
+    if (!favorites) return;
     dispatchFlashCard(setIsFavorited(true));
-    let newitem: ICategoryItem = {
-      id: cardData.id,
-      text: cardData.word,
-      transcription: cardData.transcription,
-      translate: cardData.correctTranslate
-    };
 
-    let isSend = !isFavoritedCheck(favoriteItems.list, cardData.id);
+    let isSend = !isFavoritedCheck(favorites.list, cardData.id);
+
+    const isMatch = isMatchData(favorites, categoryId, cardData.id);
+    if (isMatch) return;
 
     if (isSend && !isSumbitted) {
-      await addFavorite({
-        id: categoryId,
-        body: newitem
-      });
+      addItem(addItemData, SECTIONS.favorites, categoryId, newitem);
       dispatchFlashCard(setIsSumbitted(true));
-    }
-    if (error) {
-      console.log("Items loading error");
     }
   };
 
   let isFavoriteActive = false;
-  if (favoriteItems?.list) {
-    isFavoriteActive = isFavoritedCheck(favoriteItems.list, cardData.id);
+  if (favorites?.list) {
+    isFavoriteActive = isFavoritedCheck(favorites.list, cardData.id);
   }
   if (isFavorited) {
     isFavoriteActive = isFavorited;

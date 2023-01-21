@@ -26,9 +26,30 @@ export const sectionApi = createApi({
         };
       },
       providesTags: ["Section"]
+    }),
+    addSectionData: builder.mutation({
+      query: reqParams => ({
+        url: `/sections/${reqParams.section}/${reqParams.category}.json`,
+        method: "POST",
+        body: reqParams.body
+      }),
+      invalidatesTags: ["Section"]
+    }),
+    delSectionData: builder.mutation({
+      query(reqParams) {
+        return {
+          url: `/sections/${reqParams.section}/${reqParams.category}/${reqParams.id}.json`,
+          method: "DELETE"
+        };
+      },
+      invalidatesTags: ["Section"]
     })
   })
 });
 
-export const { useSectionDataQuery } = sectionApi;
+export const {
+  useSectionDataQuery,
+  useDelSectionDataMutation,
+  useAddSectionDataMutation
+} = sectionApi;
 export default sectionApi;

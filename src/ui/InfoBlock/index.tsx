@@ -1,11 +1,15 @@
+import { FC } from "react";
 import cn from "classnames";
 import Typography from "../../ui/Typography";
 import { IInfo } from "../../types/Info";
+import { IBaseUI } from "../../types/ComponentUI";
 
 import styles from "./index.module.scss";
 
-const InfoBlock = (props: IInfo) => {
-  const { title, text, type } = props;
+interface InfoBlockProps extends IBaseUI, IInfo {}
+
+const InfoBlock: FC<InfoBlockProps> = props => {
+  const { title, text, type, className } = props;
 
   const infoTypeClass = {
     [styles[type]]: !!type
@@ -15,7 +19,8 @@ const InfoBlock = (props: IInfo) => {
       className={cn(
         "d-flex fd-col jc-center pb-4",
         styles.centered,
-        infoTypeClass
+        infoTypeClass,
+        className
       )}
     >
       <Typography tag="h3" className="mb-2" isCenter>
