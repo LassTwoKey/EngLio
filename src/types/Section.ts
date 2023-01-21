@@ -1,11 +1,11 @@
-import { ICategoryItem } from "./Categories";
+import { ICard } from "./Card";
 
 export interface ISection {
   id: string;
   name: string;
-  words?: ICategoryItem[] | null;
-  phrasal_verbs?: ICategoryItem[] | null;
-  phrases?: ICategoryItem[] | null;
-  expressions?: ICategoryItem[] | null;
+  words?: ICard[] | null;
+  phrasal_verbs?: ICard[] | null;
+  phrases?: ICard[] | null;
+  expressions?: ICard[] | null;
   [key: string]: any;
 }

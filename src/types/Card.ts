@@ -10,4 +10,5 @@ export interface ICard {
   correctTranslate: string;
   answerOptions: IAnswer[];
   prevState?: null;
+  uniqueId?: string;
 }

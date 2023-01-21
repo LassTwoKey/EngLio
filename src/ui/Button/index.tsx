@@ -84,7 +84,8 @@ const Button: FC<ButtonProps> = props => {
           {Icon && (iconPosition === "start" || !iconPosition) && (
             <div
               className={cn("d-flex ai-center jc-center", {
-                "mr-2": children
+                "mr-2": children,
+                [styles.disabled]: disabled
               })}
             >
               {Icon}

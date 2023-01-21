@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cn from "classnames";
 import { RootState } from "../../redux/store";
@@ -11,7 +11,12 @@ import styles from "./index.module.scss";
 
 const Headerbar: FC = () => {
   const dispatch = useDispatch();
-  const { data: notifications, error, isLoading } = useNotificationsQuery();
+  const [skip, setSkip] = useState<boolean>(true);
+  const {
+    data: notifications,
+    error,
+    isLoading
+  } = useNotificationsQuery(undefined, { skip: skip });
 
   const { burgerMenuToggle } = useSelector((state: RootState) => state.global);
 
@@ -41,6 +46,7 @@ const Headerbar: FC = () => {
         error={error}
         headerText="Уведомления"
         btnOptions={notificationBtn}
+        extraFunc={() => setSkip(false)}
       />
       <Dropdown
         renderElement={accountMenu}

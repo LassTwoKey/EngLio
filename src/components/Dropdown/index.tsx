@@ -18,6 +18,7 @@ type DropdownProps = {
   renderElement?: React.ReactNode;
   headerText?: string;
   heigth?: string;
+  extraFunc?: () => void;
   onClick?: () => void;
 };
 
@@ -29,7 +30,8 @@ const Dropdown: FC<DropdownProps> = props => {
     renderElement,
     heigth,
     isLoading,
-    onClick
+    onClick,
+    extraFunc
   } = props;
 
   const { ref, isComponentVisible, setIsComponentVisible } =
@@ -54,6 +56,7 @@ const Dropdown: FC<DropdownProps> = props => {
   const menuElement = renderElement && renderElement;
 
   const onClickButtonHanlder = () => {
+    if (extraFunc) extraFunc();
     if (onClick) {
       onClick();
     }

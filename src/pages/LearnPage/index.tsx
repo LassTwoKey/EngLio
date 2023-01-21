@@ -15,6 +15,7 @@ const LearnPage: FC = () => {
   const { id } = useParams() as { id: string };
   const { sections } = useAppSelector((state: RootState) => state.global);
   const { data: categories, error, isLoading } = useSectionDataQuery(id);
+
   let content;
 
   if (error) {

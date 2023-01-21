@@ -1,10 +1,9 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import cn from "classnames";
 import Typography from "../../ui/Typography";
 import FlashCard from "../FlashCard";
 import Selection from "../Selection";
 import FlashCardActions from "../FlashCardActions";
-import { ICategoryItem } from "../../types/Categories";
 import { isFavoritedCheck } from "../../utils/isFavoritedCheck";
 import { ICard } from "../../types/Card";
 import { IFavoriteCategory } from "../../types/Favorite";
@@ -14,12 +13,17 @@ import {
   setIsSumbitted
 } from "../../reducers/flashCardReducer";
 import { SECTIONS } from "../../data/constants";
-import { useAddSectionDataMutation } from "../../api/sectionApi";
+import {
+  useAddSectionDataMutation,
+  useDelSectionDataMutation
+} from "../../api/sectionApi";
+import { useDelFlashcardMutation } from "../../api/flashcardApi";
 import { addItem, isMatchData } from "../../utils/flashcardData";
 
 import styles from "./index.module.scss";
 
 interface MainCardProps {
+  allItems: ICard[];
   cardData: ICard;
   numberOfCards: number;
   categoryId: string;
@@ -51,39 +55,82 @@ const MainCard: FC<MainCardProps> = props => {
     isAnswered,
     isFavorited,
     isSumbitted,
+    allItems,
     dispatchFlashCard
   } = props;
 
-  const [addItemData] = useAddSectionDataMutation();
+  const [addItemData, { isLoading: isLoadingAdd }] =
+    useAddSectionDataMutation();
+  const [delItemData, { isLoading: isLoadingDel }] = useDelFlashcardMutation();
+
+  const [delFromCurrentCategory] = useDelSectionDataMutation();
   let answers = cardData?.answerOptions;
 
-  let newitem: ICategoryItem = {
+  let newitem: ICard = {
     id: cardData.id,
-    text: cardData.word,
+    word: cardData.word,
     transcription: cardData.transcription,
-    translate: cardData.correctTranslate
+    correctTranslate: cardData.correctTranslate,
+    answerOptions: cardData.answerOptions
   };
 
   const addToMemorizedHandler = async () => {
-    nextClickHandler();
     if (!isAnswered) {
       dispatchFlashCard(setCorrectNum());
     }
     if (!memorized) return;
 
     const isMatch = isMatchData(memorized, categoryId, cardData.id);
-    if (isMatch) return;
+    if (isMatch) {
+      nextClickHandler();
+      return;
+    }
 
-    addItem(addItemData, SECTIONS.memorized, categoryId, newitem);
+    await addItem(addItemData, SECTIONS.memorized, categoryId, newitem);
+
+    await delFromCurrentCategory({
+      section: SECTIONS.failures,
+      category: categoryId,
+      id: cardData.uniqueId
+    });
+
+    await delItemData({
+      category: categoryId,
+      id: cardData.uniqueId
+    });
+    if (!isLoadingDel) {
+      nextClickHandler();
+    }
   };
   const addToFailingsHandler = async () => {
-    nextClickHandler();
+    // if (isSuccessDel) {
+    //   nextClickHandler();
+    //   e.currentTarget.disabled = false;
+    // }
+    // ======
     if (!failures) return;
 
     const isMatch = isMatchData(failures, categoryId, cardData.id);
-    if (isMatch) return;
+    if (isMatch) {
+      nextClickHandler();
+      return;
+    }
 
-    addItem(addItemData, SECTIONS.failures, categoryId, newitem);
+    await addItem(addItemData, SECTIONS.failures, categoryId, newitem);
+
+    await delFromCurrentCategory({
+      section: SECTIONS.memorized,
+      category: categoryId,
+      id: cardData.uniqueId
+    });
+
+    await delItemData({
+      category: categoryId,
+      id: cardData.uniqueId
+    });
+    if (!isLoadingDel) {
+      nextClickHandler();
+    }
   };
   const addToFavoriteHandler = async () => {
     if (!favorites) return;
@@ -95,7 +142,7 @@ const MainCard: FC<MainCardProps> = props => {
     if (isMatch) return;
 
     if (isSend && !isSumbitted) {
-      addItem(addItemData, SECTIONS.favorites, categoryId, newitem);
+      await addItem(addItemData, SECTIONS.favorites, categoryId, newitem);
       dispatchFlashCard(setIsSumbitted(true));
     }
   };
@@ -137,6 +184,7 @@ const MainCard: FC<MainCardProps> = props => {
           onFailings={addToFailingsHandler}
           onFavorite={addToFavoriteHandler}
           isFavorite={isFavoriteActive}
+          isLoadingDel={isLoadingAdd || isLoadingDel}
         />
       </div>
     </div>

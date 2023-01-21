@@ -20,3 +20,5 @@ export const addItem = (
     body
   });
 };
+
+export const getData = () => {};

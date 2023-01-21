@@ -5,8 +5,9 @@ import Typography from "../../ui/Typography";
 import Button from "../../ui/Button";
 import Loader from "../../ui/Loader";
 import InfoBlock from "../../ui/InfoBlock";
-import { ICategoryItem } from "../../types/Categories";
+import { ICard } from "../../types/Card";
 import { useDelSectionDataMutation } from "../../api/sectionApi";
+import { useAddFlashcardMutation } from "../../api/flashcardApi";
 
 import styles from "./index.module.scss";
 
@@ -15,7 +16,7 @@ interface SectionCategoryProps {
   title: string;
   currentSection: string;
   currentCategory: string;
-  items?: ICategoryItem[] | null;
+  items?: ICard[] | null;
   isLoading?: boolean;
   error?: any;
 }
@@ -23,11 +24,29 @@ interface SectionCategoryProps {
 const SectionCategory: FC<SectionCategoryProps> = props => {
   const { items, title, isLoading, error, currentSection, currentCategory } =
     props;
-
+  const [addItem] = useAddFlashcardMutation();
   const [delItem] = useDelSectionDataMutation();
 
-  const removeFromHandler = async (id: string | undefined) => {
+  const removeFromHandler = async (
+    id: string | undefined,
+    item: ICard,
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    e.currentTarget.disabled = true;
     if (!id) return;
+    let body = {
+      id: item.id,
+      answerOptions: item.answerOptions,
+      correctTranslate: item.correctTranslate,
+      transcription: item.transcription,
+      word: item.word
+    };
+
+    await addItem({
+      id: currentCategory,
+      body
+    });
+
     await delItem({
       section: currentSection,
       category: currentCategory,
@@ -58,13 +77,13 @@ const SectionCategory: FC<SectionCategoryProps> = props => {
             <div className="">
               <div className="d-flex ai-center">
                 <Typography tag="h3" className="mr-2">
-                  {item.text}
+                  {item.word}
                 </Typography>
                 {item.transcription && (
                   <Typography tag="p">{item.transcription}</Typography>
                 )}
               </div>
-              <Typography tag="p">{item.translate}</Typography>
+              <Typography tag="p">{item.correctTranslate}</Typography>
             </div>
             <div className="d-flex ai-center">
               {/* <Button type="outlined" className="mr-2">
@@ -72,7 +91,7 @@ const SectionCategory: FC<SectionCategoryProps> = props => {
               </Button> */}
               <Button
                 type="primary"
-                onClick={() => removeFromHandler(item.uniqueId)}
+                onClick={(e: any) => removeFromHandler(item.uniqueId, item, e)}
               >
                 Убрать
               </Button>

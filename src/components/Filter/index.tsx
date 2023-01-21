@@ -12,29 +12,65 @@ import {
   setCards,
   setExistingCards
 } from "../../reducers/flashCardReducer";
+import { FILTER_ACTIONS, COUNT_LIMIT } from "../../data/constants";
 
 import styles from "./index.module.scss";
 
 interface FilterProps {
+  numberOfCards: number;
   pageData: ICard[];
+  memorized: ICard[] | null;
+  failures: ICard[] | null;
   dispatchFlashCard: React.Dispatch<any>;
+  setNumbers: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Filter: FC<FilterProps> = props => {
+  const {
+    dispatchFlashCard,
+    pageData,
+    memorized,
+    failures,
+    setNumbers,
+    numberOfCards
+  } = props;
   const filters = useAppSelector(getFilters).items;
-  const { dispatchFlashCard, pageData } = props;
   const [currentActive, setCurrentActive] = useState<string>("");
 
   const clickHandler = (value: string, action: string) => {
     dispatchFlashCard(setIsInit(true));
     setCurrentActive(value);
-
     if (pageData) {
+      const isNotFilters =
+        !(pageData.length < COUNT_LIMIT) ||
+        !(FILTER_ACTIONS.byMemorize === action);
+
+      if (isNotFilters) {
+        if (pageData.length < COUNT_LIMIT) setNumbers(pageData.length);
+      }
+
+      if (FILTER_ACTIONS.byFailure === action) {
+        dispatchFlashCard(setCards([]));
+        if (!failures) return;
+        if (failures.length < COUNT_LIMIT) setNumbers(failures.length);
+        dispatchFlashCard(setCards(failures));
+        dispatchFlashCard(setExistingCards(failures));
+        return;
+      }
+      if (FILTER_ACTIONS.byMemorize === action) {
+        dispatchFlashCard(setCards([]));
+        if (!memorized) return;
+        if (memorized.length < COUNT_LIMIT) setNumbers(memorized.length);
+        dispatchFlashCard(setCards(memorized));
+
+        dispatchFlashCard(setExistingCards(memorized));
+        return;
+      }
       dispatchFlashCard(setCards(pageData));
 
       const currentFunc = getCurrentFilter(action);
 
-      const sortedCards = currentFunc([...pageData]);
+      const sortedCards = currentFunc([...pageData], numberOfCards);
 
       if (sortedCards.length > 0)
         dispatchFlashCard(setExistingCards(sortedCards));

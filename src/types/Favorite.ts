@@ -1,6 +1,6 @@
-import { ICategoryItem } from "./Categories";
+import { ICard } from "./Card";
 
 export interface IFavoriteCategory {
   name?: string;
-  list?: ICategoryItem[];
+  list?: ICard[];
 }

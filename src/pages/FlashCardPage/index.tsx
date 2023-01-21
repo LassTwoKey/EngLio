@@ -1,4 +1,4 @@
-import { FC, useReducer } from "react";
+import { FC, useReducer, useState } from "react";
 import { useParams } from "react-router-dom";
 import Filter from "../../components/Filter";
 import MainCard from "../../components/MainCard";
@@ -28,6 +28,7 @@ import { SECTIONS } from "../../data/constants";
 
 const FlashCardPage: FC = () => {
   const { id } = useParams() as { id: string };
+  const [numbers, setNumbers] = useState<number>(0);
 
   const {
     data: pageData,
@@ -71,13 +72,14 @@ const FlashCardPage: FC = () => {
     content = <Loader />;
   }
 
-  const isLaodedAll = favorites && memorized && failures;
+  const isLaodedAll = favorites && memorized && failures && pageData;
 
   if (isLaodedAll && flashCardState.existingCards && flashCardState.cards) {
     if (flashCardState.isInit && flashCardState.existingCards.length > 0) {
       content = (
         <MainCard
-          numberOfCards={COUNT_LIMIT}
+          numberOfCards={!!numbers ? numbers : COUNT_LIMIT}
+          allItems={pageData}
           categoryId={id}
           memorized={memorized}
           failures={failures}
@@ -97,7 +99,7 @@ const FlashCardPage: FC = () => {
     if (flashCardState.isInit && flashCardState.existingCards.length === 0) {
       content = (
         <CardResult
-          numberOfCards={COUNT_LIMIT}
+          numberOfCards={!!numbers ? numbers : COUNT_LIMIT}
           numbeOfCorrect={flashCardState.correctNum}
         />
       );
@@ -128,8 +130,15 @@ const FlashCardPage: FC = () => {
 
   return (
     <PageWrapper className="d-flex fd-col" goBack>
-      {!flashCardState.isInit && pageData && (
-        <Filter pageData={pageData} dispatchFlashCard={dispatchFlashCard} />
+      {isLaodedAll && !flashCardState.isInit && pageData && (
+        <Filter
+          pageData={pageData}
+          memorized={memorized[id]}
+          failures={failures[id]}
+          dispatchFlashCard={dispatchFlashCard}
+          setNumbers={setNumbers}
+          numberOfCards={!!numbers ? numbers : COUNT_LIMIT}
+        />
       )}
       {content}
       {flashCardState.isAnswered && (
