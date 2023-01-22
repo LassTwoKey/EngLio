@@ -23,7 +23,6 @@ import { addItem, isMatchData } from "../../utils/flashcardData";
 import styles from "./index.module.scss";
 
 interface MainCardProps {
-  allItems: ICard[];
   cardData: ICard;
   numberOfCards: number;
   categoryId: string;
@@ -55,7 +54,6 @@ const MainCard: FC<MainCardProps> = props => {
     isAnswered,
     isFavorited,
     isSumbitted,
-    allItems,
     dispatchFlashCard
   } = props;
 

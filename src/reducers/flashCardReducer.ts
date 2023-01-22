@@ -41,8 +41,6 @@ export const flashCardReducer = (state: InitialFlashCardState, action: any) => {
     case ActionKind.SetCorrectNum:
       return { ...state, correctNum: state.correctNum + 1 };
     case ActionKind.SetCurrentNumber:
-      console.log(!payload ? state.currentNumber + 1 : payload);
-
       return {
         ...state,
         currentNumber: !payload ? state.currentNumber + 1 : payload

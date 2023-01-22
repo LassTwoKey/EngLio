@@ -4,6 +4,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 interface IMenuList {
   path: string;
   value: string;
+  icon?: string;
 }
 
 interface IHeader {
@@ -23,6 +24,7 @@ interface IGlobalState {
   loader: boolean;
   header: IHeader;
   sections: ISection[];
+  footer: { menuList: IMenuList[] };
 }
 
 const initialState: IGlobalState = {
@@ -60,7 +62,26 @@ const initialState: IGlobalState = {
       id: "failures",
       name: "Сложные"
     }
-  ]
+  ],
+  footer: {
+    menuList: [
+      {
+        path: "/welcome",
+        value: "Главная",
+        icon: "_icon-home"
+      },
+      {
+        path: "/flashcards",
+        value: "Карточки",
+        icon: "_icon-cards"
+      },
+      {
+        path: "/learn",
+        value: "Обучение",
+        icon: "_icon-learn"
+      }
+    ]
+  }
 };
 
 const globalSlice = createSlice({

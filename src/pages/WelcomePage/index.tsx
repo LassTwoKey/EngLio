@@ -25,7 +25,7 @@ const WelcomePage: FC = () => {
   return (
     <PageWrapper className={cn(styles.backImg)} center>
       {info && (
-        <div className="container py-6">
+        <div className="container pt-6 pb-10">
           <Typography tag="h1" className={cn("mb-4")}>
             {info.mainTitle}
           </Typography>

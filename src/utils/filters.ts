@@ -18,11 +18,11 @@ export const filterByReverse = (list: ICard[], length: number) => {
   return list.reverse().slice(0, length);
 };
 
-export const filterByMemorize = (list: ICard[], length?: number) => {
+export const filterByMemorize = (list: ICard[]) => {
   return list;
 };
 
-export const filterByFailure = (list: ICard[], length?: number) => {
+export const filterByFailure = (list: ICard[]) => {
   return list;
 };
 

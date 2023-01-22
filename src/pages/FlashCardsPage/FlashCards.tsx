@@ -14,7 +14,7 @@ const FlashCards: FC = () => {
 
   return (
     <PageWrapper title="Разделы для карточек">
-      <div className="container pb-6">
+      <div className="container pb-12">
         <div className={cn(styles.cards, "d-flex fwr-wrap")}>
           {error && <InfoBlock type="error" title="Ошибка загрузки :(" />}
           {isSuccess &&

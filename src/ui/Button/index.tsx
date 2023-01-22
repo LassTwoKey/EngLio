@@ -56,7 +56,12 @@ const Button: FC<ButtonProps> = props => {
           {...props}
           type={"button"}
           className={({ isActive }) =>
-            isActive ? cn(classes, styles.button_light_ac) : classes
+            isActive
+              ? cn(classes, {
+                  [styles.button_light_ac]: isLight,
+                  [styles.button_common_ac]: isCommon
+                })
+              : classes
           }
           onClick={e => onClick && onClick(e)}
           to={to}
@@ -64,7 +69,7 @@ const Button: FC<ButtonProps> = props => {
           {Icon && (iconPosition === "start" || !iconPosition) && (
             <div
               className={cn("d-flex ai-center jc-center", {
-                "mr-2": children
+                "mr-2": children && !isCommon
               })}
             >
               {Icon}

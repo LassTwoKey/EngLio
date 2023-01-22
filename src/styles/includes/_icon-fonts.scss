@@ -25,27 +25,42 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-._icon-close:before {
+._icon-account:before {
   content: "\e900";
 }
-._icon-light-mode:before {
+._icon-bookmark:before {
   content: "\e901";
 }
-._icon-notification:before {
+._icon-bookmark-filled:before {
   content: "\e902";
 }
-._icon-ok:before {
+._icon-cards:before {
   content: "\e903";
 }
-._icon-return:before {
+._icon-close:before {
   content: "\e904";
 }
-._icon-search:before {
+._icon-flag-russia:before {
   content: "\e905";
 }
-._icon-account:before {
-  content: "\e906";
+._icon-home:before {
+  content: "\e908";
 }
-._icon-bookmark:before {
-  content: "\e907";
+._icon-learn:before {
+  content: "\e909";
+}
+._icon-light-mode:before {
+  content: "\e90a";
+}
+._icon-notification:before {
+  content: "\e90b";
+}
+._icon-ok:before {
+  content: "\e90c";
+}
+._icon-return:before {
+  content: "\e90d";
+}
+._icon-search:before {
+  content: "\e90e";
 }

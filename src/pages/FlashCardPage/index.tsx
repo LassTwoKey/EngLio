@@ -79,7 +79,6 @@ const FlashCardPage: FC = () => {
       content = (
         <MainCard
           numberOfCards={!!numbers ? numbers : COUNT_LIMIT}
-          allItems={pageData}
           categoryId={id}
           //check
           memorized={memorized}
@@ -132,7 +131,7 @@ const FlashCardPage: FC = () => {
   }
 
   return (
-    <PageWrapper className="d-flex fd-col" goBack>
+    <PageWrapper className="d-flex fd-col pb-10" goBack>
       {isLaodedAll && !flashCardState.isInit && pageData && (
         <Filter
           pageData={pageData}
