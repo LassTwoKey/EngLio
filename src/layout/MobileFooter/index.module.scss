@@ -6,10 +6,11 @@
   bottom: 0;
   width: 100%;
   height: auto;
-  background: $bg-secondary;
+  background: $bg-primary;
   @media (min-width: 768px) {
     display: none !important;
   }
+  border-top: 1px solid $c-fivefold;
 }
 .btn {
   color: $c-fivefold;

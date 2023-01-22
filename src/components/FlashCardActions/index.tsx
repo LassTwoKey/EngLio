@@ -29,35 +29,46 @@ const FlashCardActions: FC<CardActionsProps> = props => {
 
   return (
     <div className={cn(styles.cartAction, "mb-2 d-flex jc-center")}>
-      <Button
-        type="common"
-        onClick={(e: any) => {
-          onMemorized(e);
-        }}
-        disabled={isLoadingDel}
-        className={styles.memorized}
-      >
-        <span className="_icon-ok"></span>
-      </Button>
-      <Button
-        type="common"
-        onClick={(e: any) => {
-          onFailings(e);
-        }}
-        disabled={isLoadingDel}
-        className={styles.skip}
-      >
-        <span className="_icon-close"></span>
-      </Button>
-      <Button
-        type="common"
-        onClick={(e: any) => {
-          onFavorite(e);
-        }}
-        className={favoriteClass}
-      >
-        <span className="_icon-bookmark"></span>
-      </Button>
+      {!isLoadingDel ? (
+        <>
+          <Button
+            type="common"
+            onClick={(e: any) => {
+              onMemorized(e);
+            }}
+            disabled={isLoadingDel}
+            className={styles.memorized}
+          >
+            <span className="_icon-ok"></span>
+          </Button>
+          <Button
+            type="common"
+            onClick={(e: any) => {
+              onFailings(e);
+            }}
+            disabled={isLoadingDel}
+            className={styles.skip}
+          >
+            <span className="_icon-close"></span>
+          </Button>
+          <Button
+            type="common"
+            onClick={(e: any) => {
+              onFavorite(e);
+            }}
+            className={favoriteClass}
+          >
+            {isFavorite ? (
+              <span className="_icon-bookmark-filled"></span>
+            ) : (
+              <span className="_icon-bookmark"></span>
+            )}
+            {/* <span className="_icon-bookmark"></span> */}
+          </Button>
+        </>
+      ) : (
+        <p className="p-2">Идет процесс...</p>
+      )}
     </div>
   );
 };

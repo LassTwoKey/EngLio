@@ -1,8 +1,12 @@
 @import "./src/styles/includes/variables";
 
+.container {
+  @media (max-width: 768px) {
+    padding-bottom: 75px;
+  }
+}
 .cards {
   gap: 30px;
-  //flex-wrap: wrap;
 }
 
 .card {

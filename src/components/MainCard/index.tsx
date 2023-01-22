@@ -101,11 +101,6 @@ const MainCard: FC<MainCardProps> = props => {
     }
   };
   const addToFailingsHandler = async () => {
-    // if (isSuccessDel) {
-    //   nextClickHandler();
-    //   e.currentTarget.disabled = false;
-    // }
-    // ======
     if (!failures) return;
 
     const isMatch = isMatchData(failures, categoryId, cardData.id);
