@@ -1,22 +1,25 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import styles from "./index.module.scss";
-
-interface Option {
-  value: string;
-  text: string;
-}
 
 interface SelectProps {
   name: string;
-  optns: Option[];
+  optns: any;
+  onClick: (min: number, max: number) => void;
 }
 
 const Select: FC<SelectProps> = props => {
-  const { name, optns } = props;
+  const { name, optns, onClick } = props;
+
   return (
-    <select className={styles.select} name={name}>
+    <select
+      className={styles.select}
+      name={name}
+      onChange={(e: any) =>
+        onClick(optns[e.target.value].min, optns[e.target.value].max)
+      }
+    >
       {optns.length > 0 &&
-        optns.map((optn: Option) => (
+        optns.map((optn: any) => (
           <option key={optn.value} value={optn.value}>
             {optn.text}
           </option>

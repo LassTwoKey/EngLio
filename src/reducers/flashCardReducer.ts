@@ -10,7 +10,8 @@ export enum ActionKind {
   SetSuccessSelect = "setSuccessSelect",
   SetIsAnswered = "setIsAnswered",
   SetIsFavorited = "setIsFavorited",
-  SetIsSumbitted = "setIsSumbitted"
+  SetIsSumbitted = "setIsSumbitted",
+  SetIsCategory = "setIsCategory"
 }
 
 export const initialFlashCardState = {
@@ -23,7 +24,8 @@ export const initialFlashCardState = {
   successSelect: false,
   isAnswered: false,
   isFavorited: false,
-  isSumbitted: false
+  isSumbitted: false,
+  isCategory: false
 };
 
 export const flashCardReducer = (state: InitialFlashCardState, action: any) => {
@@ -39,7 +41,12 @@ export const flashCardReducer = (state: InitialFlashCardState, action: any) => {
     case ActionKind.SetCorrectNum:
       return { ...state, correctNum: state.correctNum + 1 };
     case ActionKind.SetCurrentNumber:
-      return { ...state, currentNumber: state.currentNumber + 1 };
+      console.log(!payload ? state.currentNumber + 1 : payload);
+
+      return {
+        ...state,
+        currentNumber: !payload ? state.currentNumber + 1 : payload
+      };
     case ActionKind.SetErrorSelect:
       return { ...state, errorSelect: payload };
     case ActionKind.SetSuccessSelect:
@@ -50,6 +57,8 @@ export const flashCardReducer = (state: InitialFlashCardState, action: any) => {
       return { ...state, isFavorited: payload };
     case ActionKind.SetIsSumbitted:
       return { ...state, isSumbitted: payload };
+    case ActionKind.SetIsCategory:
+      return { ...state, isCategory: payload };
     default:
       return { ...state };
   }
@@ -70,8 +79,9 @@ export const setExistingCards = (payload: any) => ({
 export const setCorrectNum = () => ({
   type: ActionKind.SetCorrectNum
 });
-export const setCurrentNumber = () => ({
-  type: ActionKind.SetCurrentNumber
+export const setCurrentNumber = (payload?: number) => ({
+  type: ActionKind.SetCurrentNumber,
+  payload: payload
 });
 export const setErrorSelect = (payload: any) => ({
   type: ActionKind.SetErrorSelect,
@@ -91,5 +101,9 @@ export const setIsFavorited = (payload: any) => ({
 });
 export const setIsSumbitted = (payload: any) => ({
   type: ActionKind.SetIsSumbitted,
+  payload: payload
+});
+export const setIsCategory = (payload: any) => ({
+  type: ActionKind.SetIsCategory,
   payload: payload
 });

@@ -10,14 +10,17 @@ import { ICard } from "../../types/Card";
 import {
   setIsInit,
   setCards,
-  setExistingCards
+  setExistingCards,
+  setIsCategory
 } from "../../reducers/flashCardReducer";
 import { FILTER_ACTIONS, COUNT_LIMIT } from "../../data/constants";
+import { wordCategoryFilter } from "../../utils/filters";
 
 import styles from "./index.module.scss";
 
 interface FilterProps {
   numberOfCards: number;
+  isCategory: boolean;
   pageData: ICard[];
   memorized: ICard[] | null;
   failures: ICard[] | null;
@@ -32,9 +35,12 @@ const Filter: FC<FilterProps> = props => {
     memorized,
     failures,
     setNumbers,
-    numberOfCards
+    numberOfCards,
+    isCategory
   } = props;
   const filters = useAppSelector(getFilters).items;
+  const optns = useAppSelector(getFilters).optns;
+
   const [currentActive, setCurrentActive] = useState<string>("");
 
   const clickHandler = (value: string, action: string) => {
@@ -52,7 +58,15 @@ const Filter: FC<FilterProps> = props => {
       if (FILTER_ACTIONS.byFailure === action) {
         dispatchFlashCard(setCards([]));
         if (!failures) return;
-        if (failures.length < COUNT_LIMIT) setNumbers(failures.length);
+
+        if (failures.length < COUNT_LIMIT) {
+          setNumbers(failures.length);
+        } else {
+          setNumbers(COUNT_LIMIT);
+        }
+
+        if (isCategory) return;
+
         dispatchFlashCard(setCards(failures));
         dispatchFlashCard(setExistingCards(failures));
         return;
@@ -60,12 +74,22 @@ const Filter: FC<FilterProps> = props => {
       if (FILTER_ACTIONS.byMemorize === action) {
         dispatchFlashCard(setCards([]));
         if (!memorized) return;
-        if (memorized.length < COUNT_LIMIT) setNumbers(memorized.length);
+
+        if (memorized.length < COUNT_LIMIT) {
+          setNumbers(memorized.length);
+        } else {
+          setNumbers(COUNT_LIMIT);
+        }
+        if (isCategory) return;
+
         dispatchFlashCard(setCards(memorized));
 
         dispatchFlashCard(setExistingCards(memorized));
         return;
       }
+
+      if (isCategory) return;
+
       dispatchFlashCard(setCards(pageData));
 
       const currentFunc = getCurrentFilter(action);
@@ -77,26 +101,24 @@ const Filter: FC<FilterProps> = props => {
     }
   };
 
-  const selectData = {
-    name: "words",
-    optns: [
-      {
-        value: "1",
-        text: "100-200"
-      },
-      {
-        value: "2",
-        text: "200-300"
-      },
-      {
-        value: "3",
-        text: "300-400"
-      },
-      {
-        value: "4",
-        text: "500-1000"
-      }
-    ]
+  const wordCategoryHandler = (min: number, max: number) => {
+    dispatchFlashCard(setIsCategory(true));
+
+    if (pageData) {
+      const sorted = wordCategoryFilter(pageData, min, max);
+      dispatchFlashCard(setCards(sorted));
+      dispatchFlashCard(setExistingCards(sorted));
+    }
+    if (failures) {
+      const sorted = wordCategoryFilter(failures, min, max);
+      dispatchFlashCard(setCards(sorted));
+      dispatchFlashCard(setExistingCards(sorted));
+    }
+    if (memorized) {
+      const sorted = wordCategoryFilter(memorized, min, max);
+      dispatchFlashCard(setCards(sorted));
+      dispatchFlashCard(setExistingCards(sorted));
+    }
   };
 
   return (
@@ -127,7 +149,7 @@ const Filter: FC<FilterProps> = props => {
         <Typography className={styles.title} isBig tag="p">
           Категории слов:
         </Typography>
-        <Select name={selectData.name} optns={selectData.optns} />
+        <Select onClick={wordCategoryHandler} name={"s"} optns={optns} />
       </div>
     </div>
   );

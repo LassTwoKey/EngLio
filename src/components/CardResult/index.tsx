@@ -1,22 +1,21 @@
 import { FC } from "react";
-import { useNavigate } from "react-router-dom";
 import cn from "classnames";
 import Typography from "../../ui/Typography";
 import Card from "../../ui/Card";
 import Button from "../../ui/Button";
-import { paths } from "../../data/constants";
+import { setIsInit, setCurrentNumber } from "../../reducers/flashCardReducer";
 
 import styles from "./index.module.scss";
 
 interface CardResultProps {
   numberOfCards: number;
   numbeOfCorrect: number;
+  dispatchFlashCard: React.Dispatch<any>;
 }
 
 const CardResult: FC<CardResultProps> = props => {
-  const { numberOfCards, numbeOfCorrect } = props;
+  const { numberOfCards, numbeOfCorrect, dispatchFlashCard } = props;
 
-  const navigate = useNavigate();
   return (
     <div className="container mt-6 pb-4">
       <Card className={cn("mb-2", styles.card)}>
@@ -29,7 +28,10 @@ const CardResult: FC<CardResultProps> = props => {
         <div className="d-flex jc-center">
           <Button
             type="primary"
-            onClick={() => navigate(`/${paths.flashcards}`)}
+            onClick={() => {
+              dispatchFlashCard(setIsInit(false));
+              dispatchFlashCard(setCurrentNumber(1));
+            }}
           >
             Назад
           </Button>

@@ -26,4 +26,6 @@ export const filterByFailure = (list: ICard[], length?: number) => {
   return list;
 };
 
-// sorting array
+export const wordCategoryFilter = (list: ICard[], min: number, max: number) => {
+  return list.filter(item => +item.id >= min && +item.id <= max);
+};

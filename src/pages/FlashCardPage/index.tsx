@@ -81,9 +81,11 @@ const FlashCardPage: FC = () => {
           numberOfCards={!!numbers ? numbers : COUNT_LIMIT}
           allItems={pageData}
           categoryId={id}
+          //check
           memorized={memorized}
           failures={failures}
           favorites={favorites}
+          // ====
           nextClickHandler={nextClickHandler}
           cardData={flashCardState.existingCards[0]}
           currentNumber={flashCardState.currentNumber}
@@ -101,6 +103,7 @@ const FlashCardPage: FC = () => {
         <CardResult
           numberOfCards={!!numbers ? numbers : COUNT_LIMIT}
           numbeOfCorrect={flashCardState.correctNum}
+          dispatchFlashCard={dispatchFlashCard}
         />
       );
     }
@@ -137,6 +140,7 @@ const FlashCardPage: FC = () => {
           failures={failures[id]}
           dispatchFlashCard={dispatchFlashCard}
           setNumbers={setNumbers}
+          isCategory={flashCardState.isCategory}
           numberOfCards={!!numbers ? numbers : COUNT_LIMIT}
         />
       )}

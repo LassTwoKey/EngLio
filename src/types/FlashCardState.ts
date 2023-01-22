@@ -11,4 +11,5 @@ export interface InitialFlashCardState {
   isAnswered: boolean;
   isFavorited: boolean;
   isSumbitted: boolean;
+  isCategory: boolean;
 }
